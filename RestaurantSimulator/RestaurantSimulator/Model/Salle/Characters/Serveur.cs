@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantSimulator.Model.Salle.Characters
 {
-    class Serveur : Position
+    public class Serveur : Position
     {
         public Serveur(int posX, int posY) : base(posX, posY)
         {

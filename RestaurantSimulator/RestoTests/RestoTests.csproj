@@ -52,6 +52,7 @@
     <Compile Include="Model\Salle\TestCommis.cs" />
     <Compile Include="Model\Salle\TestIMove.cs" />
     <Compile Include="Model\Salle\TestIPosition.cs" />
+    <Compile Include="Model\Salle\TestServeur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
