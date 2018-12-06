@@ -9,22 +9,22 @@ namespace RestaurantSimulator.Model.Salle.Characters
 {
     public class HotelMaster : Position
     {
-        private List<RankChief> rankChief;
+        private List<RankChief> rankChiefs;
 
-        public List<RankChief> RankChief
+        public List<RankChief> RankChiefs
         {
-            get => rankChief;
-            set => rankChief = value;
+            get => rankChiefs;
+            set => rankChiefs = value;
         }
 
         public HotelMaster() : base ()
         {
-            this.rankChief = new List<RankChief>();
+            this.rankChiefs = new List<RankChief>();
         }
 
         public HotelMaster(int posX, int posY) : base (posX, posY)
         {
-            this.rankChief = new List<RankChief>();
+            this.rankChiefs = new List<RankChief>();
         }
     }
 }

@@ -53,6 +53,8 @@
     <Compile Include="Model\Salle\TestIMove.cs" />
     <Compile Include="Model\Salle\TestIPosition.cs" />
     <Compile Include="Model\Salle\TestWaiter.cs" />
+    <Compile Include="Model\Salle\TestHotelMaster.cs" />
+    <Compile Include="Model\Salle\TestRankChief.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
