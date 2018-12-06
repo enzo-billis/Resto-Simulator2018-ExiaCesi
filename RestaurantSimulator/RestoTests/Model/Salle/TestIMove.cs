@@ -1,14 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace RestoTests
+namespace TestRestaurant
 {
     [TestClass]
-    public class UnitTest1
+    public class TestIMove
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestMove()
         {
+            throw new NotImplementedException();
         }
     }
 }

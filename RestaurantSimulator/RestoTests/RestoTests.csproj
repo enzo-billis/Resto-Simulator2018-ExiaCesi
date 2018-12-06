@@ -49,11 +49,22 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Model\Salle\TestCommis.cs" />
+    <Compile Include="Model\Salle\TestIMove.cs" />
+    <Compile Include="Model\Salle\TestIPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Cuisine\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RestaurantSimulator\RestaurantSimulator.csproj">
+      <Project>{88338334-fb8d-4f41-bbca-2dabf48e1ca1}</Project>
+      <Name>RestaurantSimulator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
