@@ -43,16 +43,14 @@
   <ItemGroup>
     <Compile Include="Controller\Groupe.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Model\Cuisine\KitchenPools.cs" />
     <Compile Include="Model\Salle\Characters\Commis.cs" />
     <Compile Include="Model\Salle\Characters\Group.cs" />
     <Compile Include="Model\Salle\Characters\HotelMaster.cs" />
     <Compile Include="Model\Salle\Characters\RankChief.cs" />
+    <Compile Include="Model\Salle\Characters\Serveur.cs" />
     <Compile Include="Model\Salle\Components\Equipment.cs" />
-    <Compile Include="Model\Salle\Movement\IMove.cs" />
     <Compile Include="Model\Salle\Movement\IPosition.cs" />
     <Compile Include="Model\Salle\Movement\Position.cs" />
-    <Compile Include="Model\Salle\SallePools.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -138,6 +136,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Model\Cuisine\" />
     <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
