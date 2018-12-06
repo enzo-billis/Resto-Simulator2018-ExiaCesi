@@ -8,7 +8,7 @@ namespace RestoTests.Model.Salle
     public class TestRankChief
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestRankChiefConstruct()
         {
             RankChief BasicRankChief = new RankChief();
             Assert.AreEqual(0, BasicRankChief.PosX);

@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Restaurant.Model.Salle.Movement;
+using RestaurantSimulator.Model.Salle.Characters;
+using RestaurantSimulator.Model.Salle.Movement;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Restaurant.Model.Shared
 {
@@ -20,9 +19,33 @@ namespace Restaurant.Model.Shared
         Dead
     };
 
-    public class Group
+    public class Group : Position, IMove
     {
-        public int ID;
-        //private List<Client> clients;
+        private int id;
+        private List<Client> clients;
+        private static int GroupCounter = 1;
+
+        public int ID { get => id; set => id = value; }
+        public List<Client> Clients { get => clients; set => clients = value; }
+
+        public Group() : base()
+        {
+            this.clients = new List<Client>();
+            this.id = GroupCounter;
+            GroupCounter++;
+        }
+
+        public Group(int posX, int posY) : base (posX, posY)
+        {
+            this.clients = new List<Client>();
+            this.id = GroupCounter;
+            GroupCounter++;
+        }
+
+        public void Move(int posX, int posY)
+        {
+            this.PosX = posX;
+            this.PosY = posY;
+        }
     }
 }
