@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantSimulator", "RestaurantSimulator\RestaurantSimulator.csproj", "{88338334-FB8D-4F41-BBCA-2DABF48E1CA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88338334-FB8D-4F41-BBCA-2DABF48E1CA1}.Debug|x86.ActiveCfg = Debug|x86
+		{88338334-FB8D-4F41-BBCA-2DABF48E1CA1}.Debug|x86.Build.0 = Debug|x86
+		{88338334-FB8D-4F41-BBCA-2DABF48E1CA1}.Release|x86.ActiveCfg = Release|x86
+		{88338334-FB8D-4F41-BBCA-2DABF48E1CA1}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9D5C514-6BE7-4BA3-BCA2-F6CF567F3AFA}
+	EndGlobalSection
+EndGlobal
