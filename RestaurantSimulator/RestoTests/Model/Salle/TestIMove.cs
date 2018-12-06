@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Restaurant.Model.Salle.Characters;
-using RestaurantSimulator.Model.Salle.Movement;
 
 namespace TestRestaurant
 {

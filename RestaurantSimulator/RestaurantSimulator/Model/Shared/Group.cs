@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Restaurant.Model.Salle.Characters
+namespace Restaurant.Model.Shared
 {
 
     public enum GroupState {
@@ -20,7 +20,7 @@ namespace Restaurant.Model.Salle.Characters
         Dead
     };
 
-    class Group
+    public class Group
     {
         public int ID;
         //private List<Client> clients;
