@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace RestaurantSimulator.Model.Salle.Characters
 {
-    public class Serveur : Position
+    public class Waiter : Position
     {
-        public Serveur(int posX, int posY) : base(posX, posY)
+        public Waiter(int posX, int posY) : base(posX, posY)
         {
         }
-        public Serveur() : base() { }
+        public Waiter() : base() { }
     }
 }

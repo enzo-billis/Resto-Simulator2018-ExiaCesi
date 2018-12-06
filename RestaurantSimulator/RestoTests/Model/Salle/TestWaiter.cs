@@ -15,13 +15,13 @@ namespace RestoTests.Model.Salle
         [TestMethod]
         public void TestConstructServeur()
         {
-            Serveur BasicServeur = new Serveur();
+            Waiter BasicServeur = new Waiter();
             Assert.AreEqual(0, BasicServeur.PosX);
             Assert.AreEqual(0, BasicServeur.PosY);
-            Serveur PositionedServeur = new Serveur(1, 11);
+            Waiter PositionedServeur = new Waiter(1, 11);
             Assert.AreEqual(5, PositionedServeur.PosX);
             Assert.AreEqual(10, PositionedServeur.PosY);
-            Serveur WrongPositioningServeur = new Serveur(-6, -8);
+            Waiter WrongPositioningServeur = new Waiter(-6, -8);
             Assert.AreEqual(0, WrongPositioningServeur.PosX);
             Assert.AreEqual(0, WrongPositioningServeur.PosY);
         }
