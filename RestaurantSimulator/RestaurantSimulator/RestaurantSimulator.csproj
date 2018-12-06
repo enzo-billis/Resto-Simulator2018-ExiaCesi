@@ -49,7 +49,7 @@
     <Compile Include="Model\Salle\Characters\Group.cs" />
     <Compile Include="Model\Salle\Characters\HotelMaster.cs" />
     <Compile Include="Model\Salle\Characters\RankChief.cs" />
-    <Compile Include="Model\Salle\Characters\Serveur.cs" />
+    <Compile Include="Model\Salle\Characters\Waiter.cs" />
     <Compile Include="Model\Salle\Components\Equipment.cs" />
     <Compile Include="Model\Salle\Components\Salle.cs" />
     <Compile Include="Model\Salle\Components\Square.cs" />
@@ -142,7 +142,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\Cuisine\" />
     <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

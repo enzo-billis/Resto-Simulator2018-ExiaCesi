@@ -10,7 +10,7 @@ using RestaurantSimulator.Model.Salle.Characters;
 namespace RestoTests.Model.Salle
 {
     [TestClass]
-    public class TestServeur
+    public class TestWaiter
     {
         [TestMethod]
         public void TestConstructServeur()
