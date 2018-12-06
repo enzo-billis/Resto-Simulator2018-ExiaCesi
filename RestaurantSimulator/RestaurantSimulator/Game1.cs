@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Restaurant.Controller;
+using System.Collections.Generic;
 
 namespace RestaurantSimulator
 {
@@ -9,8 +11,17 @@ namespace RestaurantSimulator
     /// </summary>
     public class Game1 : Game
     {
+        int tile = 32;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Vector2 bgPosition;
+        Texture2D bgTexture;
+        Texture2D bg2Texture;
+        List<Rectangle> rectangles;
+        
+
+        Groupe groupe;
+       
 
         public Game1()
         {
@@ -18,15 +29,17 @@ namespace RestaurantSimulator
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
+       
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            this.IsMouseVisible = true;
+            graphics.PreferredBackBufferHeight = 960;
+            graphics.PreferredBackBufferWidth = 1600;
+            graphics.ApplyChanges();
+
+
+            groupe = new Groupe();
+
 
             base.Initialize();
         }
@@ -39,6 +52,9 @@ namespace RestaurantSimulator
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            bgTexture = Content.Load<Texture2D>("restoV2");
+            bg2Texture = Content.Load<Texture2D>("blanc");
+            groupe.Texture = Content.Load<Texture2D>("groupe9");
 
             // TODO: use this.Content to load your game content here
         }
@@ -59,10 +75,17 @@ namespace RestaurantSimulator
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            System.Console.WriteLine(gameTime.TotalGameTime);
+            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
+            groupe.Update(gameTime, new Vector2(1 * tile, 14 * tile));
+            if (groupe.start)
+            {
+                groupe.Start(gameTime);
+            }
 
             base.Update(gameTime);
         }
@@ -73,9 +96,13 @@ namespace RestaurantSimulator
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
+            spriteBatch.Draw(bgTexture, new Rectangle(0, 0, 1280, 960), Color.White);
+            spriteBatch.Draw(bg2Texture, new Rectangle(1280, 0, 320, 960), Color.White);
+            groupe.Draw(spriteBatch);
+            spriteBatch.End();
             // TODO: Add your drawing code here
+
 
             base.Draw(gameTime);
         }

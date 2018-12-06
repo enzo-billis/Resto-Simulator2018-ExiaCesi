@@ -41,7 +41,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controller\Groupe.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Model\Salle\Characters\Commis.cs" />
+    <Compile Include="Model\Salle\Characters\Group.cs" />
+    <Compile Include="Model\Salle\Components\Equipment.cs" />
+    <Compile Include="Model\Salle\Movement\IPosition.cs" />
+    <Compile Include="Model\Salle\Movement\Position.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,11 +59,78 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\blanc.png" />
+    <Content Include="Content\client1.png" />
+    <Content Include="Content\client2.png" />
+    <Content Include="Content\client3.png" />
+    <Content Include="Content\client4.png" />
+    <Content Include="Content\commis.png" />
+    <Content Include="Content\cuisto.png" />
+    <Content Include="Content\groupe3.png" />
+    <Content Include="Content\groupe4.png" />
+    <Content Include="Content\groupe7.png" />
+    <Content Include="Content\groupe9.png" />
+    <Content Include="Content\restoV2.png" />
+    <Content Include="Content\serveur.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="Content\bin\Windows\client1.xnb" />
+    <None Include="Content\bin\Windows\client2.xnb" />
+    <None Include="Content\bin\Windows\client3.xnb" />
+    <None Include="Content\bin\Windows\client4.xnb" />
+    <None Include="Content\bin\Windows\commis.xnb" />
+    <None Include="Content\bin\Windows\Content\client1.xnb" />
+    <None Include="Content\bin\Windows\Content\client2.xnb" />
+    <None Include="Content\bin\Windows\Content\client3.xnb" />
+    <None Include="Content\bin\Windows\Content\client4.xnb" />
+    <None Include="Content\bin\Windows\Content\commis.xnb" />
+    <None Include="Content\bin\Windows\Content\cuisto.xnb" />
+    <None Include="Content\bin\Windows\Content\groupe3.xnb" />
+    <None Include="Content\bin\Windows\Content\groupe4.xnb" />
+    <None Include="Content\bin\Windows\Content\groupe7.xnb" />
+    <None Include="Content\bin\Windows\Content\groupe9.xnb" />
+    <None Include="Content\bin\Windows\Content\restoV2.xnb" />
+    <None Include="Content\bin\Windows\Content\serveur.xnb" />
+    <None Include="Content\bin\Windows\cuisto.xnb" />
+    <None Include="Content\bin\Windows\groupe3.xnb" />
+    <None Include="Content\bin\Windows\groupe4.xnb" />
+    <None Include="Content\bin\Windows\groupe7.xnb" />
+    <None Include="Content\bin\Windows\groupe9.xnb" />
+    <None Include="Content\bin\Windows\restoV2.xnb" />
+    <None Include="Content\bin\Windows\serveur.xnb" />
+    <None Include="Content\obj\Windows\.mgcontent" />
+    <None Include="Content\obj\Windows\client1.mgcontent" />
+    <None Include="Content\obj\Windows\client2.mgcontent" />
+    <None Include="Content\obj\Windows\client3.mgcontent" />
+    <None Include="Content\obj\Windows\client4.mgcontent" />
+    <None Include="Content\obj\Windows\commis.mgcontent" />
+    <None Include="Content\obj\Windows\Content\.mgcontent" />
+    <None Include="Content\obj\Windows\Content\client1.mgcontent" />
+    <None Include="Content\obj\Windows\Content\client2.mgcontent" />
+    <None Include="Content\obj\Windows\Content\client3.mgcontent" />
+    <None Include="Content\obj\Windows\Content\client4.mgcontent" />
+    <None Include="Content\obj\Windows\Content\commis.mgcontent" />
+    <None Include="Content\obj\Windows\Content\cuisto.mgcontent" />
+    <None Include="Content\obj\Windows\Content\groupe3.mgcontent" />
+    <None Include="Content\obj\Windows\Content\groupe4.mgcontent" />
+    <None Include="Content\obj\Windows\Content\groupe7.mgcontent" />
+    <None Include="Content\obj\Windows\Content\groupe9.mgcontent" />
+    <None Include="Content\obj\Windows\Content\restoV2.mgcontent" />
+    <None Include="Content\obj\Windows\Content\serveur.mgcontent" />
+    <None Include="Content\obj\Windows\cuisto.mgcontent" />
+    <None Include="Content\obj\Windows\groupe3.mgcontent" />
+    <None Include="Content\obj\Windows\groupe4.mgcontent" />
+    <None Include="Content\obj\Windows\groupe7.mgcontent" />
+    <None Include="Content\obj\Windows\groupe9.mgcontent" />
+    <None Include="Content\obj\Windows\restoV2.mgcontent" />
+    <None Include="Content\obj\Windows\serveur.mgcontent" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Cuisine\" />
+    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
