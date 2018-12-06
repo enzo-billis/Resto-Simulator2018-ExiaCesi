@@ -8,16 +8,16 @@ namespace Restaurant.Model.Salle.Characters
 {
 
     enum GroupState {
-        waitTableAttribution,
-        waitRankChief,
-        ordering,
-        tableDispose,
-        ordered,
-        waitEntree,
-        waitPlate,
-        waitDessert,
-        waitBill,
-        dead
+        WaitTableAttribution,
+        WaitRankChief,
+        Ordering,
+        TableDispose,
+        Ordered,
+        WaitEntree,
+        WaitPlate,
+        WaitDessert,
+        WaitBill,
+        Dead
     };
 
     class Group
