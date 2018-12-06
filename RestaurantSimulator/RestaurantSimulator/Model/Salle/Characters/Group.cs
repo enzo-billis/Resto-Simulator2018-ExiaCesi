@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Restaurant.Model.Salle.Characters
 {
 
-    enum GroupState {
+    public enum GroupState {
         WaitTableAttribution,
         WaitRankChief,
         Ordering,

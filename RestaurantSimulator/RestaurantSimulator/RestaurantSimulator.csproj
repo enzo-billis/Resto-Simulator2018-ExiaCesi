@@ -47,6 +47,7 @@
     <Compile Include="Model\Salle\Characters\Commis.cs" />
     <Compile Include="Model\Salle\Characters\Group.cs" />
     <Compile Include="Model\Salle\Components\Equipment.cs" />
+    <Compile Include="Model\Salle\Movement\IMove.cs" />
     <Compile Include="Model\Salle\Movement\IPosition.cs" />
     <Compile Include="Model\Salle\Movement\Position.cs" />
     <Compile Include="Model\Salle\SallePools.cs" />
