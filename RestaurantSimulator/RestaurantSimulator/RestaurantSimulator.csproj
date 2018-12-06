@@ -44,9 +44,13 @@
     <Compile Include="Controller\Groupe.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Model\Cuisine\KitchenPools.cs" />
+    <Compile Include="Model\Salle\Characters\Client.cs" />
     <Compile Include="Model\Salle\Characters\Commis.cs" />
     <Compile Include="Model\Salle\Characters\Group.cs" />
     <Compile Include="Model\Salle\Components\Equipment.cs" />
+    <Compile Include="Model\Salle\Components\Salle.cs" />
+    <Compile Include="Model\Salle\Components\Square.cs" />
+    <Compile Include="Model\Salle\Components\Table.cs" />
     <Compile Include="Model\Salle\Movement\IPosition.cs" />
     <Compile Include="Model\Salle\Movement\Position.cs" />
     <Compile Include="Model\Salle\SallePools.cs" />
