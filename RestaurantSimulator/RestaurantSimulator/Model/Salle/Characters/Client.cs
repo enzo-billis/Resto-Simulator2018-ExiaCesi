@@ -1,20 +1,25 @@
-﻿using RestaurantSimulator.Model.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace RestaurantSimulator.Model.Salle.Characters
 {
-    class Client
+    public class Client
     {
-        private Recipe Entree;
-        private Recipe Plate;
-        private Recipe Dessert;
+        private bool entree;
+        private bool plate;
+        private bool dessert;
+        private Dictionary<string, int> strategy;
 
-        public Recipe Entree1 { get => Entree; set => Entree = value; }
-        public Recipe Plate1 { get => Plate; set => Plate = value; }
-        public Recipe Dessert1 { get => Dessert; set => Dessert = value; }
+        public bool Entree { get => entree; set => entree = value; }
+        public bool Plate { get => plate; set => plate = value; }
+        public bool Dessert { get => dessert; set => dessert = value; }
+        public Dictionary<string, int> Strategy { get => strategy; set => strategy = value; }
+
+        public Client()
+        {
+            this.entree = false;
+            this.plate = false;
+            this.dessert = false;
+            this.strategy = new Dictionary<string, int>();
+        }
     }
 }

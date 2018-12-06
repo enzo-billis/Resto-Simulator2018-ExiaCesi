@@ -55,6 +55,7 @@
     <Compile Include="Model\Salle\TestWaiter.cs" />
     <Compile Include="Model\Salle\TestHotelMaster.cs" />
     <Compile Include="Model\Salle\TestRankChief.cs" />
+    <Compile Include="Model\Salle\TestClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
