@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestaurantSimulator.Model.Salle.Characters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantSimulator.Model.Salle.Components
 {
-    class Square
+    public class Square
     {
         private List<Table> Tables;
         private List<Waiter> Waiters;
