@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Restaurant.Model.Salle.Characters;
+using RestaurantSimulator.Model.Salle.Characters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
