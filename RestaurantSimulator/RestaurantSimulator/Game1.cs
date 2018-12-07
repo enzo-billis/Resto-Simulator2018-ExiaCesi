@@ -19,6 +19,7 @@ namespace RestaurantSimulator
         Texture2D bgTexture;
         Texture2D bg2Texture;
         List<Rectangle> RecSupervision = new List<Rectangle>();
+        List<Texture2D> TextPerso = new List<Texture2D>();
 
         int i = 0;
         Groupe groupe;
@@ -52,7 +53,12 @@ namespace RestaurantSimulator
             RecSupervision.Add(new Rectangle(25 * tile, 13 * tile, 5 * tile, 5 * tile));
             RecSupervision.Add(new Rectangle(22 * tile, 7 * tile, 5 * tile, 5 * tile));
             RecSupervision.Add(new Rectangle(30 * tile, 7 * tile, 5 * tile, 5 * tile));
-            
+
+
+
+
+            //TextPerso.Add(Content.Load<Texture2D>(""));
+
 
 
 
@@ -175,16 +181,14 @@ namespace RestaurantSimulator
                     i = 11;
 
                 }
+                
+             
            
 
 
             base.Update(gameTime);
         }
-
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        
         protected override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
