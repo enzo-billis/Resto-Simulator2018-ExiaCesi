@@ -49,6 +49,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Cuisine\Components\TestStockKitchenware.cs" />
+    <Compile Include="Model\Salle\Components\TestStockEquipment.cs" />
     <Compile Include="Model\Salle\TestCommis.cs" />
     <Compile Include="Model\Salle\TestIMove.cs" />
     <Compile Include="Model\Salle\TestIPosition.cs" />
@@ -62,9 +64,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Cuisine\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\RestaurantSimulator\RestaurantSimulator.csproj">
       <Project>{88338334-fb8d-4f41-bbca-2dabf48e1ca1}</Project>

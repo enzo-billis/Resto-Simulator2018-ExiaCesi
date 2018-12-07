@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="Controller\Groupe.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Model\Cuisine\Components\StockKitchenware.cs" />
     <Compile Include="Model\Cuisine\KitchenPools.cs" />
     <Compile Include="Model\Salle\Characters\Client.cs" />
     <Compile Include="Model\Salle\Characters\Commis.cs" />
+    <Compile Include="Model\Salle\Components\StockEquipment.cs" />
     <Compile Include="Model\Shared\Group.cs" />
     <Compile Include="Model\Salle\Characters\HotelMaster.cs" />
     <Compile Include="Model\Salle\Characters\RankChief.cs" />
