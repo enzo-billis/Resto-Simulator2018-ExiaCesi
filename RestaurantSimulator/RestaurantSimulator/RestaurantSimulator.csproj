@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controller\Timer\TimeController.cs" />
     <Compile Include="Controller\Groupe.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Model\Cuisine\Components\StockKitchenware.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Model\Shared\Parameters.cs" />
     <Compile Include="Model\Shared\Recipe.cs" />
     <Compile Include="Model\Shared\Restaurant.cs" />
+    <Compile Include="Model\Shared\Timer.cs" />
     <Compile Include="Model\Shared\Timer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

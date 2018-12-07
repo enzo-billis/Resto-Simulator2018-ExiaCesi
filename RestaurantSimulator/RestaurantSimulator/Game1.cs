@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Restaurant.Controller;
 using System.Collections.Generic;
+//using RestaurantSimulator.Controller;
+
 
 namespace RestaurantSimulator
 {
@@ -84,7 +86,9 @@ namespace RestaurantSimulator
                 Exit();
 
             // TODO: Add your update logic here
-            
+            RestaurantSimulator.Controller.TimeController.SetTime(gameTime);
+
+
             groupe.Update(gameTime, new Vector2(RecSupervision[i].X, RecSupervision[i].Y));
             if (groupe.start)
             {
