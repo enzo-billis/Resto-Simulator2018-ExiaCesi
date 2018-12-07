@@ -11,9 +11,9 @@ namespace RestoTests.Model.Salle
         public void TestClientConstruct()
         {
             Client client = new Client();
-            Assert.AreEqual(false, client.Entree);
-            Assert.AreEqual(false, client.Plate);
-            Assert.AreEqual(false, client.Dessert);
+            Assert.IsNull(client.Entree);
+            Assert.IsNull(client.Plate);
+            Assert.IsNull(client.Dessert);
             Assert.IsNotNull(client.Strategy);
         }
     }
