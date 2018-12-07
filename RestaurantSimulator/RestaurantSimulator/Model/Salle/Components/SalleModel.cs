@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantSimulator.Model.Salle.Components
 {
-    class Salle
+    public class SalleModel
     {
         private List<Square> squares;
         private HotelMaster hotelMaster;
