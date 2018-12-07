@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
@@ -59,6 +59,8 @@
     <Compile Include="Model\Salle\Observer\ISubject.cs" />
     <Compile Include="Model\Salle\Observer\Subject.cs" />
     <Compile Include="Model\Shared\BDDRestaurant.cs" />
+    <Compile Include="Model\Shared\composé.cs" />
+    <Compile Include="Model\Shared\Etape.cs" />
     <Compile Include="Model\Shared\Group.cs" />
     <Compile Include="Model\Salle\Characters\HotelMaster.cs" />
     <Compile Include="Model\Salle\Characters\RankChief.cs" />
@@ -69,10 +71,14 @@
     <Compile Include="Model\Salle\Movement\IMove.cs" />
     <Compile Include="Model\Salle\Movement\IPosition.cs" />
     <Compile Include="Model\Salle\Movement\Position.cs" />
+    <Compile Include="Model\Shared\Ingredient.cs" />
     <Compile Include="Model\Shared\Parameters.cs" />
+    <Compile Include="Model\Shared\Recette.cs" />
     <Compile Include="Model\Shared\Recipe.cs" />
     <Compile Include="Model\Shared\Restaurant.cs" />
+    <Compile Include="Model\Shared\Stock.cs" />
     <Compile Include="Model\Shared\Timer.cs" />
+    <Compile Include="Model\Shared\Ustensile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
