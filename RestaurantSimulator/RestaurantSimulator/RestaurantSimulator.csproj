@@ -48,6 +48,9 @@
     <Compile Include="Model\Salle\Characters\Client.cs" />
     <Compile Include="Model\Salle\Characters\Commis.cs" />
     <Compile Include="Model\Salle\Components\StockEquipment.cs" />
+    <Compile Include="Model\Salle\Observer\IObserver.cs" />
+    <Compile Include="Model\Salle\Observer\ISubject.cs" />
+    <Compile Include="Model\Salle\Observer\Subject.cs" />
     <Compile Include="Model\Shared\Group.cs" />
     <Compile Include="Model\Salle\Characters\HotelMaster.cs" />
     <Compile Include="Model\Salle\Characters\RankChief.cs" />

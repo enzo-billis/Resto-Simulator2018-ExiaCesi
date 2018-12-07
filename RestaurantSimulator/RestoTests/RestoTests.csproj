@@ -59,6 +59,7 @@
     <Compile Include="Model\Salle\TestRankChief.cs" />
     <Compile Include="Model\Salle\TestClient.cs" />
     <Compile Include="Model\Salle\TestGroup.cs" />
+    <Compile Include="Model\Salle\TestDPObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
