@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Controller
 {
-    class Groupe
+    public class Groupe
     {
         public int rate =32;
         public Texture2D Texture;
@@ -27,14 +27,9 @@ namespace Restaurant.Controller
         
         public void moveToTable(Vector2 finalpos)
         {
-            //Vector2 finalpos = new Vector2(16*rate,14*rate);
-            //Vector2 finalpos = new Vector2(4*rate,6*rate);
-            //Vector2 finalpos = new Vector2(1 * rate, 14 * rate);
-            //Vector2 finalpos = new Vector2(33*rate,20*rate);
+           
 
-
-
-
+          
             if (Position.X > finalpos.X)
             {
                 Position.X --;
@@ -51,17 +46,13 @@ namespace Restaurant.Controller
             {
                 Position.Y +=1;
             }
-            
+   
+
             
             if (Position.Y == finalpos.Y && Position.X == finalpos.X)
             {
                 isMooving = false;
             }
-            
-            
-
-
-
 
         }
         public void Start(GameTime _gametime)
@@ -90,7 +81,7 @@ namespace Restaurant.Controller
                 moveToTable(finalpos);
             }
 
-
+    
 
 
         }

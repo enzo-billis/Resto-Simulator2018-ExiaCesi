@@ -14,12 +14,11 @@ namespace RestaurantSimulator
         int tile = 32;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Vector2 bgPosition;
         Texture2D bgTexture;
         Texture2D bg2Texture;
-        List<Rectangle> rectangles;
-        
+        List<Rectangle> RecSupervision = new List<Rectangle>();
 
+        int i = 0;
         Groupe groupe;
        
 
@@ -36,56 +35,144 @@ namespace RestaurantSimulator
             graphics.PreferredBackBufferHeight = 960;
             graphics.PreferredBackBufferWidth = 1600;
             graphics.ApplyChanges();
-
-
             groupe = new Groupe();
+            
+
+            RecSupervision.Add(new Rectangle(16 * tile, 14 * tile, 5 * tile, 5 * tile));
+            RecSupervision.Add(new Rectangle(4 * tile, 7 * tile, 5 * tile, 5 * tile));
+            RecSupervision.Add(new Rectangle(1 * tile, 14 * tile, 5 * tile, 5 * tile));
+            RecSupervision.Add(new Rectangle(12 * tile, 7 * tile, 5 * tile, 5 * tile));
+            RecSupervision.Add(new Rectangle(12 * tile, 1 * tile, 5 * tile, 5 * tile));
+            RecSupervision.Add(new Rectangle(18 * tile, 1 * tile, 5 * tile, 5 * tile));
+            RecSupervision.Add(new Rectangle(33 * tile, 20 * tile, 5 * tile, 5 * tile));           
+            RecSupervision.Add(new Rectangle(24 * tile, 1 * tile, 5 * tile, 5 * tile));
+            RecSupervision.Add(new Rectangle(32 * tile, 1 * tile, 5 * tile, 5 * tile));
+            RecSupervision.Add(new Rectangle(25 * tile, 13 * tile, 5 * tile, 5 * tile));
+            RecSupervision.Add(new Rectangle(22 * tile, 7 * tile, 5 * tile, 5 * tile));
+            RecSupervision.Add(new Rectangle(30 * tile, 7 * tile, 5 * tile, 5 * tile));
+            
+
 
 
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
+        
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
+            
             spriteBatch = new SpriteBatch(GraphicsDevice);
             bgTexture = Content.Load<Texture2D>("restoV2");
             bg2Texture = Content.Load<Texture2D>("blanc");
             groupe.Texture = Content.Load<Texture2D>("groupe9");
 
-            // TODO: use this.Content to load your game content here
+            
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
+        
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+           
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        
         protected override void Update(GameTime gameTime)
         {
-            System.Console.WriteLine(gameTime.TotalGameTime);
+            
             
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
-            groupe.Update(gameTime, new Vector2(1 * tile, 14 * tile));
+            
+            groupe.Update(gameTime, new Vector2(RecSupervision[i].X, RecSupervision[i].Y));
             if (groupe.start)
             {
                 groupe.Start(gameTime);
             }
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+
+                groupe.isMooving = true;
+
+            }
+
+
+            
+                if (Keyboard.GetState().IsKeyDown(Keys.A))
+                {
+
+                    i = 0;
+
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.Z))
+                {
+
+                    i = 1;
+
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.E))
+                {
+
+                    i = 2;
+
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.R))
+                {
+
+                    i = 3;
+
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.T))
+                {
+
+                    i = 4;
+
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.Y))
+                {
+
+                    i = 5;
+
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.Q))
+                {
+
+                    i = 6;
+
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.S))
+                {
+
+                    i = 7;
+
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.D))
+                {
+
+                    i = 8;
+
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.F))
+                {
+
+                    i = 9;
+
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.G))
+                {
+
+                    i = 10;
+
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.H))
+                {
+
+                    i = 11;
+
+                }
+           
+
 
             base.Update(gameTime);
         }

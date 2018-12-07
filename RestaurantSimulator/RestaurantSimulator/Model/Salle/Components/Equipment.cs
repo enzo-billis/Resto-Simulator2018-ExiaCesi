@@ -16,6 +16,8 @@ namespace Restaurant.Model.Salle.Components
 
     class Equipment
     {
-        public EquipmentState state;
+        private EquipmentState state;
+
+        internal EquipmentState State { get => state; set => state = value; }
     }
 }

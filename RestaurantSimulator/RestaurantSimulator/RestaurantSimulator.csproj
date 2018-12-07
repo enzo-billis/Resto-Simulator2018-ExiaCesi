@@ -43,11 +43,34 @@
   <ItemGroup>
     <Compile Include="Controller\Groupe.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Model\Cuisine\Components\StockKitchenware.cs" />
+    <Compile Include="Model\Cuisine\KitchenPools.cs" />
+    <Compile Include="Model\Salle\Characters\Client.cs" />
     <Compile Include="Model\Salle\Characters\Commis.cs" />
-    <Compile Include="Model\Salle\Characters\Group.cs" />
+    <Compile Include="Model\Salle\Components\SalleModel.cs" />
+    <Compile Include="Model\Salle\Components\StockEquipment.cs" />
+    <Compile Include="Model\Salle\Factory\AbstractClientFactory.cs" />
+    <Compile Include="Model\Salle\Factory\CoolClientFactory.cs" />
+    <Compile Include="Model\Salle\Factory\HurriedClientFactory.cs" />
+    <Compile Include="Model\Salle\Factory\IClientFactory.cs" />
+    <Compile Include="Model\Salle\Factory\NormalClientFactory.cs" />
+    <Compile Include="Model\Salle\Observer\IObserver.cs" />
+    <Compile Include="Model\Salle\Observer\ISubject.cs" />
+    <Compile Include="Model\Salle\Observer\Subject.cs" />
+    <Compile Include="Model\Shared\Group.cs" />
+    <Compile Include="Model\Salle\Characters\HotelMaster.cs" />
+    <Compile Include="Model\Salle\Characters\RankChief.cs" />
+    <Compile Include="Model\Salle\Characters\Waiter.cs" />
     <Compile Include="Model\Salle\Components\Equipment.cs" />
+    <Compile Include="Model\Salle\Components\Square.cs" />
+    <Compile Include="Model\Salle\Components\Table.cs" />
+    <Compile Include="Model\Salle\Movement\IMove.cs" />
     <Compile Include="Model\Salle\Movement\IPosition.cs" />
     <Compile Include="Model\Salle\Movement\Position.cs" />
+    <Compile Include="Model\Shared\Parameters.cs" />
+    <Compile Include="Model\Shared\Recipe.cs" />
+    <Compile Include="Model\Shared\Restaurant.cs" />
+    <Compile Include="Model\Shared\Timer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -133,7 +156,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\Cuisine\" />
     <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
