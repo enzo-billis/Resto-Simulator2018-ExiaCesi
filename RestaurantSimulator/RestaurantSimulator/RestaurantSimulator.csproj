@@ -49,7 +49,10 @@
     <Compile Include="Model\Salle\Characters\Commis.cs" />
     <Compile Include="Model\Salle\Components\StockEquipment.cs" />
     <Compile Include="Model\Salle\Factory\AbstractClientFactory.cs" />
+    <Compile Include="Model\Salle\Factory\CoolClientFactory.cs" />
+    <Compile Include="Model\Salle\Factory\HurriedClientFactory.cs" />
     <Compile Include="Model\Salle\Factory\IClientFactory.cs" />
+    <Compile Include="Model\Salle\Factory\NormalClientFactory.cs" />
     <Compile Include="Model\Salle\Observer\IObserver.cs" />
     <Compile Include="Model\Salle\Observer\ISubject.cs" />
     <Compile Include="Model\Salle\Observer\Subject.cs" />
