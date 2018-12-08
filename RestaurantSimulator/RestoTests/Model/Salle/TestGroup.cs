@@ -10,6 +10,7 @@ namespace RestoTests.Model.Salle
         public void TestGroupConstruct()
         {
             Group BasicGroup = new Group();
+            Assert.AreEqual(GroupState.WaitTableAttribution, BasicGroup.State);
             Assert.AreEqual(0, BasicGroup.PosX);
             Assert.AreEqual(0, BasicGroup.PosY);
             Assert.IsNotNull(BasicGroup.Clients);
@@ -19,6 +20,7 @@ namespace RestoTests.Model.Salle
             Assert.AreEqual(3, BasicGroup.PosY);
 
             Group PositionedGroup = new Group(1, 11);
+            Assert.AreEqual(GroupState.WaitTableAttribution, PositionedGroup.State);
             Assert.AreEqual(1, PositionedGroup.PosX);
             Assert.AreEqual(11, PositionedGroup.PosY);
             Assert.IsNotNull(PositionedGroup.Clients);
@@ -28,6 +30,7 @@ namespace RestoTests.Model.Salle
             Assert.AreEqual(3, PositionedGroup.PosY);
 
             Group WrongPositioningGroup = new Group(-6, -8);
+            Assert.AreEqual(GroupState.WaitTableAttribution, WrongPositioningGroup.State);
             Assert.AreEqual(0, WrongPositioningGroup.PosX);
             Assert.AreEqual(0, WrongPositioningGroup.PosY);
             Assert.IsNotNull(WrongPositioningGroup.Clients);

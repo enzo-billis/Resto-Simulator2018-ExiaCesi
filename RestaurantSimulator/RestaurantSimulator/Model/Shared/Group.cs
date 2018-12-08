@@ -23,16 +23,19 @@ namespace Restaurant.Model.Shared
     {
         private int id;
         private List<Client> clients;
+        private GroupState state;
         private static int GroupCounter = 1;
 
         public int ID { get => id; set => id = value; }
         public List<Client> Clients { get => clients; set => clients = value; }
+        public GroupState State { get => state; set => state = value; }
 
         public Group() : base()
         {
             this.clients = new List<Client>();
             this.id = GroupCounter;
             GroupCounter++;
+            this.state = GroupState.WaitTableAttribution;
         }
 
         public Group(int posX, int posY) : base (posX, posY)
@@ -40,6 +43,7 @@ namespace Restaurant.Model.Shared
             this.clients = new List<Client>();
             this.id = GroupCounter;
             GroupCounter++;
+            this.state = GroupState.WaitTableAttribution;
         }
 
         public void Move(int posX, int posY)
