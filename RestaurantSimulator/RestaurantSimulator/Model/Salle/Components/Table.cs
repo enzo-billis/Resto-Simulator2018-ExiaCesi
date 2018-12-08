@@ -1,4 +1,5 @@
-﻿using Restaurant.Model.Shared;
+﻿using Restaurant.Model.Salle.Components;
+using Restaurant.Model.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantSimulator.Model.Salle.Components
 {
-    public class Table
+    public class Table : Equipment
     {
         private int nbPlaces;
         private Group group;
