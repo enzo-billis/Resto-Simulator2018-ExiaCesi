@@ -75,6 +75,7 @@
     <Compile Include="Model\Salle\TestDPObserver.cs" />
     <Compile Include="Model\Salle\TestFactory.cs" />
     <Compile Include="Model\Shared\TestBDDAccess.cs" />
+    <Compile Include="Model\Shared\TestMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

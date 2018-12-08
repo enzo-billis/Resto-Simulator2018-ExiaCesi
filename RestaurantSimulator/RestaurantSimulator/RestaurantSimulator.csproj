@@ -72,6 +72,7 @@
     <Compile Include="Model\Salle\Movement\IPosition.cs" />
     <Compile Include="Model\Salle\Movement\Position.cs" />
     <Compile Include="Model\Shared\Ingredient.cs" />
+    <Compile Include="Model\Shared\Map.cs" />
     <Compile Include="Model\Shared\Parameters.cs" />
     <Compile Include="Model\Shared\Recette.cs" />
     <Compile Include="Model\Shared\Recipe.cs" />

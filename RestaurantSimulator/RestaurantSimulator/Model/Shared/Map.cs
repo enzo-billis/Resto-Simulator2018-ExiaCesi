@@ -5,7 +5,7 @@ namespace RestaurantSimulator.Model.Shared
     public class Map
     {
         private static Map instance;
-        private List<Recette> recipes;
+        private List<Recette> recettes;
 
         public static Map Instance
         {
@@ -19,9 +19,9 @@ namespace RestaurantSimulator.Model.Shared
 
         private Map()
         {
-            this.recipes = new List<Recette>();
+            this.recettes = new List<Recette>();
         }
 
-        public List<Recette> Recipes { get => recipes; set => recipes = value; }
+        public List<Recette> Recettes { get => recettes; set => recettes = value; }
     }
 }
