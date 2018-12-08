@@ -23,8 +23,12 @@ namespace RestaurantSimulator.Model.Salle.Components
             this.tables = new List<Table>();
             this.waiters = new List<Waiter>();
             this.rankChiefs = new List<RankChief>();
-            for(int i = 0; i < Parameters.TABLES_BY_SQUARE; i++)
-                this.tables.Add(new Table());
+            this.tables.Add(new Table(2));
+            this.tables.Add(new Table(4));
+            this.tables.Add(new Table(6));
+            this.tables.Add(new Table(6));
+            this.tables.Add(new Table(8));
+            this.tables.Add(new Table(10));
 
             for (int i = 0; i < Parameters.WAITER_BY_SQUARE; i++)
                 this.waiters.Add(new Waiter());
