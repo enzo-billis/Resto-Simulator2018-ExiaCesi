@@ -10,11 +10,15 @@ namespace RestaurantSimulator.Model.Salle.Components
 {
     public class SalleModel
     {
-        private List<Square> squares;
         private HotelMaster hotelMaster;
         private static Commis commis;
 
-        internal List<Square> Squares { get => squares; set => squares = value; }
+        public SalleModel()
+        {
+            hotelMaster = new HotelMaster();
+            commis = new Commis();
+        }
+
         public HotelMaster HotelMaster { get => hotelMaster; set => hotelMaster = value; }
         public static Commis Commis { get => commis; set => commis = value; }
     }

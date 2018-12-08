@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Restaurant.Model.Shared;
 using RestaurantSimulator.Controller;
@@ -41,5 +40,7 @@ namespace RestoTests.Controller
             Group group = welcomeController.CreateGroup(4);
             Assert.AreEqual(4, group.Clients.Count);
         }
+
+
     }
 }
