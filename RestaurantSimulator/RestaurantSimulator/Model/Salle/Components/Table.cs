@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantSimulator.Model.Salle.Components
 {
-    class Table
+    public class Table
     {
         private int NbPlaces;
         private Group Group;
