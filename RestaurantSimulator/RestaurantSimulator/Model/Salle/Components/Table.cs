@@ -9,16 +9,21 @@ namespace RestaurantSimulator.Model.Salle.Components
 {
     public class Table
     {
-        private int NbPlaces;
-        private Group Group;
-        private bool Entree;
-        private bool Plate;
-        private bool Dessert;
+        private int nbPlaces;
+        private Group group;
+        private bool entree = false;
+        private bool plate = false;
+        private bool dessert = false;
 
-        public int NbPlaces1 { get => NbPlaces; set => NbPlaces = value; }
-        public Group Group1 { get => Group; set => Group = value; }
-        public bool Entree1 { get => Entree; set => Entree = value; }
-        public bool Plate1 { get => Plate; set => Plate = value; }
-        public bool Dessert1 { get => Dessert; set => Dessert = value; }
+        public Table(int nbPlaces)
+        {
+            this.nbPlaces = nbPlaces;
+        }
+
+        public int NbPlaces { get => nbPlaces; set => nbPlaces = value; }
+        public Group Group { get => group; set => group = value; }
+        public bool Entree { get => entree; set => entree = value; }
+        public bool Plate { get => plate; set => plate = value; }
+        public bool Dessert { get => dessert; set => dessert = value; }
     }
 }
