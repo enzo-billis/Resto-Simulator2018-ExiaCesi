@@ -41,6 +41,13 @@ namespace RestoTests.Controller
             Assert.AreEqual(4, group.Clients.Count);
         }
 
-
+        [TestMethod]
+        public void TestCheckAvailableTables()
+        {
+            Group group = welcomeController.CreateGroup(7);
+            Assert.IsTrue(welcomeController.CheckAvailableTables(group));
+            group = welcomeController.CreateGroup(11);
+            Assert.IsFalse(welcomeController.CheckAvailableTables(group));
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Restaurant.Model.Shared;
+﻿using Restaurant.Model.Salle.Components;
+using Restaurant.Model.Shared;
 using RestaurantSimulator.Model.Salle.Characters;
 using RestaurantSimulator.Model.Salle.Factory;
 using System;
@@ -53,6 +54,14 @@ namespace RestaurantSimulator.Controller
                 group.Clients.Add(this.GenerateClient());
             }
             return group;
+        }
+
+        public bool CheckAvailableTables(Group group)
+        {
+            return this.hotelMaster.RankChiefs.Exists(
+                rankchief => rankchief.Squares[0].Tables.Exists(
+                    table => (table.State == EquipmentState.Available)
+                        && (table.NbPlaces >= group.Clients.Count)));
         }
     }
 }
