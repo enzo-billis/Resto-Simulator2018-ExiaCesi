@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\TestTimeController.cs" />
+    <Compile Include="Controller\TestWelcomeController.cs" />
     <Compile Include="Model\Cuisine\Components\TestStockKitchenware.cs" />
     <Compile Include="Model\Salle\Components\TestStockEquipment.cs" />
     <Compile Include="Controller\TestGroupe.cs" />
