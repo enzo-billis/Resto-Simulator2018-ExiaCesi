@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controller\TableController.cs" />
     <Compile Include="Controller\Timer\TimeController.cs" />
     <Compile Include="Controller\GroupeController.cs" />
     <Compile Include="Controller\WelcomeController.cs" />
