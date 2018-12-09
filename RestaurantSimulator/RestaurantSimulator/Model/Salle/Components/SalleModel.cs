@@ -13,10 +13,14 @@ namespace RestaurantSimulator.Model.Salle.Components
         private HotelMaster hotelMaster;
         private static Commis commis;
 
+        static SalleModel()
+        {
+            commis = new Commis();
+        }
+
         public SalleModel()
         {
             hotelMaster = new HotelMaster();
-            commis = new Commis();
         }
 
         public HotelMaster HotelMaster { get => hotelMaster; set => hotelMaster = value; }
