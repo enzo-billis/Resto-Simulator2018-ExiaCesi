@@ -35,8 +35,22 @@ namespace RestaurantSimulator.Model.Salle.Components
         {
             this.clean = new Dictionary<string, int>();
             this.dirty = new Dictionary<string, int>();
+
+            this.clean.Add("BreadBasket", 40);
+            this.clean.Add("EntreePlate", 150);
+            this.clean.Add("MainPlate", 150);
+            this.clean.Add("DessertPlate", 150);
         }
 
-        
+        public bool SubstractEquipement(string equipement)
+        {
+            bool exist = this.clean.TryGetValue(equipement, out int eNumber);
+            if ((exist) && (eNumber > 0))
+            {
+                this.clean[equipement] = eNumber - 1;
+                return true;
+            }
+            return false;
+        }
     }
 }
