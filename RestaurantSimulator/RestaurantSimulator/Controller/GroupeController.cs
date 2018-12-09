@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Restaurant.Model.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Controller
 {
-    public class Groupe
+    public class GroupeController
     {
         public int rate =32;
         public Texture2D Texture;
@@ -18,7 +19,7 @@ namespace Restaurant.Controller
         public bool isMooving = false;
         public bool start = true;
 
-        public Groupe()
+        public GroupeController()
         {
             Position = new Vector2(6*rate,20*rate);
             
@@ -80,10 +81,6 @@ namespace Restaurant.Controller
             {
                 moveToTable(finalpos);
             }
-
-    
-
-
         }
 
         public void Draw(SpriteBatch _spritBash)
@@ -91,9 +88,10 @@ namespace Restaurant.Controller
             _spritBash.Draw(Texture, Position, Color.White);
         }
 
-
-
-
-
+        public static void ChangeGroupState(Group group, GroupState state)
+        {
+            if ((group != null) && (group.State != state))
+                group.State = state;
+        }
     }
 }

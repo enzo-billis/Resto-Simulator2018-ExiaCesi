@@ -22,7 +22,7 @@ namespace RestaurantSimulator
         List<Texture2D> TextPerso = new List<Texture2D>();
 
         int i = 0;
-        Groupe groupe;
+        GroupeController groupe;
        
 
         public Game1()
@@ -38,7 +38,7 @@ namespace RestaurantSimulator
             graphics.PreferredBackBufferHeight = 960;
             graphics.PreferredBackBufferWidth = 1600;
             graphics.ApplyChanges();
-            groupe = new Groupe();
+            groupe = new GroupeController();
             
 
             RecSupervision.Add(new Rectangle(16 * tile, 14 * tile, 5 * tile, 5 * tile));
