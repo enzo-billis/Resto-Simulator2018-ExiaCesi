@@ -1,5 +1,6 @@
 ﻿using Restaurant.Model.Salle.Components;
 using Restaurant.Model.Shared;
+using RestaurantSimulator.Model.Salle.Characters;
 using RestaurantSimulator.Model.Salle.Components;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,15 @@ namespace RestaurantSimulator.Controller
         {
             if (table.State == EquipmentState.Dirty)
                 table.State = EquipmentState.Available;
+        }
+
+        public void DriveGroupTable(Table table, RankChief rankChief)
+        {
+            if (table.Group != null)
+            {
+                table.Group.Move(table.PosX, table.PosY);
+                rankChief.Move(table.PosX - 32, table.PosY);
+            }
         }
     }
 }

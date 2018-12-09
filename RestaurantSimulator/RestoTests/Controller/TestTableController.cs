@@ -42,5 +42,30 @@ namespace RestoTests.Controller
             TableController.CleanTable(table);
             Assert.AreEqual(EquipmentState.Available, table.State);
         }
+
+        [TestMethod]
+        public void TestDriveGroupTable()
+        {
+            Table table = new Table(10, 64, 64);
+            table.State = EquipmentState.InUse;
+            RankChief rankChief = new RankChief(32, 32);
+            rankChief.Squares[0].Tables.Add(table);
+
+            TableController tableController = new TableController();
+            tableController.DriveGroupTable(table, rankChief);
+            Assert.IsNull(table.Group);
+            Assert.AreEqual(32, rankChief.PosX);
+            Assert.AreEqual(32, rankChief.PosY);
+
+            Group group = new Group(128, 128);
+            Assert.IsNotNull(group);
+            table.Group = group;
+            Assert.IsNotNull(table.Group);
+            tableController.DriveGroupTable(table, rankChief);
+            Assert.AreEqual(table.PosX - 32, rankChief.PosX);
+            Assert.AreEqual(table.PosY, rankChief.PosY);
+            Assert.AreEqual(table.PosX, group.PosX);
+            Assert.AreEqual(table.PosY, group.PosY);
+        }
     }
 }
