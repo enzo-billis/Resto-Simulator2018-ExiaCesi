@@ -27,5 +27,20 @@ namespace RestoTests.Controller
             Assert.AreEqual(EquipmentState.InUse, table.State);
             Assert.AreEqual(GroupState.Ordering, group.State);
         }
+
+        [TestMethod]
+        public void TestCleanTable()
+        {
+            Table table = new Table(10);
+            Assert.AreEqual(EquipmentState.Available, table.State);
+
+            table.State = EquipmentState.InUse;
+            TableController.CleanTable(table);
+            Assert.AreEqual(EquipmentState.InUse, table.State);
+
+            table.State = EquipmentState.Dirty;
+            TableController.CleanTable(table);
+            Assert.AreEqual(EquipmentState.Available, table.State);
+        }
     }
 }

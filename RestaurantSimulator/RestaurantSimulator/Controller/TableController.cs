@@ -39,5 +39,11 @@ namespace RestaurantSimulator.Controller
             }
             return false;
         }
+
+        public static void CleanTable(Table table)
+        {
+            if (table.State == EquipmentState.Dirty)
+                table.State = EquipmentState.Available;
+        }
     }
 }
