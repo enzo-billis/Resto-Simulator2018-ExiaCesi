@@ -63,5 +63,19 @@ namespace RestaurantSimulator.Controller
                     table => (table.State == EquipmentState.Available)
                         && (table.NbPlaces >= group.Clients.Count)));
         }
+
+        public RankChief FindRankChief(Group group)
+        {
+            RankChief designatedRankchief = this.hotelMaster.RankChiefs.Find(
+                rankchief => rankchief.Squares[0].Tables.Exists(
+                    table => table.Group == group));
+            return designatedRankchief;
+        }
+
+        public void CallRankChief(RankChief rankChief)
+        {
+            if (rankChief != null)
+                rankChief.Move(hotelMaster.PosX - 10, hotelMaster.PosY);
+        }
     }
 }

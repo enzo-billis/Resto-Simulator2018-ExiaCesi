@@ -30,6 +30,7 @@ namespace RestaurantSimulator.Model.Salle.Characters
         public void Move(int posX, int posY)
         {
             this.PosX = posX;
+            this.PosY = posY;
         }
     }
 }
