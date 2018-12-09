@@ -67,5 +67,22 @@ namespace RestoTests.Controller
             Assert.AreEqual(table.PosX, group.PosX);
             Assert.AreEqual(table.PosY, group.PosY);
         }
+
+        [TestMethod]
+        public void TestRestock()
+        {
+            Group group = new Group();
+            Table table = new Table(8)
+            {
+                State = EquipmentState.InUse,
+                Group = group
+            };
+            Assert.AreEqual(40, StockEquipment.Instance.Clean["BreadBasket"]);
+
+            bool value = TableController.Restock(table);
+            Assert.IsTrue(value);
+            Assert.AreEqual(39, StockEquipment.Instance.Clean["BreadBasket"]);
+
+        }
     }
 }

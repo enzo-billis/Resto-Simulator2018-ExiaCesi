@@ -55,5 +55,15 @@ namespace RestaurantSimulator.Controller
                 rankChief.Move(table.PosX - 32, table.PosY);
             }
         }
+
+        public static bool Restock(Table table)
+        {
+            if((table.State == EquipmentState.InUse) && (table.Group != null))
+            {
+                SalleModel.Commis.Move(table.PosX, table.PosY);
+                return StockEquipment.Instance.SubstractEquipement("BreadBasket");
+            }
+            return false;
+        }
     }
 }
