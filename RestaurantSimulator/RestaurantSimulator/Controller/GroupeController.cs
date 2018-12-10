@@ -16,12 +16,15 @@ namespace Restaurant.Controller
         public int rate =32;
         public Texture2D Texture;
         public Vector2 Position;
+        public Vector2 PosTable;
         public bool isMooving = false;
         public bool start = true;
+        public Group group;
 
         public GroupeController()
         {
             Position = new Vector2(6*rate,20*rate);
+            group = new Group();
             
 
         }

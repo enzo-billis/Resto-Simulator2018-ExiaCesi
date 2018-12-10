@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Restaurant.Controller;
+using RestaurantSimulator.Controller;
 using RestaurantSimulator.Model.Salle.Components;
 using System.Collections.Generic;
 //using RestaurantSimulator.Controller;
@@ -22,13 +23,17 @@ namespace RestaurantSimulator
         List<Rectangle> RecSupervision = new List<Rectangle>();
         List<Texture2D> TextPerso = new List<Texture2D>();
         private SalleModel salleModel;
+        private TableController tableController;
 
-
+        public Vector2 posch1;
+        public Vector2 posch2;
 
         int i = 0;
         GroupeController groupe;
+        GroupeController groupe2;
 
         public SalleModel SalleModel { get => salleModel; set => salleModel = value; }
+        public TableController TableController { get => tableController; set => tableController = value; }
 
         public Game1()
         {
@@ -44,8 +49,13 @@ namespace RestaurantSimulator
             graphics.PreferredBackBufferWidth = 1600;
             graphics.ApplyChanges();
             groupe = new GroupeController();
-            
-            
+            groupe2 = new GroupeController();
+            posch1 = salleModel.HotelMaster.RankChiefs[0].FPosition;
+            posch2 = salleModel.HotelMaster.RankChiefs[1].FPosition;
+            tableController = new TableController();
+
+
+
 
             RecSupervision.Add(new Rectangle(16 * tile, 14 * tile, 5 * tile, 5 * tile));
             RecSupervision.Add(new Rectangle(4 * tile, 7 * tile, 5 * tile, 5 * tile));
@@ -80,13 +90,17 @@ namespace RestaurantSimulator
         
         protected override void LoadContent()
         {
-            
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+          
+
+        spriteBatch = new SpriteBatch(GraphicsDevice);
             bgTexture = Content.Load<Texture2D>("restoV2");
             bg2Texture = Content.Load<Texture2D>("blanc");
-            groupe.Texture = TextPerso[6];
+            groupe.Texture = TextPerso[5];
+            groupe2.Texture = TextPerso[6];
+            salleModel.HotelMaster.RankChiefs[0].Texture = TextPerso[3];
+            salleModel.HotelMaster.RankChiefs[1].Texture = TextPerso[3];
 
-            
+
         }
 
         
@@ -94,8 +108,11 @@ namespace RestaurantSimulator
         {
            
         }
+        private Vector2 rectToVect(Rectangle rect)
+        {
+            return new Vector2(rect.X, rect.Y);
+        }
 
-        
         protected override void Update(GameTime gameTime)
         {
             
@@ -107,92 +124,31 @@ namespace RestaurantSimulator
             RestaurantSimulator.Controller.TimeController.SetTime(gameTime);
 
 
-            groupe.Update(gameTime, new Vector2(RecSupervision[i].X, RecSupervision[i].Y));
+            groupe.Update(gameTime, groupe.PosTable);
+            groupe2.Update(gameTime, groupe2.PosTable);
             if (groupe.start)
             {
                 groupe.Start(gameTime);
             }
+            if (groupe2.start)
+            {
+                groupe2.Start(gameTime);
+            }
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
             {
 
-                groupe.isMooving = true;
+
+                putGroupToTable(groupe);
+                putGroupToTable(groupe2);
+
 
             }
-
-
             
-                if (Keyboard.GetState().IsKeyDown(Keys.A))
-                {
+            salleModel.HotelMaster.RankChiefs[0].Update(gameTime,posch1);
+            salleModel.HotelMaster.RankChiefs[1].Update(gameTime,posch2);
 
-                    i = 0;
 
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.Z))
-                {
 
-                    i = 1;
-
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.E))
-                {
-
-                    i = 2;
-
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.R))
-                {
-
-                    i = 3;
-
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.T))
-                {
-
-                    i = 4;
-
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.Y))
-                {
-
-                    i = 5;
-
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.Q))
-                {
-
-                    i = 6;
-
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.S))
-                {
-
-                    i = 7;
-
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.D))
-                {
-
-                    i = 8;
-
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.F))
-                {
-
-                    i = 9;
-
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.G))
-                {
-
-                    i = 10;
-
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.H))
-                {
-
-                    i = 11;
-
-                }
 
 
             MouseState Mstate = Mouse.GetState();
@@ -212,6 +168,8 @@ namespace RestaurantSimulator
                         }
                         
                 }
+               
+
                 foreach (Table t in salleModel.HotelMaster.RankChiefs[1].Squares[0].Tables)
                 {
                     Rectangle rect = t.Rect;
@@ -226,6 +184,7 @@ namespace RestaurantSimulator
                     }
 
                 }
+
             }
             
 
@@ -234,16 +193,60 @@ namespace RestaurantSimulator
 
             base.Update(gameTime);
         }
-        
+        private void putGroupToTable(GroupeController groupe)
+        {
+            if (salleModel.HotelMaster.RankChiefs[0].Available)
+            {
+
+
+                Table table = tableController.OptimizedFindTable(salleModel.HotelMaster.RankChiefs[0].Squares[0].Tables, 4);
+                if (table != null)
+                {
+                    salleModel.HotelMaster.RankChiefs[0].isMooving = true;
+                    salleModel.HotelMaster.RankChiefs[0].Available = false;
+                    posch1 = rectToVect(table.Rect);
+                    groupe.PosTable = posch1;
+                    groupe.isMooving = true;
+                    tableController.AttributionTableGroup(groupe.group, table);
+                }
+
+            }
+            else if (salleModel.HotelMaster.RankChiefs[1].Available)
+            {
+
+
+                Table table = tableController.OptimizedFindTable(salleModel.HotelMaster.RankChiefs[1].Squares[0].Tables, 7);
+                if (table != null)
+                {
+                    salleModel.HotelMaster.RankChiefs[1].Available = false;
+
+                    salleModel.HotelMaster.RankChiefs[1].isMooving = true;
+                    posch2 = rectToVect(table.Rect);
+                    groupe.PosTable = posch2;
+                    groupe.isMooving = true;
+                    tableController.AttributionTableGroup(groupe.group, table);
+                }
+
+            }
+
+        }
         protected override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
             spriteBatch.Draw(bgTexture, new Rectangle(0, 0, 1280, 960), Color.White);
             spriteBatch.Draw(bg2Texture, new Rectangle(1280, 0, 320, 960), Color.White);
             groupe.Draw(spriteBatch);
-            spriteBatch.End();
-            // TODO: Add your drawing code here
+            groupe2.Draw(spriteBatch);
+            salleModel.HotelMaster.RankChiefs[0].Draw(spriteBatch);
+            salleModel.HotelMaster.RankChiefs[1].Draw(spriteBatch);
 
+
+
+
+
+            spriteBatch.End();
+           
+            
 
             base.Draw(gameTime);
         }

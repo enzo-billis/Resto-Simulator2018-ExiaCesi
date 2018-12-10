@@ -27,8 +27,8 @@ namespace RestaurantSimulator.Model.Salle.Characters
         {
             this.rankChiefs = new List<RankChief>();
             
-                this.rankChiefs.Add(new RankChief());
-                this.rankChiefs.Add(new RankChief());
+                this.rankChiefs.Add(new RankChief(new Vector2(11*tile,15*tile)));
+                this.rankChiefs.Add(new RankChief(new Vector2(12 * tile, 15 * tile)));
             this.rankChiefs[0].Squares[0].Tables.Add(new Table(10, new Rectangle(16 * tile, 14 * tile, 5 * tile, 5 * tile)));
             this.rankChiefs[0].Squares[0].Tables.Add(new Table(10, new Rectangle(4 * tile, 7 * tile, 5 * tile, 5 * tile)));
             this.rankChiefs[0].Squares[0].Tables.Add(new Table(4, new Rectangle(1 * tile, 14 * tile, 5 * tile, 5 * tile)));
