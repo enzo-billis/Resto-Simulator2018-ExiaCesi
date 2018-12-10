@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestaurantSimulator.Controller;
 using System.Linq;
 using RestaurantSimulator.Model.Shared;
+using System.Collections.Generic;
 
 namespace RestoTests.Controller
 {
@@ -28,6 +29,38 @@ namespace RestoTests.Controller
 
             ingredientFromStock.quantité_Stock++;
             DB.SaveChanges();
+        }
+
+        [TestMethod]
+        public void TestGetRecettes()
+        {
+            var recettes = BDDController.Instance.GetRecettes();
+            Assert.IsNotNull(recettes);
+            Assert.IsInstanceOfType(recettes, typeof(List<Recette>));
+        }
+
+        [TestMethod]
+        public void TestAddIngredient()
+        {
+            var DB = BDDController.Instance.DB;
+            var ingredient = DB.Ingredient.Single(ing => ing.id_Ingredient == 5);
+            var stockIngredient = DB.Stock.Single(ing => ing.id_Ingredient == 5);
+            int oldStock = (int)stockIngredient.quantité_Stock;
+            Assert.IsNotNull(stockIngredient);
+            BDDController.Instance.AddIngredient(ingredient, 2);
+            Assert.AreEqual(oldStock + 2, stockIngredient.quantité_Stock);
+        }
+
+        [TestMethod]
+        public void TestRestockIngredient()
+        {
+            var DB = BDDController.Instance.DB;
+            var ingredient = DB.Ingredient.Single(ing => ing.id_Ingredient == 5);
+            var stockIngredient = DB.Stock.Single(ing => ing.id_Ingredient == 5);
+            int oldStock = (int)stockIngredient.quantité_Stock;
+            Assert.IsNotNull(stockIngredient);
+            BDDController.Instance.RestockIngredient(ingredient);
+            Assert.AreEqual(50, stockIngredient.quantité_Stock);
         }
     }
 }

@@ -53,5 +53,33 @@ namespace RestaurantSimulator.Controller
                 }
             }
         }
+
+        public void RestockIngredient(Ingredient ingredient)
+        {
+            var stockIngredient = DB.Stock.Single(stock => stock.id_Ingredient == ingredient.id_Ingredient);
+            if (stockIngredient != null)
+            {
+                stockIngredient.quantité_Stock = 50;
+                DB.SaveChanges();
+            }
+        }
+
+        public void AddIngredient(Ingredient ingredient, int number)
+        {
+            var stockIngredient = DB.Stock.Single(stock => stock.id_Ingredient == ingredient.id_Ingredient);
+            if (stockIngredient != null)
+            {
+                stockIngredient.quantité_Stock += number;
+                DB.SaveChanges();
+            }   
+        }
+
+        public List<Recette> GetRecettes()
+        {
+            var recettes = DB.Recette.ToList<Recette>();
+            if (recettes != null)
+                return recettes;
+            return null;
+        }
     }
 }
