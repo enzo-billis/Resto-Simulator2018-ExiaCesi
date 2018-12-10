@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RestaurantSimulator.Model.Salle.Characters;
 using RestaurantSimulator.Model.Salle.Components;
 using RestaurantSimulator.Model.Shared;
 
@@ -11,11 +12,11 @@ namespace RestoTests.Model.Cuisine.Components
         [TestMethod]
         public void TestSquareConstruct()
         {
-            Square square = new Square();
-            Assert.IsNotNull(square.Tables);
-            Assert.IsNotNull(square.Waiters);
-            Assert.AreEqual(Parameters.TABLES_BY_SQUARE, square.Tables.Count);
-            Assert.AreEqual(Parameters.WAITER_BY_SQUARE, square.Waiters.Count);
+            HotelMaster hotelMaster = new HotelMaster();
+            Assert.IsNotNull(hotelMaster.RankChiefs[0].Squares[0].Tables);
+            Assert.IsNotNull(hotelMaster.RankChiefs[0].Squares[0].Waiters);
+            Assert.AreEqual(Parameters.TABLES_BY_SQUARE, hotelMaster.RankChiefs[0].Squares[0].Tables.Count);
+            Assert.AreEqual(Parameters.WAITER_BY_SQUARE, hotelMaster.RankChiefs[0].Squares[0].Waiters.Count);
         }
     }
 }
