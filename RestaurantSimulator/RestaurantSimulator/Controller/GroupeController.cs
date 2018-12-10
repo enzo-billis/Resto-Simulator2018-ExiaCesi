@@ -21,10 +21,10 @@ namespace Restaurant.Controller
         public bool start = true;
         public Group group;
 
-        public GroupeController()
+        public GroupeController(Group groupe)
         {
             Position = new Vector2(6*rate,20*rate);
-            group = new Group();
+            group = groupe;
             
 
         }
