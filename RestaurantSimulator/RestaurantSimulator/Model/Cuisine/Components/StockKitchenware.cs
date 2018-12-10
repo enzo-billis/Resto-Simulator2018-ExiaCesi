@@ -35,11 +35,7 @@ namespace RestaurantSimulator.Model.Cuisine.Components
         {
             this.clean = new Dictionary<string, int>();
             this.dirty = new Dictionary<string, int>();
-            InitStockKitchenware();
-        }
 
-        private void InitStockKitchenware()
-        {
             this.clean.Add("four", 1);
             this.clean.Add("poelle", 10);
             this.clean.Add("plaque de cuisson", 5);
@@ -50,6 +46,18 @@ namespace RestaurantSimulator.Model.Cuisine.Components
             this.clean.Add("firgo", 10);
             this.clean.Add("congelateur", 1);
             this.clean.Add("bol", 5);
+
+            this.dirty.Add("four", 0);
+            this.dirty.Add("poelle", 0);
+            this.dirty.Add("plaque de cuisson", 0);
+            this.dirty.Add("planche a decouper", 0);
+            this.dirty.Add("couteau", 0);
+            this.dirty.Add("evier", 0);
+            this.dirty.Add("mixer", 0);
+            this.dirty.Add("firgo", 0);
+            this.dirty.Add("congelateur", 0);
+            this.dirty.Add("bol", 0);
+
         }
     }
 }
