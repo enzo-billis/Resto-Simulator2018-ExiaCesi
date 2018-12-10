@@ -23,6 +23,7 @@ namespace RestaurantSimulator.Model.Salle.Characters
         public Texture2D Texture;
         public bool isMooving = false;
         public bool toSpawn = false;
+        private int speed;
 
 
 
@@ -37,12 +38,13 @@ namespace RestaurantSimulator.Model.Salle.Characters
             this.squares.Add(new Square());
 
         }
-        public RankChief(Vector2 Position)
+        public RankChief(Vector2 Position, int speed)
         {
             this.FPosition = Position;
             this.Position = Position;
             this.squares = new List<Square>();
             this.squares.Add(new Square());
+            this.speed = speed;
 
         }
 
@@ -99,26 +101,27 @@ namespace RestaurantSimulator.Model.Salle.Characters
 
 
 
+
             if (Position.X > finalpos.X)
             {
-                Position.X--;
+                Position.X -= 1 * this.speed;
             }
             if (Position.X < finalpos.X)
             {
-                Position.X++;
+                Position.X += 1 * this.speed;
             }
             if (Position.Y > finalpos.Y)
             {
-                Position.Y--;
+                Position.Y -= 1 * this.speed;
             }
             if (Position.Y < finalpos.Y)
             {
-                Position.Y += 1;
+                Position.Y += 1 * this.speed;
             }
 
 
 
-            if (Position.Y == finalpos.Y && Position.X == finalpos.X)
+            if (Position == finalpos)
             {
                 isMooving = false;
                 toSpawn = true;
