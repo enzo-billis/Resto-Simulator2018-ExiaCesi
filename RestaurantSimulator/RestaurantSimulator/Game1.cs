@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Restaurant.Controller;
+using RestaurantSimulator.Model.Salle.Components;
 using System.Collections.Generic;
 //using RestaurantSimulator.Controller;
 
@@ -20,10 +21,12 @@ namespace RestaurantSimulator
         Texture2D bg2Texture;
         List<Rectangle> RecSupervision = new List<Rectangle>();
         List<Texture2D> TextPerso = new List<Texture2D>();
+        private SalleModel salleModel;
 
         int i = 0;
         GroupeController groupe;
-       
+
+        public SalleModel SalleModel { get => salleModel; set => salleModel = value; }
 
         public Game1()
         {
