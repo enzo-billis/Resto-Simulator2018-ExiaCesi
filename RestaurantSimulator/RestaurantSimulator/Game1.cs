@@ -27,6 +27,7 @@ namespace RestaurantSimulator
         List<Texture2D> TextPerso = new List<Texture2D>();
         private SalleModel salleModel;
         private TableController tableController;
+        private WelcomeController welcomeC;
 
         public Vector2 posch1;
         public Vector2 posch2;
@@ -47,18 +48,20 @@ namespace RestaurantSimulator
        
         protected override void Initialize()
         {
+            welcomeC = new WelcomeController(salleModel.HotelMaster);
             this.IsMouseVisible = true;
             graphics.PreferredBackBufferHeight = 960;
             graphics.PreferredBackBufferWidth = 1600;
             graphics.ApplyChanges();
-            groupe = new GroupeController();
-            groupe2 = new GroupeController();
+            groupe = new GroupeController(welcomeC.CreateGroup(4));
+            groupe2 = new GroupeController(welcomeC.CreateGroup(9));
             posch1 = salleModel.HotelMaster.RankChiefs[0].FPosition;
             posch2 = salleModel.HotelMaster.RankChiefs[1].FPosition;
             tableController = new TableController();
+            
 
 
-
+            /*
 
             RecSupervision.Add(new Rectangle(16 * tile, 14 * tile, 5 * tile, 5 * tile));
             RecSupervision.Add(new Rectangle(4 * tile, 7 * tile, 5 * tile, 5 * tile));
@@ -75,7 +78,7 @@ namespace RestaurantSimulator
             RecSupervision.Add(new Rectangle(30 * tile, 7 * tile, 5 * tile, 5 * tile));
 
 
-
+    */
 
             TextPerso.Add(Content.Load<Texture2D>("cuisto"));
             TextPerso.Add(Content.Load<Texture2D>("commis"));
@@ -98,8 +101,8 @@ namespace RestaurantSimulator
         spriteBatch = new SpriteBatch(GraphicsDevice);
             bgTexture = Content.Load<Texture2D>("restoV2");
             bg2Texture = Content.Load<Texture2D>("blanc");
-            groupe.Texture = TextPerso[5];
-            groupe2.Texture = TextPerso[6];
+            groupe.Texture = Content.Load<Texture2D>("groupe" + groupe.group.Clients.Count);
+            groupe2.Texture = Content.Load<Texture2D>("groupe"+groupe2.group.Clients.Count);
             salleModel.HotelMaster.RankChiefs[0].Texture = TextPerso[3];
             salleModel.HotelMaster.RankChiefs[1].Texture = TextPerso[3];
             timer = Content.Load<SpriteFont>("Timer");
@@ -197,6 +200,8 @@ namespace RestaurantSimulator
 
             base.Update(gameTime);
         }
+
+
         private void putGroupToTable(GroupeController groupe)
         {
             if (salleModel.HotelMaster.RankChiefs[0].Available)
@@ -206,12 +211,13 @@ namespace RestaurantSimulator
                 Table table = tableController.OptimizedFindTable(salleModel.HotelMaster.RankChiefs[0].Squares[0].Tables, 4);
                 if (table != null)
                 {
+                    tableController.AttributionTableGroup(groupe.group, table);
                     salleModel.HotelMaster.RankChiefs[0].isMooving = true;
                     salleModel.HotelMaster.RankChiefs[0].Available = false;
                     posch1 = rectToVect(table.Rect);
                     groupe.PosTable = posch1;
                     groupe.isMooving = true;
-                    tableController.AttributionTableGroup(groupe.group, table);
+                    
                 }
 
             }
@@ -222,13 +228,14 @@ namespace RestaurantSimulator
                 Table table = tableController.OptimizedFindTable(salleModel.HotelMaster.RankChiefs[1].Squares[0].Tables, 7);
                 if (table != null)
                 {
-                    salleModel.HotelMaster.RankChiefs[1].Available = false;
-
+                    
+                    tableController.AttributionTableGroup(groupe.group, table);
                     salleModel.HotelMaster.RankChiefs[1].isMooving = true;
+                    salleModel.HotelMaster.RankChiefs[1].Available = false;
                     posch2 = rectToVect(table.Rect);
                     groupe.PosTable = posch2;
                     groupe.isMooving = true;
-                    tableController.AttributionTableGroup(groupe.group, table);
+                    
                 }
 
             }
