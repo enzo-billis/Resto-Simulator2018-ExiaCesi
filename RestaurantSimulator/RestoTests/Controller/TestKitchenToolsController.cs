@@ -46,9 +46,15 @@ namespace RestoTests.Controller
         [TestMethod]
         public void VerifyStockTest()
         {
-            //
-            // TODO: ajoutez ici la logique du test
-            //
+            StockKitchenware.Instance.Clean["spoon"] = 5;
+            StockKitchenware.Instance.Dirty["spoon"] = 0;
+
+            KitchenToolsController cleaner = new KitchenToolsController();
+            Assert.AreEqual(cleaner.VerifyStock("spoon", 3), true);
+            Assert.AreEqual(cleaner.VerifyStock("spoon", 0), true);
+            Assert.AreEqual(cleaner.VerifyStock("spoon", -2), true);
+            Assert.AreEqual(cleaner.VerifyStock("spoon", 10), false);
+
         }
     }
 }
