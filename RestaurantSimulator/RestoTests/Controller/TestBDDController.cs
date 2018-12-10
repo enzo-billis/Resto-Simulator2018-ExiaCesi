@@ -62,5 +62,13 @@ namespace RestoTests.Controller
             BDDController.Instance.RestockIngredient(ingredient);
             Assert.AreEqual(50, stockIngredient.quantité_Stock);
         }
+
+        [TestMethod]
+        public void TestIngredientDispo()
+        {
+            var stockIng = BDDController.Instance.DB.Stock.SingleOrDefault(stock => stock.id_Ingredient == 5);
+            Console.WriteLine(stockIng == null);
+            Assert.AreEqual(stockIng != null, BDDController.Instance.IngredientDispo(5));
+        }
     }
 }

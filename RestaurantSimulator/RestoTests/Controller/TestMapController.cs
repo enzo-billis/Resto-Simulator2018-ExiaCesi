@@ -25,5 +25,11 @@ namespace RestoTests.Controller
 
             MapController.ReleaseMap();
         }
+
+        [TestMethod]
+        public void TestUpdateMap()
+        {
+            MapController.UpdateMap();
+        }
     }
 }

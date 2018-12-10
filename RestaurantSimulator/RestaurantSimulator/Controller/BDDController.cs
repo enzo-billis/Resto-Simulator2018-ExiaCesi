@@ -81,5 +81,14 @@ namespace RestaurantSimulator.Controller
                 return recettes;
             return null;
         }
+
+        public bool IngredientDispo(int id_ingredient)
+        {
+            var stockStep = DB.Stock.SingleOrDefault<Stock>(ing => ing.id_Ingredient == id_ingredient);
+            if (stockStep != null)
+                if (stockStep.quantité_Stock > 0)
+                    return true;
+            return false;
+        }
     }
 }
