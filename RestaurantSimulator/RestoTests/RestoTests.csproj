@@ -60,6 +60,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\TestKitchenToolsController.cs" />
     <Compile Include="Controller\TestTimeController.cs" />
     <Compile Include="Controller\TestWelcomeController.cs" />
     <Compile Include="Controller\TestTableController.cs" />
