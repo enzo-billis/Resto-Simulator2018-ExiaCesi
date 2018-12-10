@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using RestaurantSimulator.Model.Cuisine.Components;
+
+namespace RestaurantSimulator.Controller.Kitchen
+{
+    public class KitchenToolsController
+    {
+        public void SendDirtyTools(string kitchenware, int quantity)
+        {
+            StockKitchenware.Instance.Dirty.Add(kitchenware, quantity);
+        }
+    }
+}
