@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Input;
 using Restaurant.Controller;
 using RestaurantSimulator.Model.Salle.Components;
 using System.Collections.Generic;
+using RestaurantSimulator.Model;
+using RestaurantSimulator.Model.Shared;
 //using RestaurantSimulator.Controller;
 
 
@@ -15,6 +17,7 @@ namespace RestaurantSimulator
     public class Game1 : Game
     {
         int tile = 32;
+        private SpriteFont timer;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D bgTexture;
@@ -85,6 +88,7 @@ namespace RestaurantSimulator
             bgTexture = Content.Load<Texture2D>("restoV2");
             bg2Texture = Content.Load<Texture2D>("blanc");
             groupe.Texture = TextPerso[6];
+            timer = Content.Load<SpriteFont>("Time");
 
             
         }
@@ -240,6 +244,7 @@ namespace RestaurantSimulator
             spriteBatch.Begin();
             spriteBatch.Draw(bgTexture, new Rectangle(0, 0, 1280, 960), Color.White);
             spriteBatch.Draw(bg2Texture, new Rectangle(1280, 0, 320, 960), Color.White);
+            spriteBatch.DrawString(timer, "Temps : "+ RestaurantSimulator.Controller.TimeController.GetTimer(), new Vector2(1280, 0), Color.Black);
             groupe.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
