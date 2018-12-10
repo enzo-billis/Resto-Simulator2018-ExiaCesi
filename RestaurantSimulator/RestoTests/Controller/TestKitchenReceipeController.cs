@@ -25,9 +25,19 @@ namespace RestoTests.Controller
         [TestMethod]
         public void GetReceipeTest()
         {
-            //
-            // TODO: ajoutez ici la logique du test
-            //
+            int couteauCleanQuantityBefore = RestaurantSimulator.Model.Cuisine.Components.StockKitchenware.Instance.Clean["couteau"];
+            Recette receipe = BDDController.Instance.DB.Recette.SingleOrDefault(r => r.id_recette == 1);
+            KitchenToolsController kitchenToolsController = new KitchenToolsController();
+
+            KitchenReceipeController.GetReceipe(receipe);
+
+            
+            
+            Assert.AreEqual(5, couteauCleanQuantityBefore);
+            System.Threading.Thread.Sleep(10000);
+            int couteauCleanQuantityAfter = RestaurantSimulator.Model.Cuisine.Components.StockKitchenware.Instance.Clean["couteau"];
+            Assert.AreEqual(3, couteauCleanQuantityAfter);
+
         }
         [TestMethod]
         public void VerifyDispoToolTest()
