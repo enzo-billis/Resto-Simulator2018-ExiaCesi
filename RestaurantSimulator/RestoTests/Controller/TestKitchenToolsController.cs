@@ -14,30 +14,47 @@ namespace RestoTests.Controller
     public class TestKitchenToolsController
     {
         [TestMethod]
-        public void SendDirtyToolTest()
+        public void SendDirtyToolsTest()
         {
-            Dictionary<string, int> toTest;
+            StockKitchenware.Instance.Clean["spoon"] = 5;
+            StockKitchenware.Instance.Dirty["spoon"] = 0;
 
             KitchenToolsController cleaner = new KitchenToolsController();
 
             cleaner.SendDirtyTools("spoon", 3);
 
-            toTest = StockKitchenware.Instance.Dirty;
-
-            Assert.AreEqual(toTest.ContainsKey("spoon"), true);
+            Assert.AreEqual(StockKitchenware.Instance.Clean["spoon"], 2);
+            Assert.AreEqual(StockKitchenware.Instance.Dirty["spoon"], 3);
 
         }
-        public void ReceiveCleanToolTest()
+
+        [TestMethod]
+        public void ReceiveCleanToolsTest()
         {
-            //
-            // TODO: ajoutez ici la logique du test
-            //
+            StockKitchenware.Instance.Clean["spoon"] = 5;
+            StockKitchenware.Instance.Dirty["spoon"] = 0;
+
+            KitchenToolsController cleaner = new KitchenToolsController();
+
+            cleaner.SendDirtyTools("spoon", 3);
+            cleaner.ReceiveCleanTools("spoon", 2);
+
+            Assert.AreEqual(StockKitchenware.Instance.Clean["spoon"], 4);
+            Assert.AreEqual(StockKitchenware.Instance.Dirty["spoon"], 1);
         }
+
+        [TestMethod]
         public void VerifyStockTest()
         {
-            //
-            // TODO: ajoutez ici la logique du test
-            //
+            StockKitchenware.Instance.Clean["spoon"] = 5;
+            StockKitchenware.Instance.Dirty["spoon"] = 0;
+
+            KitchenToolsController cleaner = new KitchenToolsController();
+            Assert.AreEqual(cleaner.VerifyStock("spoon", 3), true);
+            Assert.AreEqual(cleaner.VerifyStock("spoon", 0), false);
+            Assert.AreEqual(cleaner.VerifyStock("spoon", -2), false);
+            Assert.AreEqual(cleaner.VerifyStock("spoon", 10), false);
+
         }
     }
 }

@@ -18,6 +18,17 @@ namespace RestaurantSimulator.Controller
             Timer.Time = timeParam;
         }
 
+        public static GameTime GetGameTime()
+        {
+            return Timer.Time;
+        }
+
+        public static int GetTimer()
+        {
+            int multiplier = 10;
+            return Convert.ToInt32(Timer.Time.TotalGameTime.TotalSeconds) * multiplier;
+        }
+
         public static GameTime Time { get => time; set => time = value; }
     }
 }

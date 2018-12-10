@@ -60,11 +60,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\TestKitchenReceipeController.cs" />
     <Compile Include="Controller\TestKitchenToolsController.cs" />
     <Compile Include="Controller\TestTimeController.cs" />
     <Compile Include="Controller\TestWelcomeController.cs" />
     <Compile Include="Controller\TestTableController.cs" />
     <Compile Include="Controller\TestBDDController.cs" />
+    <Compile Include="Controller\TestMapController.cs" />
     <Compile Include="Model\Cuisine\Components\TestStockKitchenware.cs" />
     <Compile Include="Model\Cuisine\Components\TestSquare.cs" />
     <Compile Include="Model\Salle\Components\TestStockEquipment.cs" />

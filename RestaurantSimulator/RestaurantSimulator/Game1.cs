@@ -5,6 +5,8 @@ using Restaurant.Controller;
 using RestaurantSimulator.Controller;
 using RestaurantSimulator.Model.Salle.Components;
 using System.Collections.Generic;
+using RestaurantSimulator.Model;
+using RestaurantSimulator.Model.Shared;
 //using RestaurantSimulator.Controller;
 
 
@@ -16,6 +18,7 @@ namespace RestaurantSimulator
     public class Game1 : Game
     {
         int tile = 32;
+        private SpriteFont timer;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D bgTexture;
@@ -99,6 +102,7 @@ namespace RestaurantSimulator
             groupe2.Texture = TextPerso[6];
             salleModel.HotelMaster.RankChiefs[0].Texture = TextPerso[3];
             salleModel.HotelMaster.RankChiefs[1].Texture = TextPerso[3];
+            timer = Content.Load<SpriteFont>("Timer");
 
 
         }
@@ -235,6 +239,7 @@ namespace RestaurantSimulator
             spriteBatch.Begin();
             spriteBatch.Draw(bgTexture, new Rectangle(0, 0, 1280, 960), Color.White);
             spriteBatch.Draw(bg2Texture, new Rectangle(1280, 0, 320, 960), Color.White);
+            spriteBatch.DrawString(timer, "Temps : "+ RestaurantSimulator.Controller.TimeController.GetTimer(), new Vector2(1280, 0), Color.Black);
             groupe.Draw(spriteBatch);
             groupe2.Draw(spriteBatch);
             salleModel.HotelMaster.RankChiefs[0].Draw(spriteBatch);
