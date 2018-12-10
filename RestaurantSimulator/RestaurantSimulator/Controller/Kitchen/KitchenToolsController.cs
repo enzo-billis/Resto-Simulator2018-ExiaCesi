@@ -12,7 +12,14 @@ namespace RestaurantSimulator.Controller.Kitchen
     {
         public void SendDirtyTools(string kitchenware, int quantity)
         {
-            StockKitchenware.Instance.Dirty.Add(kitchenware, quantity);
+            StockKitchenware.Instance.Dirty[kitchenware] += quantity;
+            StockKitchenware.Instance.Clean[kitchenware] -= quantity;
+        }
+
+        public void ReceiveCleanTools(string kitchenware, int quantity)
+        {
+            StockKitchenware.Instance.Dirty[kitchenware] -= quantity;
+            StockKitchenware.Instance.Clean[kitchenware] += quantity;
         }
     }
 }
