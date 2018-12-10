@@ -25,7 +25,7 @@ namespace RestaurantSimulator.Controller.Kitchen
         public bool VerifyStock(string kitchenware, int quantity)
         {
             int stockQuantity = StockKitchenware.Instance.Clean[kitchenware];
-            return (stockQuantity >= quantity) ? true : false;
+            return (stockQuantity >= quantity && quantity > 0) ? true : false;
         }
     }
 }

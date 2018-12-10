@@ -51,8 +51,8 @@ namespace RestoTests.Controller
 
             KitchenToolsController cleaner = new KitchenToolsController();
             Assert.AreEqual(cleaner.VerifyStock("spoon", 3), true);
-            Assert.AreEqual(cleaner.VerifyStock("spoon", 0), true);
-            Assert.AreEqual(cleaner.VerifyStock("spoon", -2), true);
+            Assert.AreEqual(cleaner.VerifyStock("spoon", 0), false);
+            Assert.AreEqual(cleaner.VerifyStock("spoon", -2), false);
             Assert.AreEqual(cleaner.VerifyStock("spoon", 10), false);
 
         }
