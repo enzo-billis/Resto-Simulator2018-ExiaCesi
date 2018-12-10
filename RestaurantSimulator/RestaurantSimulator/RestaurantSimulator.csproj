@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controller\BDDController.cs" />
+    <Compile Include="Controller\MapController.cs" />
     <Compile Include="Controller\Kitchen\KitchenCleanerController.cs" />
     <Compile Include="Controller\Kitchen\KitchenCommandsController.cs" />
     <Compile Include="Controller\Kitchen\KitchenController.cs" />
