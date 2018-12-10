@@ -88,7 +88,7 @@ namespace RestaurantSimulator
             bgTexture = Content.Load<Texture2D>("restoV2");
             bg2Texture = Content.Load<Texture2D>("blanc");
             groupe.Texture = TextPerso[6];
-            timer = Content.Load<SpriteFont>("Time");
+            timer = Content.Load<SpriteFont>("Timer");
 
             
         }
