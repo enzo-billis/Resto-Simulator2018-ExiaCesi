@@ -45,6 +45,7 @@ namespace RestaurantSimulator
             graphics.ApplyChanges();
             groupe = new GroupeController();
             
+            
 
             RecSupervision.Add(new Rectangle(16 * tile, 14 * tile, 5 * tile, 5 * tile));
             RecSupervision.Add(new Rectangle(4 * tile, 7 * tile, 5 * tile, 5 * tile));
@@ -197,17 +198,33 @@ namespace RestaurantSimulator
             MouseState Mstate = Mouse.GetState();
             if(Mstate.LeftButton == ButtonState.Pressed)
             {
-                foreach (Rectangle rect in RecSupervision)
+                foreach (Table t in salleModel.HotelMaster.RankChiefs[0].Squares[0].Tables)
                 {
+                    Rectangle rect = t.Rect;
                         if(Mstate.X >= rect.Left && Mstate.X <= rect.Right && Mstate.Y >= rect.Top && Mstate.Y <= rect.Bottom)
                         {
                             System.Console.WriteLine("oui");
-                            break;
+                            System.Console.WriteLine("Etat : "+t.State);
+                            System.Console.WriteLine("Nbplace"+t.NbPlaces);
+                            System.Console.WriteLine("Groupe"+t.Group);
+                            
+                        break;
                         }
-                        else
-                        {
-                            System.Console.WriteLine("non");
-                        }
+                        
+                }
+                foreach (Table t in salleModel.HotelMaster.RankChiefs[1].Squares[0].Tables)
+                {
+                    Rectangle rect = t.Rect;
+                    if (Mstate.X >= rect.Left && Mstate.X <= rect.Right && Mstate.Y >= rect.Top && Mstate.Y <= rect.Bottom)
+                    {
+                        System.Console.WriteLine("oui");
+                        System.Console.WriteLine("Etat : " + t.State);
+                        System.Console.WriteLine("Nbplace" + t.NbPlaces);
+                        System.Console.WriteLine("Groupe" + t.Group);
+
+                        break;
+                    }
+
                 }
             }
             

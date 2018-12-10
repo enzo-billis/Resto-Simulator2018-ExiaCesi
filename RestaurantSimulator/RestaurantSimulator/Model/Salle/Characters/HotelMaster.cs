@@ -43,20 +43,6 @@ namespace RestaurantSimulator.Model.Salle.Characters
             this.rankChiefs[1].Squares[0].Tables.Add(new Table(8, new Rectangle(22 * tile, 7 * tile, 5 * tile, 5 * tile)));
             this.rankChiefs[1].Squares[0].Tables.Add(new Table(10, new Rectangle(30 * tile, 7 * tile, 5 * tile, 5 * tile)));
 
-
-
-
-
-
-
-            /*
-                RecSupervision.Add(new Rectangle(33 * tile, 20 * tile, 5 * tile, 5 * tile));
-                RecSupervision.Add(new Rectangle(24 * tile, 1 * tile, 5 * tile, 5 * tile));
-                RecSupervision.Add(new Rectangle(32 * tile, 1 * tile, 5 * tile, 5 * tile));
-                RecSupervision.Add(new Rectangle(25 * tile, 13 * tile, 5 * tile, 5 * tile));
-                RecSupervision.Add(new Rectangle(22 * tile, 7 * tile, 5 * tile, 5 * tile));
-                RecSupervision.Add(new Rectangle(30 * tile, 7 * tile, 5 * tile, 5 * tile));
-                */
         }
 
         public HotelMaster(int posX, int posY) : base (posX, posY)
