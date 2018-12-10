@@ -19,6 +19,7 @@ namespace RestaurantSimulator.Model.Salle.Characters
         {
             this.squares = new List<Square>();
             this.squares.Add(new Square());
+            
         }
 
         public RankChief(int posX, int posY) : base (posX, posY)

@@ -21,6 +21,8 @@ namespace RestaurantSimulator
         List<Rectangle> RecSupervision = new List<Rectangle>();
         List<Texture2D> TextPerso = new List<Texture2D>();
 
+
+
         int i = 0;
         GroupeController groupe;
        
@@ -47,6 +49,7 @@ namespace RestaurantSimulator
             RecSupervision.Add(new Rectangle(12 * tile, 7 * tile, 5 * tile, 5 * tile));
             RecSupervision.Add(new Rectangle(12 * tile, 1 * tile, 5 * tile, 5 * tile));
             RecSupervision.Add(new Rectangle(18 * tile, 1 * tile, 5 * tile, 5 * tile));
+
             RecSupervision.Add(new Rectangle(33 * tile, 20 * tile, 5 * tile, 5 * tile));           
             RecSupervision.Add(new Rectangle(24 * tile, 1 * tile, 5 * tile, 5 * tile));
             RecSupervision.Add(new Rectangle(32 * tile, 1 * tile, 5 * tile, 5 * tile));
@@ -57,9 +60,14 @@ namespace RestaurantSimulator
 
 
 
-            //TextPerso.Add(Content.Load<Texture2D>(""));
-
-
+            TextPerso.Add(Content.Load<Texture2D>("cuisto"));
+            TextPerso.Add(Content.Load<Texture2D>("commis"));
+            TextPerso.Add(Content.Load<Texture2D>("serveur"));
+            TextPerso.Add(Content.Load<Texture2D>("client1"));
+            TextPerso.Add(Content.Load<Texture2D>("groupe3"));
+            TextPerso.Add(Content.Load<Texture2D>("groupe4"));
+            TextPerso.Add(Content.Load<Texture2D>("groupe7"));
+            TextPerso.Add(Content.Load<Texture2D>("groupe9"));
 
 
             base.Initialize();
@@ -72,7 +80,7 @@ namespace RestaurantSimulator
             spriteBatch = new SpriteBatch(GraphicsDevice);
             bgTexture = Content.Load<Texture2D>("restoV2");
             bg2Texture = Content.Load<Texture2D>("blanc");
-            groupe.Texture = Content.Load<Texture2D>("groupe9");
+            groupe.Texture = TextPerso[6];
 
             
         }
@@ -181,9 +189,27 @@ namespace RestaurantSimulator
                     i = 11;
 
                 }
-                
-             
-           
+
+
+            MouseState Mstate = Mouse.GetState();
+            if(Mstate.LeftButton == ButtonState.Pressed)
+            {
+                foreach (Rectangle rect in RecSupervision)
+                {
+                        if(Mstate.X >= rect.Left && Mstate.X <= rect.Right && Mstate.Y >= rect.Top && Mstate.Y <= rect.Bottom)
+                        {
+                            System.Console.WriteLine("oui");
+                            break;
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("non");
+                        }
+                }
+            }
+            
+
+
 
 
             base.Update(gameTime);

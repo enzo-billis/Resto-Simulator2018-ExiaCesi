@@ -1,4 +1,5 @@
-﻿using Restaurant.Model.Salle.Components;
+﻿using Microsoft.Xna.Framework;
+using Restaurant.Model.Salle.Components;
 using Restaurant.Model.Salle.Movement;
 using Restaurant.Model.Shared;
 using System;
@@ -18,6 +19,7 @@ namespace RestaurantSimulator.Model.Salle.Components
         private bool dessert = false;
         private int posX = 0;
         private int posY = 0;
+        private Rectangle rect;
 
         public Table(int nbPlaces)
         {
@@ -31,6 +33,12 @@ namespace RestaurantSimulator.Model.Salle.Components
             this.posY = posY;
         }
 
+        public Table(int nbPlaces, Rectangle rect)
+        {
+            this.nbPlaces = nbPlaces;
+            this.Rect = rect;
+        }
+
         public int NbPlaces { get => nbPlaces; set => nbPlaces = value; }
         public Group Group { get => group; set => group = value; }
         public bool Entree { get => entree; set => entree = value; }
@@ -38,5 +46,6 @@ namespace RestaurantSimulator.Model.Salle.Components
         public bool Dessert { get => dessert; set => dessert = value; }
         public int PosX { get => posX; set => posX = value; }
         public int PosY { get => posY; set => posY = value; }
+        public Rectangle Rect { get => rect; set => rect = value; }
     }
 }
