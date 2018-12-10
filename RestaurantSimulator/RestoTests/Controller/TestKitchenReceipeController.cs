@@ -32,16 +32,16 @@ namespace RestoTests.Controller
         [TestMethod]
         public void VerifyDispoToolTest()
         {
-            KitchenReceipeController controllerReceipe = new KitchenReceipeController();
+            
 
             Recette receipe = BDDController.Instance.DB.Recette.SingleOrDefault(r => r.id_recette == 1);
-            Assert.IsTrue(controllerReceipe.VerifyDispoTool(receipe));
+            Assert.IsTrue(KitchenReceipeController.VerifyDispoTool(receipe));
 
             receipe = BDDController.Instance.DB.Recette.SingleOrDefault(r => r.id_recette == 2);
-            Assert.IsFalse(controllerReceipe.VerifyDispoTool(receipe));
+            Assert.IsTrue(KitchenReceipeController.VerifyDispoTool(receipe));
 
             receipe = BDDController.Instance.DB.Recette.SingleOrDefault(r => r.id_recette == 0);
-            Assert.IsFalse(controllerReceipe.VerifyDispoTool(receipe));
+            Assert.IsTrue(KitchenReceipeController.VerifyDispoTool(receipe));
         }
         [TestMethod]
         public void FreeSemaphReceipeTest()

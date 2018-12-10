@@ -7,22 +7,41 @@ using RestaurantSimulator.Model.Shared;
 using System.Text.RegularExpressions;
 using RestaurantSimulator.Controller;
 using RestaurantSimulator.Controller.Kitchen;
+using System.Threading;
+using RestaurantSimulator.Model.Cuisine.Components;
 
 namespace RestaurantSimulator.Controller.Kitchen
 {
-    public class KitchenReceipeController
+    public static class KitchenReceipeController
     {
-        public void CookCallback(Recette receipe)
+
+        public static Semaphore _cooker = new Semaphore(0, 2);
+
+        private static void CookCallback(Object receipe)
         {
+            //Recette ma(Recette)receipe;
+            _cooker.WaitOne();
 
         }
 
-        public void GetReceipe(Recette receipe)
+        public static void GetReceipe(Recette receipe)
         {
+            if (VerifyDispoTool(receipe))
+            {
+                string[] steps = Regex.Split(receipe.liste_etapes_recette, ";");
+                for(int i = 1; i<steps.Length; i++)
+                {
+                    Thread t = new Thread(CookCallback);
+                    t.Start(receipe);
+                }
+
+                Thread.Sleep(500);
+                _cooker.Release();
+            }
             
         }
 
-        public bool VerifyDispoTool(Recette receipe)
+        public static bool VerifyDispoTool(Recette receipe)
         {
             KitchenToolsController kitchenToolsController = new KitchenToolsController();
 
@@ -33,10 +52,11 @@ namespace RestaurantSimulator.Controller.Kitchen
 
                 try
                 {
-                    Etape actualStep = BDDController.Instance.DB.Etape.SingleOrDefault(r => r.id_etape == actualStepID);
+                    composé actualCompose = BDDController.Instance.DB.composé.SingleOrDefault(r => r.id_compose == actualStepID);
+                    Etape actualStep = BDDController.Instance.DB.Etape.SingleOrDefault(r => r.id_etape == actualCompose.id_etape);
                     Ustensile actualStepTool = BDDController.Instance.DB.Ustensile.SingleOrDefault(r => r.id_Ustensile == actualStep.id_Ustensile);
                     string toolName = actualStepTool.nom_ust_Ustensile;
-
+                    
                     if (kitchenToolsController.VerifyStock(toolName, 1))
                     {
 
@@ -53,11 +73,6 @@ namespace RestaurantSimulator.Controller.Kitchen
                 
             }
             return true;
-        }
-
-        public void FreeSemaphReceipe()
-        {
-            
         }
     }
 }
