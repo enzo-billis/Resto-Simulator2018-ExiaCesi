@@ -20,35 +20,37 @@ namespace Restaurant.Controller
         public bool isMooving = false;
         public bool start = true;
         public Group group;
+        private int speed;
 
-        public GroupeController(Group groupe)
+        public GroupeController(Group groupe,int speed)
         {
             Position = new Vector2(6*rate,20*rate);
             group = groupe;
+            this.speed = speed;
             
 
         }
         
-        public void moveToTable(Vector2 finalpos)
+        public void moveToTable(Vector2 finalpos,int speed)
         {
            
 
           
             if (Position.X > finalpos.X)
             {
-                Position.X --;
+                Position.X -= 1 * this.speed;
             }
             if (Position.X < finalpos.X)
             {
-                Position.X++;
+                Position.X += 1 * this.speed;
             }
             if (Position.Y > finalpos.Y)
             {
-                Position.Y--;
+                Position.Y -= 1 * this.speed;
             }
             if (Position.Y < finalpos.Y)
             {
-                Position.Y +=1;
+                Position.Y += 1 * this.speed;
             }
    
 
@@ -63,7 +65,7 @@ namespace Restaurant.Controller
         {
             if (Position.Y > 16 * rate)
             {
-                Position.Y--;
+                Position.Y -= 1 * this.speed;
             }
             if(Position.Y == 16 * rate)
             {
@@ -82,7 +84,7 @@ namespace Restaurant.Controller
             }
             if (isMooving)
             {
-                moveToTable(finalpos);
+                moveToTable(finalpos, this.speed);
             }
         }
 

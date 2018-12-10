@@ -13,15 +13,15 @@ namespace RestaurantSimulator.Model.Shared
         //private SalleController salleController;
         //private KitchenController kitchenController;
         private Game1 game;
-
+        public int speed = 16;
         public List<SalleModel> Salles { get => salles; set => salles = value; }
         public Game1 Game { get => game; set => game = value; }
 
         public RestaurantLauncher()
         {
             salles = new List<SalleModel>();
-            salles.Add(new SalleModel());
-            game = new Game1();
+            salles.Add(new SalleModel(speed));
+            game = new Game1(speed);
             game.SalleModel = salles[0];
         }
     }

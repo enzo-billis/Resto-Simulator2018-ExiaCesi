@@ -18,9 +18,9 @@ namespace RestaurantSimulator.Model.Salle.Components
             commis = new Commis();
         }
 
-        public SalleModel()
+        public SalleModel(int speed)
         {
-            hotelMaster = new HotelMaster();
+            hotelMaster = new HotelMaster(speed);
         }
 
         public HotelMaster HotelMaster { get => hotelMaster; set => hotelMaster = value; }
