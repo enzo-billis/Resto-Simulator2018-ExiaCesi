@@ -5,6 +5,7 @@ using Restaurant.Model.Shared;
 using RestaurantSimulator.Controller;
 using RestaurantSimulator.Model.Salle.Characters;
 using RestaurantSimulator.Model.Salle.Components;
+using RestaurantSimulator.Model.Shared;
 
 namespace RestoTests.Controller
 {

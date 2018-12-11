@@ -17,7 +17,7 @@ namespace RestaurantSimulator.Controller
             if (groupSize <= 10)
             {
                 int i = groupSize;
-                while (i < 10)
+                while (i <= 10)
                 {
                     if (tables.Exists(table => table.NbPlaces == i && table.State == EquipmentState.Available))
                         return tables.Find(table => table.NbPlaces == i && table.State == EquipmentState.Available);

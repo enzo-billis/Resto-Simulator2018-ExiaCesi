@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Restaurant.Model.Salle.Components;
+using RestaurantSimulator.Model.Shared;
 
 namespace RestaurantSimulator.Model.Salle.Characters
 {
@@ -23,7 +24,7 @@ namespace RestaurantSimulator.Model.Salle.Characters
         public Texture2D Texture;
         public bool isMooving = false;
         public bool toSpawn = false;
-        private int speed;
+        
 
 
 
@@ -38,13 +39,13 @@ namespace RestaurantSimulator.Model.Salle.Characters
             this.squares.Add(new Square());
 
         }
-        public RankChief(Vector2 Position, int speed)
+        public RankChief(Vector2 Position)
         {
             this.FPosition = Position;
             this.Position = Position;
             this.squares = new List<Square>();
             this.squares.Add(new Square());
-            this.speed = speed;
+            
 
         }
 
@@ -104,19 +105,19 @@ namespace RestaurantSimulator.Model.Salle.Characters
 
             if (Position.X > finalpos.X)
             {
-                Position.X -= 1 * this.speed;
+                Position.X -= 1 * Parameters.SPEED;
             }
             if (Position.X < finalpos.X)
             {
-                Position.X += 1 * this.speed;
+                Position.X += 1 * Parameters.SPEED;
             }
             if (Position.Y > finalpos.Y)
             {
-                Position.Y -= 1 * this.speed;
+                Position.Y -= 1 * Parameters.SPEED;
             }
             if (Position.Y < finalpos.Y)
             {
-                Position.Y += 1 * this.speed;
+                Position.Y += 1 * Parameters.SPEED;
             }
 
 
