@@ -48,6 +48,7 @@
     <Compile Include="Controller\Kitchen\KitchenController.cs" />
     <Compile Include="Controller\Kitchen\KitchenReceipeController.cs" />
     <Compile Include="Controller\Kitchen\KitchenToolsController.cs" />
+    <Compile Include="Controller\Salle\CuistoController.cs" />
     <Compile Include="Controller\TableController.cs" />
     <Compile Include="Controller\Timer\TimeController.cs" />
     <Compile Include="Controller\GroupeController.cs" />
@@ -185,7 +186,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controller\Salle\" />
     <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

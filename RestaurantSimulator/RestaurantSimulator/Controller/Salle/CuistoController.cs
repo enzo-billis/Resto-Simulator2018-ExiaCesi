@@ -22,18 +22,45 @@ namespace RestaurantSimulator.Controller.Salle
 
         public CuistoController()
         {
-            this.Position = new Vector2(20*tile,20*tile);
-            diffpos.Add(new Vector2(20 * tile, 20 * tile));
-            diffpos.Add(new Vector2(20 * tile, 20 * tile));
-            diffpos.Add(new Vector2(20 * tile, 20 * tile));
-            diffpos.Add(new Vector2(20 * tile, 20 * tile));
-            diffpos.Add(new Vector2(20 * tile, 20 * tile));
-            diffpos.Add(new Vector2(20 * tile, 20 * tile));
-            diffpos.Add(new Vector2(20 * tile, 20 * tile));
-            diffpos.Add(new Vector2(20 * tile, 20 * tile));
-            diffpos.Add(new Vector2(20 * tile, 20 * tile));
-            diffpos.Add(new Vector2(20 * tile, 20 * tile));
-            
+            this.Position = new Vector2(20*tile,21*tile);
+            diffpos = new List<Vector2>();
+            diffpos.Add(new Vector2(20 * tile, 21 * tile));
+            diffpos.Add(new Vector2(20 * tile, 21 * tile));
+            diffpos.Add(new Vector2(20 * tile, 24 * tile));
+            diffpos.Add(new Vector2(20 * tile, 21 * tile));
+            diffpos.Add(new Vector2(20 * tile, 24 * tile));
+            diffpos.Add(new Vector2(20 * tile, 24 * tile));
+            diffpos.Add(new Vector2(20 * tile, 21 * tile));
+            diffpos.Add(new Vector2(20 * tile, 21 * tile));
+            diffpos.Add(new Vector2(20 * tile, 21 * tile));
+            diffpos.Add(new Vector2(19 * tile, 21 * tile));
+            diffpos.Add(new Vector2(19 * tile, 21 * tile));
+            diffpos.Add(new Vector2(19 * tile, 21 * tile));
+            diffpos.Add(new Vector2(19 * tile, 24 * tile));
+            diffpos.Add(new Vector2(19 * tile, 21 * tile));
+            diffpos.Add(new Vector2(19 * tile, 21 * tile));
+            diffpos.Add(new Vector2(19 * tile, 21 * tile));
+            diffpos.Add(new Vector2(19 * tile, 21 * tile));
+            diffpos.Add(new Vector2(19 * tile, 21 * tile));
+            diffpos.Add(new Vector2(19 * tile, 21 * tile));
+            diffpos.Add(new Vector2(19 * tile, 24 * tile));
+            diffpos.Add(new Vector2(19 * tile, 24 * tile));
+
+            diffpos.Add(new Vector2(23 * tile, 21 * tile));
+            diffpos.Add(new Vector2(23 * tile, 21 * tile));
+            diffpos.Add(new Vector2(23 * tile, 21 * tile));
+            diffpos.Add(new Vector2(23 * tile, 21 * tile));
+
+            diffpos.Add(new Vector2(22 * tile, 25 * tile));
+            diffpos.Add(new Vector2(22 * tile, 21 * tile));
+            diffpos.Add(new Vector2(17 * tile, 26 * tile));
+            diffpos.Add(new Vector2(17 * tile, 25 * tile));
+            diffpos.Add(new Vector2(17 * tile, 21 * tile));
+            diffpos.Add(new Vector2(18 * tile, 21 * tile));
+            diffpos.Add(new Vector2(18 * tile, 21 * tile));
+
+
+
 
         }
 
@@ -68,14 +95,14 @@ namespace RestaurantSimulator.Controller.Salle
 
 
 
-        public void Update(GameTime _gametime, Vector2 finalpos)
+        public void Update(GameTime _gametime,bool inTable)
         {
 
             
 
 
 
-            if (isMooving)
+            if (isMooving && inTable)
             {
                 moveTo(diffpos[randomNumber]);
             }

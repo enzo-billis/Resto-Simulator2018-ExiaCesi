@@ -7,6 +7,7 @@ using RestaurantSimulator.Model.Salle.Components;
 using System.Collections.Generic;
 using RestaurantSimulator.Model;
 using RestaurantSimulator.Model.Shared;
+using RestaurantSimulator.Controller.Salle;
 //using RestaurantSimulator.Controller;
 
 
@@ -31,15 +32,31 @@ namespace RestaurantSimulator
         private WelcomeController welcomeC;
         private List<string> data = new List<string>();
 
+        bool gamePaused = false;
+        KeyboardState currentKB, previousKB;
+
+
         public Vector2 posch1;
         public Vector2 posch2;
 
         int i = 0;
         GroupeController groupe;
         GroupeController groupe2;
+        CuistoController cuisto;
+
+
+
+
 
         public SalleModel SalleModel { get => salleModel; set => salleModel = value; }
         public TableController TableController { get => tableController; set => tableController = value; }
+
+
+
+
+
+
+
 
         public Game1()
         {
@@ -57,6 +74,7 @@ namespace RestaurantSimulator
             graphics.ApplyChanges();
             groupe = new GroupeController(welcomeC.CreateGroup(4));
             groupe2 = new GroupeController(welcomeC.CreateGroup(9));
+            cuisto = new CuistoController();
             posch1 = salleModel.HotelMaster.RankChiefs[0].FPosition;
             posch2 = salleModel.HotelMaster.RankChiefs[1].FPosition;
             tableController = new TableController();
@@ -98,6 +116,7 @@ namespace RestaurantSimulator
             salleModel.HotelMaster.RankChiefs[1].Texture = TextPerso[3];
             timer = Content.Load<SpriteFont>("Timer");
             fontInfo = Content.Load<SpriteFont>("infos");
+            cuisto.Texture = TextPerso[0];
 
 
         }
@@ -124,7 +143,7 @@ namespace RestaurantSimulator
             // TODO: Add your update logic here
             RestaurantSimulator.Controller.TimeController.SetTime(gameTime);
 
-
+            cuisto.Update(gameTime,groupe.inTable);
             groupe.Update(gameTime, groupe.PosTable);
             groupe2.Update(gameTime, groupe2.PosTable);
             if (groupe.start)
@@ -188,8 +207,6 @@ namespace RestaurantSimulator
                         }
                         
                 }
-               
-
                 foreach (Table t in salleModel.HotelMaster.RankChiefs[1].Squares[0].Tables)
                 {
                     Rectangle rect = t.Rect;
@@ -218,14 +235,22 @@ namespace RestaurantSimulator
                 }
 
             }
-            
 
+            previousKB = currentKB;
+            currentKB = Keyboard.GetState();
+
+            if (currentKB.IsKeyDown(Keys.Escape)) Exit();
+            if (currentKB.IsKeyUp(Keys.P) && previousKB.IsKeyDown(Keys.P)) gamePaused = !gamePaused;
+
+            if (gamePaused) return;
 
 
 
             base.Update(gameTime);
         }
 
+
+ 
 
 
 
@@ -290,7 +315,7 @@ namespace RestaurantSimulator
                 spriteBatch.DrawString(fontInfo, info, new Vector2(1280, posInfo), Color.Black);
                 posInfo += 30;
             }
-
+            cuisto.Draw(spriteBatch);
             groupe.Draw(spriteBatch);
             groupe2.Draw(spriteBatch);
             salleModel.HotelMaster.RankChiefs[0].Draw(spriteBatch);
