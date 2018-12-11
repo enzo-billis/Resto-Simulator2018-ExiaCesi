@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Restaurant.Model.Shared;
+using RestaurantSimulator.Model.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,37 +21,36 @@ namespace Restaurant.Controller
         public bool isMooving = false;
         public bool start = true;
         public Group group;
-        private int speed;
 
-        public GroupeController(Group groupe,int speed)
+        public GroupeController(Group groupe)
         {
             Position = new Vector2(6*rate,20*rate);
             group = groupe;
-            this.speed = speed;
+            
             
 
         }
         
-        public void moveToTable(Vector2 finalpos,int speed)
+        public void moveToTable(Vector2 finalpos)
         {
            
 
           
             if (Position.X > finalpos.X)
             {
-                Position.X -= 1 * this.speed;
+                Position.X -= 1 * Parameters.SPEED;
             }
             if (Position.X < finalpos.X)
             {
-                Position.X += 1 * this.speed;
+                Position.X += 1 * Parameters.SPEED;
             }
             if (Position.Y > finalpos.Y)
             {
-                Position.Y -= 1 * this.speed;
+                Position.Y -= 1 * Parameters.SPEED;
             }
             if (Position.Y < finalpos.Y)
             {
-                Position.Y += 1 * this.speed;
+                Position.Y += 1 * Parameters.SPEED;
             }
    
 
@@ -65,7 +65,7 @@ namespace Restaurant.Controller
         {
             if (Position.Y > 16 * rate)
             {
-                Position.Y -= 1 * this.speed;
+                Position.Y -= 1 * Parameters.SPEED;
             }
             if(Position.Y == 16 * rate)
             {
@@ -84,7 +84,7 @@ namespace Restaurant.Controller
             }
             if (isMooving)
             {
-                moveToTable(finalpos, this.speed);
+                moveToTable(finalpos);
             }
         }
 

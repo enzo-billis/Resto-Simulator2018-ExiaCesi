@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Restaurant.Model.Shared;
+using RestaurantSimulator.Model.Shared;
 
 namespace RestoTests.Controller
 {
@@ -16,7 +17,7 @@ namespace RestoTests.Controller
     [TestClass]
     public class TestGroupe
     {
-        GroupeController Tgroupe = new GroupeController();
+        GroupeController Tgroupe = new GroupeController(new Group());
         
 
         public TestGroupe()

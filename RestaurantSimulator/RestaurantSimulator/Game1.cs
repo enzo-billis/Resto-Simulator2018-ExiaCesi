@@ -17,7 +17,7 @@ namespace RestaurantSimulator
     /// </summary>
     public class Game1 : Game
     {
-        int speed;
+        
         int tile = 32;
         private SpriteFont timer;
         GraphicsDeviceManager graphics;
@@ -40,9 +40,8 @@ namespace RestaurantSimulator
         public SalleModel SalleModel { get => salleModel; set => salleModel = value; }
         public TableController TableController { get => tableController; set => tableController = value; }
 
-        public Game1(int speed)
+        public Game1()
         {
-            this.speed = speed;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
@@ -55,8 +54,8 @@ namespace RestaurantSimulator
             graphics.PreferredBackBufferHeight = 960;
             graphics.PreferredBackBufferWidth = 1600;
             graphics.ApplyChanges();
-            groupe = new GroupeController(welcomeC.CreateGroup(4),speed);
-            groupe2 = new GroupeController(welcomeC.CreateGroup(9),speed);
+            groupe = new GroupeController(welcomeC.CreateGroup(4));
+            groupe2 = new GroupeController(welcomeC.CreateGroup(9));
             posch1 = salleModel.HotelMaster.RankChiefs[0].FPosition;
             posch2 = salleModel.HotelMaster.RankChiefs[1].FPosition;
             tableController = new TableController();

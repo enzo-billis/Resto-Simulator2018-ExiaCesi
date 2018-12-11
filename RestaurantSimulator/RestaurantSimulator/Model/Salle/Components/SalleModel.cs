@@ -1,5 +1,6 @@
 ﻿using Restaurant.Model.Salle.Characters;
 using RestaurantSimulator.Model.Salle.Characters;
+using RestaurantSimulator.Model.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,9 @@ namespace RestaurantSimulator.Model.Salle.Components
             commis = new Commis();
         }
 
-        public SalleModel(int speed)
+        public SalleModel()
         {
-            hotelMaster = new HotelMaster(speed);
+            hotelMaster = new HotelMaster();
         }
 
         public HotelMaster HotelMaster { get => hotelMaster; set => hotelMaster = value; }

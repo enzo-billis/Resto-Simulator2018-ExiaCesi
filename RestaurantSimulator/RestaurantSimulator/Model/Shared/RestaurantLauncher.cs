@@ -20,8 +20,8 @@ namespace RestaurantSimulator.Model.Shared
         public RestaurantLauncher()
         {
             salles = new List<SalleModel>();
-            salles.Add(new SalleModel(speed));
-            game = new Game1(speed);
+            salles.Add(new SalleModel());
+            game = new Game1();
             game.SalleModel = salles[0];
         }
     }
