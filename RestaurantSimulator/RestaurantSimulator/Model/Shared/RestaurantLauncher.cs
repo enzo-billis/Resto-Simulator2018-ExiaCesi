@@ -7,14 +7,22 @@ using RestaurantSimulator.Model.Salle.Components;
 
 namespace RestaurantSimulator.Model.Shared
 {
-    public class Restaurant
+    public class RestaurantLauncher
     {
-        private List<SalleModel> Salles;
+        private List<SalleModel> salles;
         //private SalleController salleController;
         //private KitchenController kitchenController;
         private Game1 game;
-
-        public List<SalleModel> Salles1 { get => Salles; set => Salles = value; }
+        public int speed = 16;
+        public List<SalleModel> Salles { get => salles; set => salles = value; }
         public Game1 Game { get => game; set => game = value; }
+
+        public RestaurantLauncher()
+        {
+            salles = new List<SalleModel>();
+            salles.Add(new SalleModel());
+            game = new Game1();
+            game.SalleModel = salles[0];
+        }
     }
 }

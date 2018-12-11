@@ -1,4 +1,5 @@
 ﻿using System;
+using RestaurantSimulator.Model.Shared;
 
 namespace RestaurantSimulator
 {
@@ -14,7 +15,8 @@ namespace RestaurantSimulator
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
+            RestaurantLauncher restaurant = new RestaurantLauncher();
+            using (var game = restaurant.Game)
                 game.Run();
         }
     }

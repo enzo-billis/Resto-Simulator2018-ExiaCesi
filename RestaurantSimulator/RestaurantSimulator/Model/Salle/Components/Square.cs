@@ -1,4 +1,5 @@
 ﻿using RestaurantSimulator.Model.Salle.Characters;
+using RestaurantSimulator.Model.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,24 @@ namespace RestaurantSimulator.Model.Salle.Components
 {
     public class Square
     {
-        private List<Table> Tables;
-        private List<Waiter> Waiters;
-        private List<RankChief> RankChiefs;
+        private List<Table> tables;
+        private List<Waiter> waiters;
+        private List<RankChief> rankChiefs;
 
-        public List<Waiter> Waiters1 { get => Waiters; set => Waiters = value; }
-        public List<RankChief> RankChiefs1 { get => RankChiefs; set => RankChiefs = value; }
-        internal List<Table> Tables1 { get => Tables; set => Tables = value; }
+        public List<Waiter> Waiters { get => waiters; set => waiters = value; }
+        public List<RankChief> RankChiefs { get => rankChiefs; set => rankChiefs = value; }
+        public List<Table> Tables { get => tables; set => tables = value; }
+
+        public Square()
+        {
+            this.tables = new List<Table>();
+            this.waiters = new List<Waiter>();
+            this.rankChiefs = new List<RankChief>();
+            
+            
+
+            for (int i = 0; i < Parameters.WAITER_BY_SQUARE; i++)
+                this.waiters.Add(new Waiter());
+        }
     }
 }

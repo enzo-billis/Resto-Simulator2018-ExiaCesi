@@ -41,7 +41,18 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controller\Groupe.cs" />
+    <Compile Include="Controller\BDDController.cs" />
+    <Compile Include="Controller\MapController.cs" />
+    <Compile Include="Controller\Kitchen\KitchenCleanerController.cs" />
+    <Compile Include="Controller\Kitchen\KitchenCommandsController.cs" />
+    <Compile Include="Controller\Kitchen\KitchenController.cs" />
+    <Compile Include="Controller\Kitchen\KitchenReceipeController.cs" />
+    <Compile Include="Controller\Kitchen\KitchenToolsController.cs" />
+    <Compile Include="Controller\Salle\CuistoController.cs" />
+    <Compile Include="Controller\TableController.cs" />
+    <Compile Include="Controller\Timer\TimeController.cs" />
+    <Compile Include="Controller\GroupeController.cs" />
+    <Compile Include="Controller\WelcomeController.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Model\Cuisine\Components\StockKitchenware.cs" />
     <Compile Include="Model\Cuisine\KitchenPools.cs" />
@@ -57,6 +68,9 @@
     <Compile Include="Model\Salle\Observer\IObserver.cs" />
     <Compile Include="Model\Salle\Observer\ISubject.cs" />
     <Compile Include="Model\Salle\Observer\Subject.cs" />
+    <Compile Include="Model\Shared\BDDRestaurant.cs" />
+    <Compile Include="Model\Shared\composé.cs" />
+    <Compile Include="Model\Shared\Etape.cs" />
     <Compile Include="Model\Shared\Group.cs" />
     <Compile Include="Model\Salle\Characters\HotelMaster.cs" />
     <Compile Include="Model\Salle\Characters\RankChief.cs" />
@@ -67,14 +81,25 @@
     <Compile Include="Model\Salle\Movement\IMove.cs" />
     <Compile Include="Model\Salle\Movement\IPosition.cs" />
     <Compile Include="Model\Salle\Movement\Position.cs" />
+    <Compile Include="Model\Shared\Ingredient.cs" />
+    <Compile Include="Model\Shared\Map.cs" />
     <Compile Include="Model\Shared\Parameters.cs" />
+    <Compile Include="Model\Shared\Recette.cs" />
     <Compile Include="Model\Shared\Recipe.cs" />
-    <Compile Include="Model\Shared\Restaurant.cs" />
+    <Compile Include="Model\Shared\RestaurantLauncher.cs" />
+    <Compile Include="Model\Shared\Stock.cs" />
     <Compile Include="Model\Shared\Timer.cs" />
+    <Compile Include="Model\Shared\Ustensile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
@@ -82,6 +107,10 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="App.config" />
     <None Include="app.manifest" />
     <None Include="Content\bin\Windows\client1.xnb" />
     <None Include="Content\bin\Windows\client2.xnb" />

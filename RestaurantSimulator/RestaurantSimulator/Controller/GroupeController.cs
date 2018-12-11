@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Restaurant.Model.Shared;
+using RestaurantSimulator.Model.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +12,22 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Controller
 {
-    public class Groupe
+    public class GroupeController
     {
         public int rate =32;
         public Texture2D Texture;
         public Vector2 Position;
+        public Vector2 PosTable;
         public bool isMooving = false;
         public bool start = true;
+        public Group group;
+        public bool inTable = false;
 
-        public Groupe()
+        public GroupeController(Group groupe)
         {
             Position = new Vector2(6*rate,20*rate);
+            group = groupe;
+            
             
 
         }
@@ -32,19 +39,19 @@ namespace Restaurant.Controller
           
             if (Position.X > finalpos.X)
             {
-                Position.X --;
+                Position.X -= 1 * Parameters.SPEED;
             }
             if (Position.X < finalpos.X)
             {
-                Position.X++;
+                Position.X += 1 * Parameters.SPEED;
             }
             if (Position.Y > finalpos.Y)
             {
-                Position.Y--;
+                Position.Y -= 1 * Parameters.SPEED;
             }
             if (Position.Y < finalpos.Y)
             {
-                Position.Y +=1;
+                Position.Y += 1 * Parameters.SPEED;
             }
    
 
@@ -52,6 +59,7 @@ namespace Restaurant.Controller
             if (Position.Y == finalpos.Y && Position.X == finalpos.X)
             {
                 isMooving = false;
+                inTable = true;
             }
 
         }
@@ -59,7 +67,7 @@ namespace Restaurant.Controller
         {
             if (Position.Y > 16 * rate)
             {
-                Position.Y--;
+                Position.Y -= 1 * Parameters.SPEED;
             }
             if(Position.Y == 16 * rate)
             {
@@ -80,10 +88,6 @@ namespace Restaurant.Controller
             {
                 moveToTable(finalpos);
             }
-
-    
-
-
         }
 
         public void Draw(SpriteBatch _spritBash)
@@ -91,9 +95,10 @@ namespace Restaurant.Controller
             _spritBash.Draw(Texture, Position, Color.White);
         }
 
-
-
-
-
+        public static void ChangeGroupState(Group group, GroupState state)
+        {
+            if ((group != null) && (group.State != state))
+                group.State = state;
+        }
     }
 }

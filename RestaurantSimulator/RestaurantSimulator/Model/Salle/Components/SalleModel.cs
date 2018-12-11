@@ -1,5 +1,6 @@
 ﻿using Restaurant.Model.Salle.Characters;
 using RestaurantSimulator.Model.Salle.Characters;
+using RestaurantSimulator.Model.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,19 @@ namespace RestaurantSimulator.Model.Salle.Components
 {
     public class SalleModel
     {
-        private List<Square> squares;
         private HotelMaster hotelMaster;
         private static Commis commis;
 
-        internal List<Square> Squares { get => squares; set => squares = value; }
+        static SalleModel()
+        {
+            commis = new Commis();
+        }
+
+        public SalleModel()
+        {
+            hotelMaster = new HotelMaster();
+        }
+
         public HotelMaster HotelMaster { get => hotelMaster; set => hotelMaster = value; }
         public static Commis Commis { get => commis; set => commis = value; }
     }

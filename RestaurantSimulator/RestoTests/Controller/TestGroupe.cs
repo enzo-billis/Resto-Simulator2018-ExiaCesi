@@ -6,6 +6,8 @@ using Restaurant.Controller;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Restaurant.Model.Shared;
+using RestaurantSimulator.Model.Shared;
 
 namespace RestoTests.Controller
 {
@@ -15,7 +17,7 @@ namespace RestoTests.Controller
     [TestClass]
     public class TestGroupe
     {
-        Groupe Tgroupe = new Groupe();
+        GroupeController Tgroupe = new GroupeController(new Group());
         
 
         public TestGroupe()
@@ -82,6 +84,15 @@ namespace RestoTests.Controller
             }
 
             Assert.AreEqual(Tgroupe.Position.Y, 512);
+        }
+
+        [TestMethod]
+        public void TestChangeGroupState()
+        {
+            Group group = new Group();
+            Assert.AreEqual(GroupState.WaitTableAttribution, group.State);
+            GroupeController.ChangeGroupState(group, GroupState.WaitRankChief);
+            Assert.AreEqual(GroupState.WaitRankChief, group.State);
         }
     }
 }

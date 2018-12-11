@@ -22,8 +22,7 @@ namespace RestoTests.Model.Cuisine.Components
         public void TestStockKitchenwareConstructValues()
         {
             StockKitchenware test = StockKitchenware.Instance;
-            Assert.IsNotNull(test.Clean);
-            Assert.IsNotNull(test.Dirty);
+            Assert.IsNotNull(test.Stock);
         }
     }
 }

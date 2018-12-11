@@ -7,17 +7,22 @@ using System.Threading.Tasks;
 namespace Restaurant.Model.Salle.Components
 {
 
-    enum EquipmentState
+    public enum EquipmentState
     {
-        available,
-        inUse,
-        dirty
+        Available,
+        InUse,
+        Dirty
     };
 
-    class Equipment
+    public class Equipment
     {
         private EquipmentState state;
 
-        internal EquipmentState State { get => state; set => state = value; }
+        public EquipmentState State { get => state; set => state = value; }
+
+        public Equipment()
+        {
+            this.state = EquipmentState.Available;
+        }
     }
 }
