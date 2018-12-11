@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RestaurantSimulator.Model.Cuisine.Components
 {
     public class StockKitchenware
     {
-        private Dictionary<string, int> clean;
-        private Dictionary<string, int> dirty;
+        private Dictionary<string, Semaphore> stock;
+       
         private static StockKitchenware instance = null;
         private static readonly object padlock = new object();
 
-        public Dictionary<string, int> Clean { get => clean; set => clean = value; }
-        public Dictionary<string, int> Dirty { get => dirty; set => dirty = value; }
+        public Dictionary<string, Semaphore> Stock { get => stock; set => stock = value; }
+       
 
         public static StockKitchenware Instance
         {
@@ -33,31 +34,18 @@ namespace RestaurantSimulator.Model.Cuisine.Components
 
         private StockKitchenware()
         {
-            this.clean = new Dictionary<string, int>();
-            this.dirty = new Dictionary<string, int>();
+            this.stock = new Dictionary<string, Semaphore>();
 
-            this.clean.Add("four", 1);
-            this.clean.Add("poelle", 10);
-            this.clean.Add("plaque de cuisson", 5);
-            this.clean.Add("planche a decouper", 2);
-            this.clean.Add("couteau", 5);
-            this.clean.Add("evier", 1);
-            this.clean.Add("mixer", 1);
-            this.clean.Add("firgo", 10);
-            this.clean.Add("congelateur", 1);
-            this.clean.Add("bol", 5);
-
-            this.dirty.Add("four", 0);
-            this.dirty.Add("poelle", 0);
-            this.dirty.Add("plaque de cuisson", 0);
-            this.dirty.Add("planche a decouper", 0);
-            this.dirty.Add("couteau", 0);
-            this.dirty.Add("evier", 0);
-            this.dirty.Add("mixer", 0);
-            this.dirty.Add("firgo", 0);
-            this.dirty.Add("congelateur", 0);
-            this.dirty.Add("bol", 0);
-
+            this.stock["four"] = new Semaphore(1, 1, "four");
+            this.stock["poelle"] = new Semaphore(10, 10, "poelle");
+            this.stock["plaque de cuisson"] = new Semaphore(5, 5, "plaqueCuisson");
+            this.stock["planche a decouper"] = new Semaphore(2, 2, "plancheDecouper");
+            this.stock["couteau"] = new Semaphore(5, 5, "couteau");
+            this.stock["evier"] = new Semaphore(1, 1, "evier");
+            this.stock["mixer"] = new Semaphore(1, 1, "mixer");
+            this.stock["firgo"] = new Semaphore(10, 10, "firgo");
+            this.stock["congelateur"] = new Semaphore(1, 1, "congelateur");
+            this.stock["bol"] = new Semaphore(5, 5, "bol");
         }
     }
 }
