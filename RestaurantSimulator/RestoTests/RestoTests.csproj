@@ -67,6 +67,7 @@
     <Compile Include="Controller\TestTableController.cs" />
     <Compile Include="Controller\TestBDDController.cs" />
     <Compile Include="Controller\TestMapController.cs" />
+    <Compile Include="Controller\TestCommandsSocket.cs" />
     <Compile Include="Model\Cuisine\Components\TestStockKitchenware.cs" />
     <Compile Include="Model\Cuisine\Components\TestSquare.cs" />
     <Compile Include="Model\Salle\Components\TestStockEquipment.cs" />
