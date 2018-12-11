@@ -13,70 +13,78 @@ using System.Diagnostics;
 
 namespace RestaurantSimulator.Controller.Kitchen
 {
-    public static class KitchenReceipeController
+    public class KitchenReceipeController
     {
-        public static Semaphore _cooker = new Semaphore(0, 2);
+        //Init the semahpore who represent cookers (2)
+        public Semaphore _cooker = new Semaphore(2, 2);
 
-        private static void CookCallback(Object obj)
+        private static void CookCallback(Object step, Object paramUstensile)
         {
-            //Semaphore can be taken
-            _cooker.WaitOne();
-          
-            //Cast the good type -> receipe
-            composé receipeCompose = (composé)obj;
+            
+            //Cast the good type
+            Etape actualStep = (Etape)step;
+            Ustensile ustensile = (Ustensile)paramUstensile;
 
-            Etape actualStep = BDDController.Instance.DB.Etape.SingleOrDefault(e => e.id_etape == receipeCompose.id_etape);
-            Ingredient actualIngr = BDDController.Instance.DB.Ingredient.SingleOrDefault(e => e.id_Ingredient == receipeCompose.id_Ingredient);
-            Ustensile ustensile = BDDController.Instance.DB.Ustensile.SingleOrDefault(e => e.id_Ustensile == actualStep.id_Ustensile);
-           
+
+            //Take one permit on Semaphore
+            _cooker.WaitOne();
+
+            //Init a kitchenController
             KitchenToolsController kitchenToolsController = new KitchenToolsController();
-            
-            Console.WriteLine("Quantité de {0} : {1} avant", ustensile.nom_ust_Ustensile, StockKitchenware.Instance.Clean[ustensile.nom_ust_Ustensile]);
-            
+
+            //The actual ustensil are sent to dirty
             kitchenToolsController.SendDirtyTools(ustensile.nom_ust_Ustensile,1);
-            Console.WriteLine("Quantité de {0} : {1} après", ustensile.nom_ust_Ustensile, StockKitchenware.Instance.Clean[ustensile.nom_ust_Ustensile]);
-            
-            
+           
             //Clear stock
             //BDDController.Instance.DB.Stock.Remove...
 
-
+            //Sleep represent the time of the step
             Thread.Sleep(Convert.ToInt32(actualStep.temps_etape) * 1000);
 
-            
+            //When step is done, semaphore is release. Cooker is free.
+            _cooker.Release(1);
         }
 
         public static void GetReceipe(Recette receipe)
         {
-            
+            //Check if tools are dispo for the receipe
             if (VerifyDispoTool(receipe))
             {
                
+                //Explode the steps from the receipe in an array
                 string[] steps = Regex.Split(receipe.liste_etapes_recette, ";");
-
+                
+                //Foreach step in the steps array
                 foreach (var step in steps)
                 {
-                    
 
+                    
                     int stepId = Convert.ToInt32(step);
 
                     //From BDD we get all objects needed
                     composé actualCompose = BDDController.Instance.DB.composé.SingleOrDefault(c => c.id_compose == stepId);
-                  
-                    //Foreach steps in the receipe we create a new thread.
+                    Etape actualStep = BDDController.Instance.DB.Etape.SingleOrDefault(e => e.id_etape == actualCompose.id_etape);
+                    Console.WriteLine(actualCompose.id_Ingredient);
+                    Ustensile ustensile = BDDController.Instance.DB.Ustensile.SingleOrDefault(e => e.id_Ustensile == actualStep.id_Ustensile);
 
-                    Thread t = new Thread(CookCallback);
-                   
-                    t.Start(actualCompose);
+                    //Foreach steps in the receipe we create a new thread.
+                    Thread t = new Thread(delegate ()
+                    {
+                        //We use the method ass call back function of the thread.
+                        //Two arg sent : step and ustensile object
+                        CookCallback(actualStep, ustensile);
+                    });
+                    
+                    //Start the thread
+                    t.Start();
                   
                 }
-
-                Thread.Sleep(500);
-                _cooker.Release();
+                
             }
             
         }
 
+        //This method verify if all ustensiles used in the receipe are free
         public static bool VerifyDispoTool(Recette receipe)
         {
             KitchenToolsController kitchenToolsController = new KitchenToolsController();
