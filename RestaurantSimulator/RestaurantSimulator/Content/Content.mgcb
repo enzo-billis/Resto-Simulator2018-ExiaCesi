@@ -176,3 +176,10 @@
 /processorParam:TextureFormat=Compressed
 /build:Timer.spritefont
 
+#begin infos.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:infos.spritefont
+
