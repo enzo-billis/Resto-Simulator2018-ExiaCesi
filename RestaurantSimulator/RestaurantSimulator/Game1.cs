@@ -43,6 +43,7 @@ namespace RestaurantSimulator
         GroupeController groupe;
         GroupeController groupe2;
         CuistoController cuisto;
+        ServeurController serveur1;
 
 
 
@@ -75,6 +76,7 @@ namespace RestaurantSimulator
             groupe = new GroupeController(welcomeC.CreateGroup(4));
             groupe2 = new GroupeController(welcomeC.CreateGroup(9));
             cuisto = new CuistoController();
+            serveur1 = new ServeurController(new Vector2(25*tile,17*tile));
             posch1 = salleModel.HotelMaster.RankChiefs[0].FPosition;
             posch2 = salleModel.HotelMaster.RankChiefs[1].FPosition;
             tableController = new TableController();
@@ -117,6 +119,7 @@ namespace RestaurantSimulator
             timer = Content.Load<SpriteFont>("Timer");
             fontInfo = Content.Load<SpriteFont>("infos");
             cuisto.Texture = TextPerso[0];
+            serveur1.Texture = TextPerso[2];
 
 
         }
@@ -170,6 +173,7 @@ namespace RestaurantSimulator
 
 
             }
+            serveur1.Update(gameTime, salleModel.HotelMaster.RankChiefs[0].Squares[0].Tables);
             
             salleModel.HotelMaster.RankChiefs[0].Update(gameTime,posch1);
             salleModel.HotelMaster.RankChiefs[1].Update(gameTime,posch2);
@@ -320,6 +324,7 @@ namespace RestaurantSimulator
             groupe2.Draw(spriteBatch);
             salleModel.HotelMaster.RankChiefs[0].Draw(spriteBatch);
             salleModel.HotelMaster.RankChiefs[1].Draw(spriteBatch);
+            serveur1.Draw(spriteBatch);
 
 
 
