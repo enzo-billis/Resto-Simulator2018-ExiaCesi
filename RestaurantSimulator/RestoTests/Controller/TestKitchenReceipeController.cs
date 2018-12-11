@@ -30,11 +30,8 @@ namespace RestoTests.Controller
             KitchenToolsController kitchenToolsController = new KitchenToolsController();
 
             KitchenReceipeController.GetReceipe(receipe);
-
-            
             
             Assert.AreEqual(5, couteauCleanQuantityBefore);
-            System.Threading.Thread.Sleep(10000);
             int couteauCleanQuantityAfter = RestaurantSimulator.Model.Cuisine.Components.StockKitchenware.Instance.Clean["couteau"];
             Assert.AreEqual(3, couteauCleanQuantityAfter);
 
