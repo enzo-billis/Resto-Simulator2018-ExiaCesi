@@ -8,5 +8,7 @@ namespace RestaurantSimulator.Controller.Kitchen
 {
     public class KitchenController
     {
+        public KitchenCommandsController kitchenCommandsController = new KitchenCommandsController();
+
     }
 }
