@@ -21,6 +21,7 @@ namespace Restaurant.Controller
         public bool isMooving = false;
         public bool start = true;
         public Group group;
+        public bool inTable = false;
 
         public GroupeController(Group groupe)
         {
@@ -58,6 +59,7 @@ namespace Restaurant.Controller
             if (Position.Y == finalpos.Y && Position.X == finalpos.X)
             {
                 isMooving = false;
+                inTable = true;
             }
 
         }

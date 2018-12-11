@@ -19,7 +19,7 @@ namespace RestaurantSimulator
     {
         
         int tile = 32;
-        private SpriteFont timer;
+        private SpriteFont timer, fontInfo;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D bgTexture;
@@ -29,6 +29,7 @@ namespace RestaurantSimulator
         private SalleModel salleModel;
         private TableController tableController;
         private WelcomeController welcomeC;
+        private List<string> data = new List<string>();
 
         public Vector2 posch1;
         public Vector2 posch2;
@@ -59,27 +60,16 @@ namespace RestaurantSimulator
             posch1 = salleModel.HotelMaster.RankChiefs[0].FPosition;
             posch2 = salleModel.HotelMaster.RankChiefs[1].FPosition;
             tableController = new TableController();
-            
+
+            data.Add(" ");
+            data.Add(" ");
+            data.Add(" ");
+            data.Add(" ");
+            data.Add(" ");
+            data.Add(" ");
 
 
-            /*
-
-            RecSupervision.Add(new Rectangle(16 * tile, 14 * tile, 5 * tile, 5 * tile));
-            RecSupervision.Add(new Rectangle(4 * tile, 7 * tile, 5 * tile, 5 * tile));
-            RecSupervision.Add(new Rectangle(1 * tile, 14 * tile, 5 * tile, 5 * tile));
-            RecSupervision.Add(new Rectangle(12 * tile, 7 * tile, 5 * tile, 5 * tile));
-            RecSupervision.Add(new Rectangle(12 * tile, 1 * tile, 5 * tile, 5 * tile));
-            RecSupervision.Add(new Rectangle(18 * tile, 1 * tile, 5 * tile, 5 * tile));
-
-            RecSupervision.Add(new Rectangle(33 * tile, 20 * tile, 5 * tile, 5 * tile));           
-            RecSupervision.Add(new Rectangle(24 * tile, 1 * tile, 5 * tile, 5 * tile));
-            RecSupervision.Add(new Rectangle(32 * tile, 1 * tile, 5 * tile, 5 * tile));
-            RecSupervision.Add(new Rectangle(25 * tile, 13 * tile, 5 * tile, 5 * tile));
-            RecSupervision.Add(new Rectangle(22 * tile, 7 * tile, 5 * tile, 5 * tile));
-            RecSupervision.Add(new Rectangle(30 * tile, 7 * tile, 5 * tile, 5 * tile));
-
-
-    */
+        
 
             TextPerso.Add(Content.Load<Texture2D>("cuisto"));
             TextPerso.Add(Content.Load<Texture2D>("commis"));
@@ -99,7 +89,7 @@ namespace RestaurantSimulator
         {
           
 
-        spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             bgTexture = Content.Load<Texture2D>("restoV2");
             bg2Texture = Content.Load<Texture2D>("blanc");
             groupe.Texture = Content.Load<Texture2D>("groupe" + groupe.group.Clients.Count);
@@ -107,6 +97,7 @@ namespace RestaurantSimulator
             salleModel.HotelMaster.RankChiefs[0].Texture = TextPerso[3];
             salleModel.HotelMaster.RankChiefs[1].Texture = TextPerso[3];
             timer = Content.Load<SpriteFont>("Timer");
+            fontInfo = Content.Load<SpriteFont>("infos");
 
 
         }
@@ -116,6 +107,8 @@ namespace RestaurantSimulator
         {
            
         }
+
+
         private Vector2 rectToVect(Rectangle rect)
         {
             return new Vector2(rect.X, rect.Y);
@@ -145,9 +138,16 @@ namespace RestaurantSimulator
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
             {
 
+                if (!groupe.inTable)
+                {
+                    putGroupToTable(groupe);
+                }
 
-                putGroupToTable(groupe);
-                putGroupToTable(groupe2);
+                if (!groupe2.inTable)
+                {
+                    putGroupToTable(groupe2);
+                }
+                
 
 
             }
@@ -167,12 +167,24 @@ namespace RestaurantSimulator
                     Rectangle rect = t.Rect;
                         if(Mstate.X >= rect.Left && Mstate.X <= rect.Right && Mstate.Y >= rect.Top && Mstate.Y <= rect.Bottom)
                         {
-                            System.Console.WriteLine("oui");
-                            System.Console.WriteLine("Etat : "+t.State);
-                            System.Console.WriteLine("Nbplace"+t.NbPlaces);
-                            System.Console.WriteLine("Groupe"+t.Group);
-                            
-                        break;
+                            data[0] = "Etat de la table : " + t.State;
+                            data[1] = "Nombre de places : " + t.NbPlaces;
+                            if(t.Group != null)
+                            {
+                                data[2] = "Groupe de "+t.Group.Clients.Count+" personnes";
+                                data[3] = "Etat de l'entree : " + (t.Entree?"Fini":"En cours");
+                                data[4] = "Etat du plat : " + (t.Plate?"Fini":(t.Entree?"En cours":"En attente"));
+                                data[5] = "Etat du dessert : "+ (t.Dessert ? "Fini" : (t.Plate ? "En cours" : "En attente"));
+
+                            }
+                            else
+                            {
+                                data[2] = "Pas de groupe";
+                                data[3] = "Etat de l'entree : Pas de groupe";
+                                data[4] = "Etat du plat : Pas de groupe";
+                                data[5] = "Etat du dessert : Pas de groupe";
+                            }
+                            break;
                         }
                         
                 }
@@ -183,11 +195,23 @@ namespace RestaurantSimulator
                     Rectangle rect = t.Rect;
                     if (Mstate.X >= rect.Left && Mstate.X <= rect.Right && Mstate.Y >= rect.Top && Mstate.Y <= rect.Bottom)
                     {
-                        System.Console.WriteLine("oui");
-                        System.Console.WriteLine("Etat : " + t.State);
-                        System.Console.WriteLine("Nbplace" + t.NbPlaces);
-                        System.Console.WriteLine("Groupe" + t.Group);
+                        data[0] = "Etat de la table : " + t.State;
+                        data[1] = "Nombre de places : " + t.NbPlaces;
+                        if (t.Group != null)
+                        {
+                            data[2] = "Groupe de " + t.Group.Clients.Count + " personnes";
+                            data[3] = "Etat de l'entree : " + (t.Entree ? "Fini" : "En cours");
+                            data[4] = "Etat du plat : " + (t.Plate ? "Fini" : (t.Entree ? "En cours" : "En attente"));
+                            data[5] = "Etat du dessert : " + (t.Dessert ? "Fini" : (t.Plate ? "En cours" : "En attente"));
 
+                        }
+                        else
+                        {
+                            data[2] = "Pas de groupe";
+                            data[3] = "Etat de l'entree : Pas de groupe";
+                            data[4] = "Etat du plat : Pas de groupe";
+                            data[5] = "Etat du dessert : Pas de groupe";
+                        }
                         break;
                     }
 
@@ -203,13 +227,16 @@ namespace RestaurantSimulator
         }
 
 
+
+
+
         private void putGroupToTable(GroupeController groupe)
         {
             if (salleModel.HotelMaster.RankChiefs[0].Available)
             {
 
 
-                Table table = tableController.OptimizedFindTable(salleModel.HotelMaster.RankChiefs[0].Squares[0].Tables, 4);
+                Table table = tableController.OptimizedFindTable(salleModel.HotelMaster.RankChiefs[0].Squares[0].Tables, groupe.group.Clients.Count);
                 if (table != null)
                 {
                     tableController.AttributionTableGroup(groupe.group, table);
@@ -218,6 +245,7 @@ namespace RestaurantSimulator
                     posch1 = rectToVect(table.Rect);
                     groupe.PosTable = posch1;
                     groupe.isMooving = true;
+                    groupe.inTable = true;
                     
                 }
 
@@ -226,7 +254,7 @@ namespace RestaurantSimulator
             {
 
 
-                Table table = tableController.OptimizedFindTable(salleModel.HotelMaster.RankChiefs[1].Squares[0].Tables, 7);
+                Table table = tableController.OptimizedFindTable(salleModel.HotelMaster.RankChiefs[1].Squares[0].Tables, groupe.group.Clients.Count);
                 if (table != null)
                 {
                     
@@ -236,18 +264,33 @@ namespace RestaurantSimulator
                     posch2 = rectToVect(table.Rect);
                     groupe.PosTable = posch2;
                     groupe.isMooving = true;
-                    
+                    groupe.inTable = true;
+
                 }
 
             }
 
         }
+
+
+
+
+
+
         protected override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
             spriteBatch.Draw(bgTexture, new Rectangle(0, 0, 1280, 960), Color.White);
             spriteBatch.Draw(bg2Texture, new Rectangle(1280, 0, 320, 960), Color.White);
             spriteBatch.DrawString(timer, "Temps : "+ RestaurantSimulator.Controller.TimeController.GetTimer(), new Vector2(1280, 0), Color.Black);
+            int posInfo = 100;
+            foreach(string info in data)
+            {
+                //System.Console.WriteLine(info);
+                spriteBatch.DrawString(fontInfo, info, new Vector2(1280, posInfo), Color.Black);
+                posInfo += 30;
+            }
+
             groupe.Draw(spriteBatch);
             groupe2.Draw(spriteBatch);
             salleModel.HotelMaster.RankChiefs[0].Draw(spriteBatch);
