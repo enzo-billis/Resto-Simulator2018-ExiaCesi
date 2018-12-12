@@ -40,6 +40,13 @@ namespace RestaurantSimulator.Model.Salle.Components
             this.clean.Add("EntreePlate", 150);
             this.clean.Add("MainPlate", 150);
             this.clean.Add("DessertPlate", 150);
+            this.clean.Add("fork", 150);
+            this.clean.Add("knife", 150);
+            this.clean.Add("soupSpoon", 150);
+            this.clean.Add("glass", 150);
+            this.clean.Add("tablecloth", 40);
+            this.clean.Add("towel", 150);
+            this.clean.Add("teaspoon", 150);
         }
 
         public bool SubstractEquipement(string equipement)
