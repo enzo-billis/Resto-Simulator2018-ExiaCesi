@@ -16,21 +16,19 @@ namespace RestoTests.Controller
         [TestMethod]
         public async Task TestInitConnection()
         {
-            //LoggerController.AppendLineToFile(Parameters.LOG_PATH, "Salle commands client started");
-                KitchenCommandsController server = new KitchenCommandsController();
-                server.InitSocketServerAsync();
-                server.SocketListen();
-                Console.WriteLine("SALUT ENZO");
-                LoggerController.AppendLineToFile(Parameters.LOG_PATH, "Salle commands client started");
+            Assert.IsFalse(Parameters.KITCHEN_SERVER_STARTED);
+            KitchenCommandsController server = new KitchenCommandsController();
+            server.InitSocketServerAsync();
+            Assert.IsTrue(Parameters.KITCHEN_SERVER_STARTED);
 
+            Assert.IsFalse(Parameters.SALLE_CLIENT_STARTED);
             SalleCommandsController client = new SalleCommandsController();
             client.InitClientSocketAsync();
-            Group group = new Group();
-            client.SendCommand(group);
-           
+            Assert.IsTrue(Parameters.SALLE_CLIENT_STARTED);
 
-            
-            
+
+
+
         }
     }
 }

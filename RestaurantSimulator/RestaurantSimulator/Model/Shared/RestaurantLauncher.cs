@@ -45,6 +45,7 @@ namespace RestaurantSimulator.Model.Shared
         {
             Thread.Sleep(5000);
             salleController.SalleCommandsController.InitClientSocketAsync();
+            Thread.Sleep(1000);
             salleController.SalleCommandsController.SocketConnect();
             salleController.SalleCommandsController.SendCommand(new Restaurant.Model.Shared.Group());
         }

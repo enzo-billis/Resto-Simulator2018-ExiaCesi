@@ -49,6 +49,7 @@
     <Compile Include="Controller\Kitchen\KitchenController.cs" />
     <Compile Include="Controller\Kitchen\KitchenReceipeController.cs" />
     <Compile Include="Controller\Kitchen\KitchenToolsController.cs" />
+    <Compile Include="Controller\ParametersController.cs" />
     <Compile Include="Controller\Salle\CuistoController.cs" />
     <Compile Include="Controller\Salle\SalleCommandsController.cs" />
     <Compile Include="Controller\Salle\SalleController.cs" />
@@ -112,6 +113,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />

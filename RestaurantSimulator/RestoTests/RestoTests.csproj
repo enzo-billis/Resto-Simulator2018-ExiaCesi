@@ -57,6 +57,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +69,7 @@
     <Compile Include="Controller\TestBDDController.cs" />
     <Compile Include="Controller\TestMapController.cs" />
     <Compile Include="Controller\TestCommandsSocket.cs" />
+    <Compile Include="Controller\TestParametersController.cs" />
     <Compile Include="Model\Cuisine\Components\TestStockKitchenware.cs" />
     <Compile Include="Model\Cuisine\Components\TestSquare.cs" />
     <Compile Include="Model\Salle\Components\TestStockEquipment.cs" />
