@@ -50,7 +50,9 @@
     <Compile Include="Controller\Kitchen\KitchenReceipeController.cs" />
     <Compile Include="Controller\Kitchen\KitchenToolsController.cs" />
     <Compile Include="Controller\ParametersController.cs" />
+    <Compile Include="Controller\PlayPauseController.cs" />
     <Compile Include="Controller\Salle\CuistoController.cs" />
+    <Compile Include="Controller\Salle\EquipmentController.cs" />
     <Compile Include="Controller\Salle\SalleCommandsController.cs" />
     <Compile Include="Controller\Salle\SalleController.cs" />
     <Compile Include="Controller\Salle\ServeurController.cs" />

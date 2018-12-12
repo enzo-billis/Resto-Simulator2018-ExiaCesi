@@ -31,15 +31,15 @@ namespace RestaurantSimulator
         private TableController tableController;
         private WelcomeController welcomeC;
         private List<string> data = new List<string>();
+        int timeSec;
 
-        bool gamePaused = false;
-        KeyboardState currentKB, previousKB;
 
 
         public Vector2 posch1;
         public Vector2 posch2;
 
         int i = 0;
+        PlayPauseController playPauseButtons;
         GroupeController groupe;
         GroupeController groupe2;
         CuistoController cuisto;
@@ -80,6 +80,7 @@ namespace RestaurantSimulator
             posch1 = salleModel.HotelMaster.RankChiefs[0].FPosition;
             posch2 = salleModel.HotelMaster.RankChiefs[1].FPosition;
             tableController = new TableController();
+            playPauseButtons = new PlayPauseController();
 
             data.Add(" ");
             data.Add(" ");
@@ -120,6 +121,9 @@ namespace RestaurantSimulator
             fontInfo = Content.Load<SpriteFont>("infos");
             cuisto.Texture = TextPerso[0];
             serveur1.Texture = TextPerso[2];
+            playPauseButtons.TexturePause = Content.Load<Texture2D>("pause");
+            playPauseButtons.TextureX1 = Content.Load<Texture2D>("playX1");
+            playPauseButtons.TextureX16 = Content.Load<Texture2D>("playX16");
 
 
         }
@@ -138,14 +142,20 @@ namespace RestaurantSimulator
 
         protected override void Update(GameTime gameTime)
         {
-            
-            
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
+            MouseState Mstate = Mouse.GetState();
+            playPauseButtons.Update(gameTime,Mstate);
+            
+            
+           
+
             // TODO: Add your update logic here
             RestaurantSimulator.Controller.TimeController.SetTime(gameTime);
-
+            timeSec = TimeController.GetTimer();
             cuisto.Update(gameTime,groupe.inTable);
             groupe.Update(gameTime, groupe.PosTable);
             groupe2.Update(gameTime, groupe2.PosTable);
@@ -182,7 +192,6 @@ namespace RestaurantSimulator
 
 
 
-            MouseState Mstate = Mouse.GetState();
             if(Mstate.LeftButton == ButtonState.Pressed)
             {
                 foreach (Table t in salleModel.HotelMaster.RankChiefs[0].Squares[0].Tables)
@@ -240,14 +249,7 @@ namespace RestaurantSimulator
 
             }
 
-            previousKB = currentKB;
-            currentKB = Keyboard.GetState();
-
-            if (currentKB.IsKeyDown(Keys.Escape)) Exit();
-            if (currentKB.IsKeyUp(Keys.P) && previousKB.IsKeyDown(Keys.P)) gamePaused = !gamePaused;
-
-            if (gamePaused) return;
-
+           
 
 
             base.Update(gameTime);
@@ -311,7 +313,7 @@ namespace RestaurantSimulator
             spriteBatch.Begin();
             spriteBatch.Draw(bgTexture, new Rectangle(0, 0, 1280, 960), Color.White);
             spriteBatch.Draw(bg2Texture, new Rectangle(1280, 0, 320, 960), Color.White);
-            spriteBatch.DrawString(timer, "Temps : "+ RestaurantSimulator.Controller.TimeController.GetTimer(), new Vector2(1280, 0), Color.Black);
+            spriteBatch.DrawString(timer, "Temps : "+ timeSec, new Vector2(1280, 0), Color.Black);
             int posInfo = 100;
             foreach(string info in data)
             {
@@ -325,7 +327,7 @@ namespace RestaurantSimulator
             salleModel.HotelMaster.RankChiefs[0].Draw(spriteBatch);
             salleModel.HotelMaster.RankChiefs[1].Draw(spriteBatch);
             serveur1.Draw(spriteBatch);
-
+            playPauseButtons.Draw(spriteBatch);
 
 
 

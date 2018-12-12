@@ -61,6 +61,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\TestCleanerController.cs" />
+    <Compile Include="Controller\TestEquipmentController.cs" />
     <Compile Include="Controller\TestKitchenReceipeController.cs" />
     <Compile Include="Controller\TestKitchenToolsController.cs" />
     <Compile Include="Controller\TestTimeController.cs" />
