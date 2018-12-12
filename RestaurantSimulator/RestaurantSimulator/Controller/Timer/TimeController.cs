@@ -25,7 +25,7 @@ namespace RestaurantSimulator.Controller
 
         public static int GetTimer()
         {
-            int multiplier = 10;
+            int multiplier = 10 * Parameters.SPEED;
             return Convert.ToInt32(Timer.Time.TotalGameTime.TotalSeconds) * multiplier;
         }
 
