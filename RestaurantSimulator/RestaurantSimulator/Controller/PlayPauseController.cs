@@ -25,7 +25,8 @@ namespace RestaurantSimulator.Controller
         private Rectangle rectX1;
         private Rectangle rectX16;
         private Rectangle rectPause;
-    
+
+
 
 
 
@@ -50,14 +51,17 @@ namespace RestaurantSimulator.Controller
             {
                 if (isInRect(Mstate, rectX1))
                 {
+                    Parameters.SPEED = 1;
                     System.Console.WriteLine("Vitesse X1");
                 }
                 if (isInRect(Mstate, rectX16))
                 {
+                    Parameters.SPEED = 16;
                     System.Console.WriteLine("Vitesse X16");
                 }
                 if (isInRect(Mstate, rectPause))
                 {
+                    Parameters.SPEED = 0;
                     System.Console.WriteLine("PAUSE");
                 }
             }

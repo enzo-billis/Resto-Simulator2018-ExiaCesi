@@ -31,9 +31,8 @@ namespace RestaurantSimulator
         private TableController tableController;
         private WelcomeController welcomeC;
         private List<string> data = new List<string>();
+        int timeSec;
 
-        bool gamePaused = false;
-        KeyboardState currentKB, previousKB;
 
 
         public Vector2 posch1;
@@ -143,17 +142,20 @@ namespace RestaurantSimulator
 
         protected override void Update(GameTime gameTime)
         {
-            
-            
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
             MouseState Mstate = Mouse.GetState();
             playPauseButtons.Update(gameTime,Mstate);
+            
+            
+           
 
             // TODO: Add your update logic here
             RestaurantSimulator.Controller.TimeController.SetTime(gameTime);
-
+            timeSec = TimeController.GetTimer();
             cuisto.Update(gameTime,groupe.inTable);
             groupe.Update(gameTime, groupe.PosTable);
             groupe2.Update(gameTime, groupe2.PosTable);
@@ -247,14 +249,7 @@ namespace RestaurantSimulator
 
             }
 
-            previousKB = currentKB;
-            currentKB = Keyboard.GetState();
-
-            if (currentKB.IsKeyDown(Keys.Escape)) Exit();
-            if (currentKB.IsKeyUp(Keys.P) && previousKB.IsKeyDown(Keys.P)) gamePaused = !gamePaused;
-
-            if (gamePaused) return;
-
+           
 
 
             base.Update(gameTime);
@@ -318,7 +313,7 @@ namespace RestaurantSimulator
             spriteBatch.Begin();
             spriteBatch.Draw(bgTexture, new Rectangle(0, 0, 1280, 960), Color.White);
             spriteBatch.Draw(bg2Texture, new Rectangle(1280, 0, 320, 960), Color.White);
-            spriteBatch.DrawString(timer, "Temps : "+ RestaurantSimulator.Controller.TimeController.GetTimer(), new Vector2(1280, 0), Color.Black);
+            spriteBatch.DrawString(timer, "Temps : "+ timeSec, new Vector2(1280, 0), Color.Black);
             int posInfo = 100;
             foreach(string info in data)
             {
