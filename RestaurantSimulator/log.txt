@@ -164,3 +164,4 @@
 [12/12/2018 14:58:18]Command send from salle : 3
 [12/12/2018 14:58:18]Command received : 3
 [12/12/2018 14:58:18]Command finished : 3
+[12/12/2018 15:16:15]Command finished : 3

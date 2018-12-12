@@ -31,6 +31,7 @@ namespace RestaurantSimulator
         private TableController tableController;
         private WelcomeController welcomeC;
         private List<string> data = new List<string>();
+        private List<Table> tables;
         int timeSec;
 
 
@@ -39,11 +40,16 @@ namespace RestaurantSimulator
         public Vector2 posch2;
 
         int i = 0;
+
+
         PlayPauseController playPauseButtons;
         GroupeController groupe;
         GroupeController groupe2;
         CuistoController cuisto;
         ServeurController serveur1;
+        PlongeurController plongeur;
+        CommisCuisineController commisCuisine;
+        CommisSalleController commisSalle;
 
 
 
@@ -81,6 +87,10 @@ namespace RestaurantSimulator
             posch2 = salleModel.HotelMaster.RankChiefs[1].FPosition;
             tableController = new TableController();
             playPauseButtons = new PlayPauseController();
+            tables = new List<Table>();
+            plongeur = new PlongeurController() ;
+            commisCuisine = new CommisCuisineController();
+            commisSalle = new CommisSalleController();
 
             data.Add(" ");
             data.Add(" ");
@@ -100,6 +110,7 @@ namespace RestaurantSimulator
             TextPerso.Add(Content.Load<Texture2D>("groupe4"));
             TextPerso.Add(Content.Load<Texture2D>("groupe7"));
             TextPerso.Add(Content.Load<Texture2D>("groupe9"));
+            TextPerso.Add(Content.Load<Texture2D>("client2"));
 
 
             base.Initialize();
@@ -126,6 +137,11 @@ namespace RestaurantSimulator
             playPauseButtons.TextureX16 = Content.Load<Texture2D>("playX16");
 
 
+            plongeur.Texture = TextPerso[8];
+            commisCuisine.Texture = TextPerso[8];
+            commisSalle.Texture = TextPerso[1];
+
+
         }
 
         
@@ -149,9 +165,24 @@ namespace RestaurantSimulator
 
             MouseState Mstate = Mouse.GetState();
             playPauseButtons.Update(gameTime,Mstate);
-            
-            
-           
+
+
+            tables = new List<Table>();
+
+
+            foreach (Table t in SalleModel.HotelMaster.RankChiefs[0].Squares[0].Tables)
+            {
+                tables.Add(t);
+            }
+            foreach (Table t in SalleModel.HotelMaster.RankChiefs[1].Squares[0].Tables)
+            {
+                tables.Add(t);
+            }
+
+
+
+
+
 
             // TODO: Add your update logic here
             RestaurantSimulator.Controller.TimeController.SetTime(gameTime);
@@ -159,6 +190,11 @@ namespace RestaurantSimulator
             cuisto.Update(gameTime,groupe.inTable);
             groupe.Update(gameTime, groupe.PosTable);
             groupe2.Update(gameTime, groupe2.PosTable);
+            plongeur.Update(gameTime);
+            commisCuisine.Update(gameTime, groupe.inTable);
+            commisSalle.Update(gameTime, groupe.inTable, tables);
+
+
             if (groupe.start)
             {
                 groupe.Start(gameTime);
@@ -329,7 +365,9 @@ namespace RestaurantSimulator
             serveur1.Draw(spriteBatch);
             playPauseButtons.Draw(spriteBatch);
 
-
+            plongeur.Draw(spriteBatch);
+            commisCuisine.Draw(spriteBatch);
+            commisSalle.Draw(spriteBatch);
 
 
             spriteBatch.End();
