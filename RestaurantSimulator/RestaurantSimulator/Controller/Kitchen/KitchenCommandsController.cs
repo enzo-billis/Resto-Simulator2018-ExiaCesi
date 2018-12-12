@@ -73,7 +73,7 @@ namespace RestaurantSimulator.Controller.Kitchen
             
             //TODO COOKING TREATMENT HERE
 
-            await LoggerController.AppendLineToFile(@"D:\Cesi\projet progsys\Resto-Simulator2018-ExiaCesi\RestaurantSimulator\log.txt", "Command finished : " + command.ID);
+            await LoggerController.AppendLineToFile(Parameters.LOG_PATH, "Command finished : " + command.ID);
         }
 
         public static byte[] SerializeGroup(Group group)
