@@ -40,6 +40,7 @@ namespace RestaurantSimulator
         public Vector2 posch2;
 
         int i = 0;
+        PlayPauseController playPauseButtons;
         GroupeController groupe;
         GroupeController groupe2;
         CuistoController cuisto;
@@ -80,6 +81,7 @@ namespace RestaurantSimulator
             posch1 = salleModel.HotelMaster.RankChiefs[0].FPosition;
             posch2 = salleModel.HotelMaster.RankChiefs[1].FPosition;
             tableController = new TableController();
+            playPauseButtons = new PlayPauseController();
 
             data.Add(" ");
             data.Add(" ");
@@ -120,6 +122,9 @@ namespace RestaurantSimulator
             fontInfo = Content.Load<SpriteFont>("infos");
             cuisto.Texture = TextPerso[0];
             serveur1.Texture = TextPerso[2];
+            playPauseButtons.TexturePause = Content.Load<Texture2D>("pause");
+            playPauseButtons.TextureX1 = Content.Load<Texture2D>("playX1");
+            playPauseButtons.TextureX16 = Content.Load<Texture2D>("playX16");
 
 
         }
@@ -142,6 +147,9 @@ namespace RestaurantSimulator
             
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            MouseState Mstate = Mouse.GetState();
+            playPauseButtons.Update(gameTime,Mstate);
 
             // TODO: Add your update logic here
             RestaurantSimulator.Controller.TimeController.SetTime(gameTime);
@@ -182,7 +190,6 @@ namespace RestaurantSimulator
 
 
 
-            MouseState Mstate = Mouse.GetState();
             if(Mstate.LeftButton == ButtonState.Pressed)
             {
                 foreach (Table t in salleModel.HotelMaster.RankChiefs[0].Squares[0].Tables)
@@ -325,7 +332,7 @@ namespace RestaurantSimulator
             salleModel.HotelMaster.RankChiefs[0].Draw(spriteBatch);
             salleModel.HotelMaster.RankChiefs[1].Draw(spriteBatch);
             serveur1.Draw(spriteBatch);
-
+            playPauseButtons.Draw(spriteBatch);
 
 
 
