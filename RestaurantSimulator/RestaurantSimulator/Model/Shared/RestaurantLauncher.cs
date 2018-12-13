@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Restaurant.Model.Shared;
+using RestaurantSimulator.Controller;
 using RestaurantSimulator.Controller.Kitchen;
 using RestaurantSimulator.Controller.Salle;
+using RestaurantSimulator.Model.Salle.Characters;
 using RestaurantSimulator.Model.Salle.Components;
 
 namespace RestaurantSimulator.Model.Shared
@@ -28,11 +31,10 @@ namespace RestaurantSimulator.Model.Shared
             kitchenController = new KitchenController();
             Thread kitchenCommands = new Thread(LaunchKitchenCommands);
             Thread salleCommands = new Thread(LaunchSalleCommandsAsync);
-            game = new Game1();
-            game.SalleModel = salles[0];
             kitchenCommands.Start();
             salleCommands.Start();
-
+            game = new Game1();
+            game.SalleModel = salles[0];
         }
 
         private void LaunchKitchenCommands()
@@ -43,11 +45,8 @@ namespace RestaurantSimulator.Model.Shared
 
         private void LaunchSalleCommandsAsync()
         {
-            Thread.Sleep(5000);
-            salleController.SalleCommandsController.InitClientSocketAsync();
-            Thread.Sleep(1000);
-            salleController.SalleCommandsController.SocketConnect();
-            salleController.SalleCommandsController.SendCommand(new Restaurant.Model.Shared.Group());
+            SalleCommandsController.Instance.InitClientSocketAsync();
+            SalleCommandsController.Instance.SocketConnect();
         }
     }
 }

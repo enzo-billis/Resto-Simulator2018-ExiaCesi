@@ -18,6 +18,20 @@ namespace RestaurantSimulator.Controller.Salle
         private Socket sender;
         private readonly object syncLock = new object();
 
+        private static SalleCommandsController instance;
+
+        public static SalleCommandsController Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new SalleCommandsController();
+                return instance;
+            }
+        }
+
+        private SalleCommandsController() { }
+
         public async Task InitClientSocketAsync()
         {
             this.localIP = IPAddress.Parse(Parameters.SALLE_CLIENT_LOCAL_IP);
@@ -45,11 +59,14 @@ namespace RestaurantSimulator.Controller.Salle
             }*/
         }
 
-        public void SendCommand(Group group)
+        public void SendCommand(Object objectGroup)
         {
+            Group group = (Group)objectGroup;
             lock(syncLock)
             {
-                this.sender.Send(SerializeGroup(group));
+                string JSON = JsonConvert.SerializeObject(group);
+                var bytes = SerializeGroup(group);
+                this.sender.Send(bytes);
                 LoggerController.AppendLineToFile(Parameters.LOG_PATH, "Command send from salle : " + group.ID);
             }
         }
