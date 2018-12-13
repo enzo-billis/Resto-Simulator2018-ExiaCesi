@@ -26,27 +26,6 @@ namespace RestaurantSimulator.Controller.Kitchen
             _cleaner.Release(1);
         }
 
-    
-        public static void WashTools(int size)
-        {
-            //Big tool
-            if(size == 0)
-            {
-                Thread t = new Thread(new ParameterizedThreadStart(Wash));
-                t.Start(1500);
-            }
-            //Little tool
-            else if(size == 1)
-            {
-                Thread t = new Thread(new ParameterizedThreadStart(Wash));
-                t.Start(500);
-            }
-            else
-            {
-                throw new IndexOutOfRangeException();
-            }
-        }
-
         public static void InitSocketServer()
         {
 
@@ -73,6 +52,12 @@ namespace RestaurantSimulator.Controller.Kitchen
             }
         }
 
+        public static void checkCleaning()
+        {
+            checkDishes();
+            checkLaundry();
+        }
+
         public static void washTools(Dictionary<string, Semaphore> param)
         {
             foreach (KeyValuePair<string, Semaphore> elem in param)
@@ -85,13 +70,36 @@ namespace RestaurantSimulator.Controller.Kitchen
         private static void checkLaundry()
         {
             int total = 0;
-            foreach(KeyValuePair<string, int> elem in toWashLaundry)
+            foreach(KeyValuePair<string, int> elem in StockEquipment.Instance.Dirty)
             {
-                total += elem.Value;
+                if(elem.Key == "towel")
+                {
+                    toWashLaundry["towel"] += 1;
+                    total += elem.Value;
+                }
+                if(elem.Key == "tablecloth")
+                {
+                    toWashLaundry["tablecloth"] += 1;
+                    total += elem.Value;
+                }
             }
             if(total >= 10)
             {
-                Wash(16000);
+                foreach (KeyValuePair<string, int> elem in toWashLaundry)
+                {
+                    StockEquipment.Instance.Dirty[elem.Key] -= 1;
+                    StockEquipment.Instance.Washing[elem.Key] += 1;
+                }
+                Thread t = new Thread(new ParameterizedThreadStart(Wash));
+                t.Start(16000); 
+                t.Join();
+                foreach(KeyValuePair<string, int> elem in toWashLaundry)
+                {
+                    StockEquipment.Instance.Washing[elem.Key] -= 1;
+                    StockEquipment.Instance.Clean[elem.Key] += 1;
+                    toWashLaundry.Clear();
+                }
+
             }
         }
         private static void checkDishes()
@@ -116,6 +124,7 @@ namespace RestaurantSimulator.Controller.Kitchen
                 if (elem.Value <= 24)
                 {
                     toWashDishes[elem.Key] -= elem.Value;
+
                 }
                 else
                 {
