@@ -11,6 +11,7 @@ using RestaurantSimulator.Controller.Salle;
 using System;
 using RestaurantSimulator.Model.Salle.Characters;
 using System.Threading;
+using Restaurant.Model.Shared;
 //using RestaurantSimulator.Controller;
 
 
@@ -114,12 +115,6 @@ namespace RestaurantSimulator
 
             /*
             MapController.UpdateMap();
-            Client client = new Client();
-            Recette recette = MapController.GetMap().Recettes[0];
-            groupe.group.Clients.ForEach(c => c.Entree = recette);
-            groupe.group.State = Restaurant.Model.Shared.GroupState.WaitDessert;
-            ThreadPool.QueueUserWorkItem(SalleCommandsController.Instance.SendCommand, groupe.group);
-            //SalleCommandsController.Instance.SendCommand(groupe.group);
 
     */
         
@@ -232,8 +227,13 @@ namespace RestaurantSimulator
                 {
                     Random random = new Random();
                     int randomNumber = random.Next(3, 9);
-
-                    LGroupes.Add(new GroupeController(welcomeC.CreateGroup(randomNumber)));
+                    Recette recette = MapController.GetMap().Recettes[0];
+                    Group group = welcomeC.CreateGroup(randomNumber);
+                    group.Clients.ForEach(c => c.Entree = recette);
+                    group.State = GroupState.WaitDessert;
+                    LGroupes.Add(new GroupeController(group));
+                    //ThreadPool.QueueUserWorkItem(SalleCommandsController.Instance.SendCommand, group);
+                    ThreadPool.QueueUserWorkItem(SalleCommandsController.ConnectAndSendCommand, group);
                     bill = false;
                 }
             }

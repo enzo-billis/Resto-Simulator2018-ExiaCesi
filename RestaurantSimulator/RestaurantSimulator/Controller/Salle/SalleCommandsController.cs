@@ -16,6 +16,8 @@ namespace RestaurantSimulator.Controller.Salle
         private IPAddress localIP;
         private IPEndPoint iPEndPoint;
         private Socket sender;
+        private static IPAddress IP;
+        private static IPEndPoint EndPoint;
         private readonly object syncLock = new object();
 
         private static SalleCommandsController instance;
@@ -36,6 +38,8 @@ namespace RestaurantSimulator.Controller.Salle
         {
             this.localIP = IPAddress.Parse(Parameters.SALLE_CLIENT_LOCAL_IP);
             this.iPEndPoint = new IPEndPoint(localIP, Parameters.SALLE_CLIENT_COMMAND_PORT);
+            IP = IPAddress.Parse(Parameters.SALLE_CLIENT_LOCAL_IP);
+            EndPoint = new IPEndPoint(localIP, Parameters.SALLE_CLIENT_COMMAND_PORT);
             this.sender = new Socket(localIP.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             Parameters.SALLE_CLIENT_STARTED = true;
             await LoggerController.AppendLineToFile(Parameters.LOG_PATH, "Salle commands client started");
@@ -51,12 +55,66 @@ namespace RestaurantSimulator.Controller.Salle
 
         public void SocketConnect()
         {
-            byte[] bytes = new byte[1024];
+            byte[] bytes = new byte[2048];
             sender.Connect(this.iPEndPoint);
-            /*while(Parameters.SALLE_CLIENT_STARTED == true)
+            while(Parameters.SALLE_CLIENT_STARTED == true)
             {
-                
-            }*/
+                int counter = sender.Receive(bytes);
+                if(counter > 0)
+                {
+                    Group group = DeserializeGroup(bytes);
+                    Console.WriteLine(group.ID);
+                }
+            }
+        }
+
+        public static void ConnectAndSendCommand(Object objectGroup)
+        {
+            try
+            {
+                Socket sender = new Socket(IP.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+                byte[] bytes = new byte[2048];
+
+                // Connect the socket to the remote endpoint. Catch any errors.  
+                try
+                {
+                    sender.Connect(EndPoint);
+
+                    // Encode the data string into a byte array.  
+                    byte[] msg = SerializeGroup((Group)objectGroup);
+
+                    // Send the data through the socket.  
+                    int bytesSent = sender.Send(msg);
+
+                    // Receive the response from the remote device.  
+                    int bytesRec = sender.Receive(bytes);
+                    Group group = DeserializeGroup(bytes);
+                    Console.WriteLine("Salle: commande reçu du groupe " + group.ID);
+
+                    // Release the socket.  
+                    sender.Shutdown(SocketShutdown.Both);
+                    sender.Close();
+
+                }
+                catch (ArgumentNullException ane)
+                {
+                    Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
+                }
+                catch (SocketException se)
+                {
+                    Console.WriteLine("SocketException : {0}", se.ToString());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Unexpected exception : {0}", e.ToString());
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
         }
 
         public void SendCommand(Object objectGroup)

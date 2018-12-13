@@ -67,7 +67,7 @@ namespace RestaurantSimulator.Controller.Kitchen
         private async void KitchenChiefTreatment(Object socket)
         {
             Socket listener = ((Socket)socket).Accept();
-            byte[] bytes = new Byte[1024];
+            byte[] bytes = new Byte[2048];
             int requestResult = listener.Receive(bytes);
             Group command = DeserializeGroup(bytes);
             List<Thread> recipesExecutions = new List<Thread>();
@@ -115,6 +115,7 @@ namespace RestaurantSimulator.Controller.Kitchen
 
             SpinWait.SpinUntil(() => Parameters.SPEED != 0);
             Thread.Sleep(10000 / Parameters.SPEED);
+            listener.Send(SerializeGroup(command));
             Console.WriteLine("Command finished : " + command.ID);
         }
 
