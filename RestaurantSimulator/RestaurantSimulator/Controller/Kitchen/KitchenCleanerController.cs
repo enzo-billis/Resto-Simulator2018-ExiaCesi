@@ -58,13 +58,12 @@ namespace RestaurantSimulator.Controller.Kitchen
             checkLaundry();
         }
 
-        public static void washTools(Dictionary<string, Semaphore> param)
+        public static void washTools(KeyValuePair<string, Semaphore> param)
         {
-            foreach (KeyValuePair<string, Semaphore> elem in param)
-            {
+          
                 Thread.Sleep(1000);
-                StockKitchenware.Instance.Stock[elem.Key].Release();
-            }
+                StockKitchenware.Instance.Stock[param.Key].Release();
+            
         }
 
         private static void checkLaundry()
