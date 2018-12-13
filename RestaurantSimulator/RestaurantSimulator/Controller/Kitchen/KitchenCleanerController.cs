@@ -1,4 +1,5 @@
-﻿using RestaurantSimulator.Model.Salle.Components;
+﻿using RestaurantSimulator.Model.Cuisine.Components;
+using RestaurantSimulator.Model.Salle.Components;
 using RestaurantSimulator.Model.Shared;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,6 @@ namespace RestaurantSimulator.Controller.Kitchen
     {
 
         private static Dictionary<string, int> toWashLaundry = new Dictionary<string, int>();
-        private static Dictionary<string, int> toWashTools = new Dictionary<string, int>();
         private static Dictionary<string, int> toWashDishes = new Dictionary<string, int>();
 
         private static Semaphore _cleaner = new Semaphore(2, 2);
@@ -70,21 +70,15 @@ namespace RestaurantSimulator.Controller.Kitchen
                         checkDishes();
                     }
                 }
-                else
-                {
-                    toWashLaundry[elem.Key] += elem.Value;
-                    checkTools();
-                }
-                
             }
         }
 
-        private static void checkTools()
+        public static void washTools(Dictionary<string, Semaphore> param)
         {
-            foreach (KeyValuePair<string, int> elem in toWashTools)
+            foreach (KeyValuePair<string, Semaphore> elem in param)
             {
-                Thread.Sleep(500);
-                toWashTools[elem.Key] -= 1;
+                Thread.Sleep(1000);
+                StockKitchenware.Instance.Stock[elem.Key].Release();
             }
         }
 
