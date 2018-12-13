@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using RestaurantSimulator.Model;
 using RestaurantSimulator.Model.Shared;
 using RestaurantSimulator.Controller.Salle;
+using RestaurantSimulator.Model.Salle.Characters;
+using System.Threading;
 //using RestaurantSimulator.Controller;
 
 
@@ -98,6 +100,14 @@ namespace RestaurantSimulator
             data.Add(" ");
             data.Add(" ");
             data.Add(" ");
+
+            MapController.UpdateMap();
+            Client client = new Client();
+            Recette recette = MapController.GetMap().Recettes[0];
+            groupe.group.Clients.ForEach(c => c.Entree = recette);
+            groupe.group.State = Restaurant.Model.Shared.GroupState.WaitDessert;
+            ThreadPool.QueueUserWorkItem(SalleCommandsController.Instance.SendCommand, groupe.group);
+            //SalleCommandsController.Instance.SendCommand(groupe.group);
 
 
         
