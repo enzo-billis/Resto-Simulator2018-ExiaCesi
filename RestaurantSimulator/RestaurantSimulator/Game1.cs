@@ -111,6 +111,8 @@ namespace RestaurantSimulator
             data.Add(" ");
             data.Add(" ");
 
+
+            /*
             MapController.UpdateMap();
             Client client = new Client();
             Recette recette = MapController.GetMap().Recettes[0];
@@ -119,7 +121,7 @@ namespace RestaurantSimulator
             ThreadPool.QueueUserWorkItem(SalleCommandsController.Instance.SendCommand, groupe.group);
             //SalleCommandsController.Instance.SendCommand(groupe.group);
 
-
+    */
         
 
             TextPerso.Add(Content.Load<Texture2D>("cuisto"));
@@ -271,7 +273,7 @@ namespace RestaurantSimulator
             }
 
 
-            serveur1.Update(gameTime, tablesInUse);
+            serveur1.Update(gameTime, tables);
             salleModel.HotelMaster.RankChiefs[0].Update(gameTime,posch1);
             salleModel.HotelMaster.RankChiefs[1].Update(gameTime,posch2);
 
@@ -386,7 +388,18 @@ namespace RestaurantSimulator
         {
             if (salleModel.HotelMaster.RankChiefs[0].Available)
             {
-
+                foreach (Table t in salleModel.HotelMaster.RankChiefs[0].Squares[0].Tables)
+                {
+                    if (t.Group != null || t.NbPlaces < groupe.group.Clients.Count)
+                    {
+                        salleModel.HotelMaster.RankChiefs[0].Available = false;
+                    }
+                    else
+                    {
+                        salleModel.HotelMaster.RankChiefs[0].Available = true;
+                        break;
+                    }
+                }
 
                 Table table = tableController.OptimizedFindTable(salleModel.HotelMaster.RankChiefs[0].Squares[0].Tables, groupe.group.Clients.Count);
                 if (table != null)
@@ -400,6 +413,7 @@ namespace RestaurantSimulator
                     groupe.inTable = true;
                     
                 }
+                
 
             }
             else if (salleModel.HotelMaster.RankChiefs[1].Available)

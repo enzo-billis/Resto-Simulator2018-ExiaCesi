@@ -27,7 +27,8 @@ namespace RestaurantSimulator.Controller.Salle
         public bool isMooving = false;
         public bool isCleaning = false;
         public bool toSpawn = false;
-
+        private List<Table> tablesInUse;
+        int rdtable;
 
 
         public ServeurController(Vector2 fpos)
@@ -65,6 +66,7 @@ namespace RestaurantSimulator.Controller.Salle
             if (Position.Y == finalpos.Y && Position.X == finalpos.X)
             {
                 isMooving = false;
+                toSpawn = false;
             }
 
         }
@@ -98,6 +100,16 @@ namespace RestaurantSimulator.Controller.Salle
 
         public void Update(GameTime _gametime,List<Table> tables)
         {
+            tablesInUse = new List<Table>();
+            foreach (Table t in tables)
+            {
+                if (t.Group != null)
+                {
+                    tablesInUse.Add(t);
+
+                }
+            }
+
 
 
             if (toSpawn)
@@ -110,35 +122,33 @@ namespace RestaurantSimulator.Controller.Salle
 
                 if (!isCleaning)
                 {
-                    foreach(Table t in tables)
+                    
+                      if (isMooving)
                     {
-                        if(t.Group != null){
-                            if(t.Group != lastGroup)
-                            {
-                            Clients = rectToVect(t.Rect);
-                            lastGroup = t.Group;
-                            isMooving = true;
-                            break;
-                            }
-                            
+                        moveTo(Clients);
+                        if(Position == Clients)
+                        {
+                            toSpawn = true;
                         }
                     }
-                         
-                }
-                if (isMooving)
-                {
-                    moveTo(Clients);
-                    if(Position == Clients)
+                    else
                     {
-                        toSpawn = true;
-                    }
+                        if (tablesInUse.Count>0)
+                        {
+                        Random random = new Random();
+                        rdtable = random.Next(0, tablesInUse.Count);
+                        Clients = rectToVect(tablesInUse[rdtable].Rect);
+                        isMooving = true;
+                        }
+                        
+                    }   
                 }
+                
             }
 
-
-            
-            
         }
+
+        
 
         public void Draw(SpriteBatch _spritBash)
         {
