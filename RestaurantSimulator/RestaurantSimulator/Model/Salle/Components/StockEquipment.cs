@@ -36,6 +36,10 @@ namespace RestaurantSimulator.Model.Salle.Components
             }
         }
 
+        public static void ResetInstance()
+        {
+            instance = null;
+        }
         
         private StockEquipment()
         {
