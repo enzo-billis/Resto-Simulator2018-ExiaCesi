@@ -18,6 +18,7 @@ namespace RestoTests.Controller
         [TestMethod]
         public void TestdefineAsDirty()
         {
+            StockEquipment.ResetInstance();
             StockEquipment.Instance.InUse["towel"] = 1;
             EquipmentController.defineAsDirty("towel");
 
@@ -35,7 +36,7 @@ namespace RestoTests.Controller
         [TestMethod]
         public void TestdefineAsInUse()
         {
-            
+            StockEquipment.ResetInstance();
             Assert.IsTrue(EquipmentController.defineAsInUse("towel"));
 
             Assert.AreEqual(1, StockEquipment.Instance.InUse["towel"]);
@@ -52,6 +53,7 @@ namespace RestoTests.Controller
         [TestMethod]
         public void TestdefineAsClean()
         {
+            StockEquipment.ResetInstance();
             StockEquipment.Instance.Washing["towel"] = 1;
             Assert.IsTrue(EquipmentController.defineAsClean("towel"));
 
@@ -69,6 +71,7 @@ namespace RestoTests.Controller
         [TestMethod]
         public void TestdefineAsWashing()
         {
+            StockEquipment.ResetInstance();
             StockEquipment.Instance.Dirty["towel"] = 1;
             Assert.IsTrue(EquipmentController.defineAsWashing("towel"));
 
