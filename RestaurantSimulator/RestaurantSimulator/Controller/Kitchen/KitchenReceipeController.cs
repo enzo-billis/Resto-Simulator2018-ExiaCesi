@@ -43,8 +43,9 @@ namespace RestaurantSimulator.Controller.Kitchen
             _cooker.Release(1);
         }
 
-        public static void GetReceipe(Recette receipe)
+        public static void GetReceipe(Object recette)
         {
+                Recette receipe = (Recette)recette;
                 //Explode the steps from the receipe in an array
                 string[] steps = Regex.Split(receipe.liste_etapes_recette, ";");
                 
@@ -60,6 +61,7 @@ namespace RestaurantSimulator.Controller.Kitchen
                     Etape actualStep = BDDController.Instance.DB.Etape.SingleOrDefault(e => e.id_etape == actualCompose.id_etape);
                     Console.WriteLine(actualCompose.id_Ingredient);
                     Ustensile ustensile = BDDController.Instance.DB.Ustensile.SingleOrDefault(e => e.id_Ustensile == actualStep.id_Ustensile);
+                    LoggerController.AppendLineToFile(Parameters.LOG_PATH, actualCompose.id_etape.ToString());
 
                     //Foreach steps in the receipe we create a new thread.
                     Thread t = new Thread(delegate ()
@@ -71,7 +73,6 @@ namespace RestaurantSimulator.Controller.Kitchen
                     
                     //Start the thread
                     t.Start();
-                  
                 }
             
         }

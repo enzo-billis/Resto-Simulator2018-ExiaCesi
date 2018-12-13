@@ -8,8 +8,8 @@ namespace RestaurantSimulator.Controller.Salle
 {
     public class SalleController
     {
-        private SalleCommandsController salleCommandsController = new SalleCommandsController();
+        //private SalleCommandsController salleCommandsController = new SalleCommandsController();
 
-        public SalleCommandsController SalleCommandsController { get => salleCommandsController; set => salleCommandsController = value; }
+        //public SalleCommandsController SalleCommandsController { get => salleCommandsController; set => salleCommandsController = value; }
     }
 }

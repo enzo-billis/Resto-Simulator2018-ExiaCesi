@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Restaurant.Model.Shared;
+using RestaurantSimulator.Controller;
 using RestaurantSimulator.Model.Shared;
 using System;
 using System.Collections.Generic;
@@ -27,9 +28,6 @@ namespace Restaurant.Controller
         {
             Position = new Vector2(6*rate,20*rate);
             group = groupe;
-            
-            
-
         }
         
         public void moveToTable(Vector2 finalpos)
@@ -103,6 +101,44 @@ namespace Restaurant.Controller
         {
             if ((group != null) && (group.State != state))
                 group.State = state;
+        }
+
+        public void toto()
+        {
+            switch (this.group.State)
+            {
+                case GroupState.WaitTableAttribution:
+                    this.start = true;
+                    break;
+
+                case GroupState.WaitRankChief:
+
+                    break;
+
+                case GroupState.Ordering:
+
+                    break;
+
+                case GroupState.Ordered:
+
+                    break;
+
+                case GroupState.WaitEntree:
+
+                    break;
+
+                case GroupState.WaitPlate:
+
+                    break;
+
+                case GroupState.WaitDessert:
+
+                    break;
+
+                case GroupState.WaitBill:
+
+                    break;
+            }
         }
     }
 }

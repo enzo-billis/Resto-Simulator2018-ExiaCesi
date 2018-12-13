@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Restaurant.Model.Shared;
+using RestaurantSimulator.Model.Salle.Characters;
 using RestaurantSimulator.Model.Shared;
 using System;
 using System.Collections.Generic;
@@ -69,11 +70,52 @@ namespace RestaurantSimulator.Controller.Kitchen
             byte[] bytes = new Byte[1024];
             int requestResult = listener.Receive(bytes);
             Group command = DeserializeGroup(bytes);
-            await LoggerController.AppendLineToFile(Parameters.LOG_PATH, "Command received : " + command.ID);
-            
-            //TODO COOKING TREATMENT HERE
+            List<Thread> recipesExecutions = new List<Thread>();
+            //await LoggerController.AppendLineToFile(Parameters.LOG_PATH, "Command received : " + command.ID);
 
-            await LoggerController.AppendLineToFile(Parameters.LOG_PATH, "Command finished : " + command.ID);
+            //TODO COOKING TREATMENT HERE
+            if (command.State == GroupState.WaitEntree)
+            {
+                foreach (Client client in command.Clients)
+                {
+                    if (client.Entree != null)
+                    {
+                        Thread t = new Thread(KitchenReceipeController.GetReceipe);
+                        recipesExecutions.Add(t);
+                        t.Start(client.Entree);
+                    }
+                        
+
+                }
+            }
+            else if (command.State == GroupState.WaitPlate)
+            {
+                foreach (Client client in command.Clients)
+                {
+                    if (client.Plate != null)
+                    {
+                        Thread t = new Thread(KitchenReceipeController.GetReceipe);
+                        recipesExecutions.Add(t);
+                        t.Start(client.Plate);
+                    }
+                }
+            }
+            else if (command.State == GroupState.WaitDessert)
+            {
+                foreach (Client client in command.Clients)
+                {
+                    if (client.Dessert != null)
+                    {
+                        Thread t = new Thread(KitchenReceipeController.GetReceipe);
+                        recipesExecutions.Add(t);
+                        t.Start(client.Dessert);
+                    }
+                }
+            }
+
+            SpinWait.SpinUntil(() => Parameters.SPEED != 0);
+            Thread.Sleep(10000 / Parameters.SPEED);
+            Console.WriteLine("Command finished : " + command.ID);
         }
 
         public static byte[] SerializeGroup(Group group)
