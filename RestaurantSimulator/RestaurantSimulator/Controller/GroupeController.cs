@@ -78,6 +78,10 @@ namespace Restaurant.Controller
 
         public void Update(GameTime _gametime, Vector2 finalpos)
         {
+
+
+
+
             
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && Position.Y == 16 * rate)
             {

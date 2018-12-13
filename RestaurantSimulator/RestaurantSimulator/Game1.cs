@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using RestaurantSimulator.Model;
 using RestaurantSimulator.Model.Shared;
 using RestaurantSimulator.Controller.Salle;
+using System;
 //using RestaurantSimulator.Controller;
 
 
@@ -31,8 +32,10 @@ namespace RestaurantSimulator
         private TableController tableController;
         private WelcomeController welcomeC;
         private List<string> data = new List<string>();
-        private List<Table> tables;
+        private List<Table> tables, tablesInUse;
+        private List<GroupeController> LGroupes;
         int timeSec;
+        bool bill = true;
 
 
 
@@ -43,8 +46,6 @@ namespace RestaurantSimulator
 
 
         PlayPauseController playPauseButtons;
-        GroupeController groupe;
-        GroupeController groupe2;
         CuistoController cuisto;
         ServeurController serveur1;
         PlongeurController plongeur;
@@ -79,8 +80,17 @@ namespace RestaurantSimulator
             graphics.PreferredBackBufferHeight = 960;
             graphics.PreferredBackBufferWidth = 1600;
             graphics.ApplyChanges();
-            groupe = new GroupeController(welcomeC.CreateGroup(4));
-            groupe2 = new GroupeController(welcomeC.CreateGroup(9));
+
+
+            LGroupes = new List<GroupeController>();
+            LGroupes.Add(new GroupeController(welcomeC.CreateGroup(5)));
+            
+
+
+
+
+
+
             cuisto = new CuistoController();
             serveur1 = new ServeurController(new Vector2(25*tile,17*tile));
             posch1 = salleModel.HotelMaster.RankChiefs[0].FPosition;
@@ -111,6 +121,10 @@ namespace RestaurantSimulator
             TextPerso.Add(Content.Load<Texture2D>("groupe7"));
             TextPerso.Add(Content.Load<Texture2D>("groupe9"));
             TextPerso.Add(Content.Load<Texture2D>("client2"));
+            TextPerso.Add(Content.Load<Texture2D>("perso5"));
+            TextPerso.Add(Content.Load<Texture2D>("perso6"));
+            TextPerso.Add(Content.Load<Texture2D>("perso8"));
+
 
 
             base.Initialize();
@@ -124,8 +138,9 @@ namespace RestaurantSimulator
             spriteBatch = new SpriteBatch(GraphicsDevice);
             bgTexture = Content.Load<Texture2D>("restoV2");
             bg2Texture = Content.Load<Texture2D>("blanc");
-            groupe.Texture = Content.Load<Texture2D>("groupe" + groupe.group.Clients.Count);
-            groupe2.Texture = Content.Load<Texture2D>("groupe"+groupe2.group.Clients.Count);
+
+
+
             salleModel.HotelMaster.RankChiefs[0].Texture = TextPerso[3];
             salleModel.HotelMaster.RankChiefs[1].Texture = TextPerso[3];
             timer = Content.Load<SpriteFont>("Timer");
@@ -162,22 +177,32 @@ namespace RestaurantSimulator
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
+            
             MouseState Mstate = Mouse.GetState();
             playPauseButtons.Update(gameTime,Mstate);
 
 
             tables = new List<Table>();
+            tablesInUse = new List<Table>();
 
 
             foreach (Table t in SalleModel.HotelMaster.RankChiefs[0].Squares[0].Tables)
             {
                 tables.Add(t);
+                if(t.Group != null)
+                {
+                    tablesInUse.Add(t);
+                }
             }
             foreach (Table t in SalleModel.HotelMaster.RankChiefs[1].Squares[0].Tables)
             {
                 tables.Add(t);
+                if (t.Group != null)
+                {
+                    tablesInUse.Add(t);
+                }
             }
+
 
 
 
@@ -187,40 +212,56 @@ namespace RestaurantSimulator
             // TODO: Add your update logic here
             RestaurantSimulator.Controller.TimeController.SetTime(gameTime);
             timeSec = TimeController.GetTimer();
-            cuisto.Update(gameTime,groupe.inTable);
-            groupe.Update(gameTime, groupe.PosTable);
-            groupe2.Update(gameTime, groupe2.PosTable);
-            plongeur.Update(gameTime);
-            commisCuisine.Update(gameTime, groupe.inTable);
-            commisSalle.Update(gameTime, groupe.inTable, tables);
 
 
-            if (groupe.start)
+            if ((gameTime.TotalGameTime.Seconds % 30 == 0))
             {
-                groupe.Start(gameTime);
-            }
-            if (groupe2.start)
-            {
-                groupe2.Start(gameTime);
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            {
-
-                if (!groupe.inTable)
+                if (bill)
                 {
-                    putGroupToTable(groupe);
+                    Random random = new Random();
+                    int randomNumber = random.Next(3, 9);
+
+                    LGroupes.Add(new GroupeController(welcomeC.CreateGroup(randomNumber)));
+                    bill = false;
                 }
-
-                if (!groupe2.inTable)
-                {
-                    putGroupToTable(groupe2);
-                }
-                
-
-
             }
-            serveur1.Update(gameTime, salleModel.HotelMaster.RankChiefs[0].Squares[0].Tables);
+            else
+            {
+                bill = true;
+            }
+
+
             
+            
+            plongeur.Update(gameTime);
+            commisCuisine.Update(gameTime, LGroupes[0].inTable);
+            commisSalle.Update(gameTime, LGroupes[0].inTable, tables);
+            cuisto.Update(gameTime, LGroupes[0].inTable);
+
+            foreach(GroupeController groupe in LGroupes)
+            {
+                groupe.Texture = updateTexure(groupe.group.Clients.Count);
+
+
+
+                if (groupe.start)
+                {
+                    groupe.Start(gameTime);
+                }
+                else
+                {
+                    if (!groupe.inTable)
+                    {
+                        putGroupToTable(groupe);
+                    }
+                    groupe.Update(gameTime, groupe.PosTable);
+                }
+
+
+            }
+
+
+            serveur1.Update(gameTime, tablesInUse);
             salleModel.HotelMaster.RankChiefs[0].Update(gameTime,posch1);
             salleModel.HotelMaster.RankChiefs[1].Update(gameTime,posch2);
 
@@ -291,13 +332,47 @@ namespace RestaurantSimulator
             base.Update(gameTime);
         }
 
+        private Texture2D updateTexure(int nbpersonnes)
+        {
+            
 
+            switch (nbpersonnes)
+            {
+                case 3:
+                    return TextPerso[4];
+
+                    break;
+                case 4:
+                    return TextPerso[5];
+
+                    break;
+                case 5:
+
+                    return TextPerso[9];
+                    break;
+                case 6:
+
+                    return TextPerso[4];
+                    break;
+                case 7:
+
+                    return TextPerso[10];
+                    break;
+                case 8:
+                    return TextPerso[11];
+                    break;
+                case 9:
+                    return TextPerso[6];
+                    break;
+            }
+            return TextPerso[6];
+        }
  
 
 
 
 
-        private void putGroupToTable(GroupeController groupe)
+        public void putGroupToTable(GroupeController groupe)
         {
             if (salleModel.HotelMaster.RankChiefs[0].Available)
             {
@@ -357,9 +432,14 @@ namespace RestaurantSimulator
                 spriteBatch.DrawString(fontInfo, info, new Vector2(1280, posInfo), Color.Black);
                 posInfo += 30;
             }
+            
+
+            foreach(GroupeController groupe in LGroupes)
+            {
+                groupe.Draw(spriteBatch);
+            }
+
             cuisto.Draw(spriteBatch);
-            groupe.Draw(spriteBatch);
-            groupe2.Draw(spriteBatch);
             salleModel.HotelMaster.RankChiefs[0].Draw(spriteBatch);
             salleModel.HotelMaster.RankChiefs[1].Draw(spriteBatch);
             serveur1.Draw(spriteBatch);
