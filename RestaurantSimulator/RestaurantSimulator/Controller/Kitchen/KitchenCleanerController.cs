@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RestaurantSimulator.Model.Salle.Components;
+using RestaurantSimulator.Model.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,16 +24,6 @@ namespace RestaurantSimulator.Controller.Kitchen
             int time = (int)obj;
             Thread.Sleep(time);
             _cleaner.Release(1);
-        }
-
-        public static void WashLaundry(int quantity)
-        {
-
-        }
-
-        public static void WashDishes()
-        {
-
         }
 
     
@@ -61,21 +53,38 @@ namespace RestaurantSimulator.Controller.Kitchen
         }
 
         //Entry to KitchenCleanerController. This method stock Laundry and Dishes to wash.
-        public static void stock(string name, int type, int quantity)
+        public static void stock(Dictionary<string,int> dirty)
         {
-            switch (type)
+            foreach(KeyValuePair<string, int> elem in dirty)
             {
-                //0: Laundry
-                case 0:
-                    toWashLaundry[name] += quantity;
-                    checkLaundry();
-                    break;
-                //1: Dishes
-                case 1:
-                    toWashDishes[name] += quantity;
-                    checkDishes();
-                    break;
-               
+                int temp;
+                if (StockEquipment.Instance.Clean.TryGetValue(elem.Key,out temp)){
+                    if (elem.Key == "tablecloth" || elem.Key == "towel")
+                    {
+                        toWashLaundry[elem.Key] += elem.Value;
+                        checkLaundry();
+                    }
+                    else
+                    {
+                        toWashDishes[elem.Key] += elem.Value;
+                        checkDishes();
+                    }
+                }
+                else
+                {
+                    toWashLaundry[elem.Key] += elem.Value;
+                    checkTools();
+                }
+                
+            }
+        }
+
+        private static void checkTools()
+        {
+            foreach (KeyValuePair<string, int> elem in toWashTools)
+            {
+                Thread.Sleep(500);
+                toWashTools[elem.Key] -= 1;
             }
         }
 
@@ -93,7 +102,32 @@ namespace RestaurantSimulator.Controller.Kitchen
         }
         private static void checkDishes()
         {
+            foreach(KeyValuePair<string, int> elem in toWashDishes)
+            {
+                if(elem.Value > 10)
+                {
 
+                }
+                else
+                {
+                    return;
+                }
+            }
+            Thread t = new Thread(new ParameterizedThreadStart(Wash));
+            t.Start(10000);
+            t.Join();
+
+            foreach (KeyValuePair<string, int> elem in toWashDishes)
+            {
+                if (elem.Value <= 24)
+                {
+                    toWashDishes[elem.Key] -= elem.Value;
+                }
+                else
+                {
+                    toWashDishes[elem.Key] -= 24;
+                }
+            }
         }
 
         private static string ConvertBytesString(byte[] data)
