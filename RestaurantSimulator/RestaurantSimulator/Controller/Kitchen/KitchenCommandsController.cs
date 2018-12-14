@@ -74,7 +74,7 @@ namespace RestaurantSimulator.Controller.Kitchen
             //await LoggerController.AppendLineToFile(Parameters.LOG_PATH, "Command received : " + command.ID);
 
             //TODO COOKING TREATMENT HERE
-            if (command.State == GroupState.WaitEntree)
+            /*if (command.State == GroupState.WaitEntree)
             {
                 foreach (Client client in command.Clients)
                 {
@@ -112,7 +112,7 @@ namespace RestaurantSimulator.Controller.Kitchen
                     }
                 }
             }
-
+            */
             SpinWait.SpinUntil(() => Parameters.SPEED != 0);
             Thread.Sleep(10000 / Parameters.SPEED);
             listener.Send(SerializeGroup(command));

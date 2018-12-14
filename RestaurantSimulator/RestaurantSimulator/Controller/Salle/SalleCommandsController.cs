@@ -100,6 +100,7 @@ namespace RestaurantSimulator.Controller.Salle
                     {
                         Table groupTable = Instance.RetrieveTableFromGroup(group);
                         Instance.ChangeStateByGroup(groupTable);
+                        groupTable.Group.Notify();
                         Console.WriteLine("Table " + groupTable.Group.ID + ", " + groupTable.Group.State + " : " + groupTable.Dessert);
                     }
 
