@@ -37,7 +37,7 @@ namespace RestaurantSimulator.Controller
             {
                 table.Group = group;
                 table.State = EquipmentState.InUse;
-                group.State = GroupState.Ordering;
+                group.State = GroupState.WaitEntree;
                 return true;
             }
             return false;

@@ -47,6 +47,7 @@ namespace RestaurantSimulator.Model.Shared
         private void LaunchSalleCommandsAsync()
         {
             SalleCommandsController.Instance.InitClientSocketAsync();
+            SalleCommandsController.Instance.HotelMaster = salles[0].HotelMaster;
             SalleCommandsController.Instance.SocketConnect();
         }
     }

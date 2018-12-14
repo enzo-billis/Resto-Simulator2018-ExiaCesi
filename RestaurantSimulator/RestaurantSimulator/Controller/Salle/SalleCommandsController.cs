@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Restaurant.Model.Shared;
+using RestaurantSimulator.Model.Salle.Characters;
+using RestaurantSimulator.Model.Salle.Components;
 using RestaurantSimulator.Model.Shared;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,8 @@ namespace RestaurantSimulator.Controller.Salle
         private static IPEndPoint EndPoint;
         private readonly object syncLock = new object();
 
+        private HotelMaster hotelMaster;
+
         private static SalleCommandsController instance;
 
         public static SalleCommandsController Instance
@@ -31,6 +35,8 @@ namespace RestaurantSimulator.Controller.Salle
                 return instance;
             }
         }
+
+        public HotelMaster HotelMaster { get => hotelMaster; set => hotelMaster = value; }
 
         private SalleCommandsController() { }
 
@@ -90,6 +96,12 @@ namespace RestaurantSimulator.Controller.Salle
                     int bytesRec = sender.Receive(bytes);
                     Group group = DeserializeGroup(bytes);
                     Console.WriteLine("Salle: commande reçu du groupe " + group.ID);
+                    if (group != null)
+                    {
+                        Table groupTable = Instance.RetrieveTableFromGroup(group);
+                        Instance.ChangeStateByGroup(groupTable);
+                        Console.WriteLine("Table " + groupTable.Group.ID + ", " + groupTable.Group.State + " : " + groupTable.Dessert);
+                    }
 
                     // Release the socket.  
                     sender.Shutdown(SocketShutdown.Both);
@@ -117,15 +129,51 @@ namespace RestaurantSimulator.Controller.Salle
 
         }
 
-        public void SendCommand(Object objectGroup)
+        public Table RetrieveTableFromGroup(Group group)
         {
-            Group group = (Group)objectGroup;
-            lock(syncLock)
+            /*List<Table> tablesRepository = new List<Table>();
+            hotelMaster.RankChiefs.ForEach(r => tablesRepository.AddRange(r.Squares[0].Tables));
+            if (tablesRepository != null)
             {
-                string JSON = JsonConvert.SerializeObject(group);
-                var bytes = SerializeGroup(group);
-                this.sender.Send(bytes);
-                LoggerController.AppendLineToFile(Parameters.LOG_PATH, "Command send from salle : " + group.ID);
+                Table table = tablesRepository.Find(t => t.Group.ID == group.ID);
+                return table;
+            }*/
+            Table table = null;
+            if (hotelMaster != null && hotelMaster.RankChiefs != null)
+            hotelMaster.RankChiefs.ForEach(r => {
+                if(r.Squares[0].Tables != null)
+                {
+                    if (r.Squares[0].Tables.Exists(t => (t.Group != null) ? t.Group.ID == group.ID : false))
+                    {
+                        Console.WriteLine("Table found");
+                        table = r.Squares[0].Tables.Find(t => (t.Group != null) ? t.Group.ID == group.ID : false);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Table not found");
+                    }
+                        
+                }
+            });
+            return table;
+        }
+
+        public void ChangeStateByGroup(Table table)
+        {
+            switch(table.Group.State)
+            {
+                case GroupState.WaitEntree:
+                    table.Entree = true;
+                    table.Group.State = GroupState.WaitPlate;
+                    break;
+                case GroupState.WaitPlate:
+                    table.Plate = true;
+                    table.Group.State = GroupState.WaitDessert;
+                    break;
+                case GroupState.WaitDessert:
+                    table.Dessert = true;
+                    table.Group.State = GroupState.WaitBill;
+                    break;
             }
         }
 

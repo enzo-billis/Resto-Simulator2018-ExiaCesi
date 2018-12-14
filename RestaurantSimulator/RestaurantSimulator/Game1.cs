@@ -232,7 +232,6 @@ namespace RestaurantSimulator
                     group.Clients.ForEach(c => c.Entree = recette);
                     group.State = GroupState.WaitDessert;
                     LGroupes.Add(new GroupeController(group));
-                    //ThreadPool.QueueUserWorkItem(SalleCommandsController.Instance.SendCommand, group);
                     ThreadPool.QueueUserWorkItem(SalleCommandsController.ConnectAndSendCommand, group);
                     bill = false;
                 }
