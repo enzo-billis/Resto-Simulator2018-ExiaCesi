@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RestaurantSimulator.Controller.Kitchen;
 using RestaurantSimulator.Model.Salle.Components;
 
 namespace RestaurantSimulator.Controller.Salle
@@ -17,6 +18,7 @@ namespace RestaurantSimulator.Controller.Salle
             {
                 StockEquipment.Instance.InUse[elem] = eNumberInUse - 1;
                 StockEquipment.Instance.Dirty[elem] = eNumberDirty + 1;
+                KitchenCleanerController.checkCleaning();
                 return true;
             }
             return false;
