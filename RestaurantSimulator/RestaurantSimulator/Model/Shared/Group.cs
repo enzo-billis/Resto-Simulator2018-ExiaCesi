@@ -1,4 +1,5 @@
 ﻿using Restaurant.Model.Salle.Movement;
+using RestaurantSimulator.Controller;
 using RestaurantSimulator.Model.Salle.Characters;
 using RestaurantSimulator.Model.Salle.Movement;
 using System.Collections.Generic;
@@ -50,6 +51,11 @@ namespace Restaurant.Model.Shared
         {
             this.PosX = posX;
             this.PosY = posY;
+        }
+
+        public void Notify()
+        {
+            EventHandlerGroup.Instance.Update(this);
         }
     }
 }

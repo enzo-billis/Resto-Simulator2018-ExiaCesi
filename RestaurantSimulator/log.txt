@@ -1,0 +1,167 @@
+[11/12/2018 20:46:44]Kitchen commands server started
+[11/12/2018 20:46:49]Salle commands client started
+[11/12/2018 20:46:52]Command send from salle : 3
+[11/12/2018 20:46:53]Command received : 3
+[11/12/2018 20:46:53]Command finished : 3
+[11/12/2018 20:58:10]Kitchen commands server started
+[11/12/2018 20:58:15]Salle commands client started
+[11/12/2018 20:58:21]Command send from salle : 3
+[11/12/2018 20:58:22]Command received : 3
+[11/12/2018 20:58:22]Command finished : 3
+[12/12/2018 09:09:30]Kitchen commands server started
+[12/12/2018 09:09:35]Salle commands client started
+[12/12/2018 09:09:40]Command send from salle : 3
+[12/12/2018 09:09:41]Command received : 3
+[12/12/2018 09:09:41]Command finished : 3
+[12/12/2018 09:11:20]Kitchen commands server started
+[12/12/2018 09:11:25]Salle commands client started
+[12/12/2018 09:11:28]Command send from salle : 3
+[12/12/2018 09:11:29]Command received : 3
+[12/12/2018 09:11:29]Command finished : 3
+[12/12/2018 09:22:40]Kitchen commands server started
+[12/12/2018 09:22:45]Salle commands client started
+[12/12/2018 09:22:48]Command send from salle : 3
+[12/12/2018 09:22:49]Command received : 3
+[12/12/2018 09:22:49]Command finished : 3
+[12/12/2018 09:32:42]Kitchen commands server started
+[12/12/2018 09:32:47]Salle commands client started
+[12/12/2018 09:32:51]Command send from salle : 3
+[12/12/2018 09:32:52]Command received : 3
+[12/12/2018 09:32:52]Command finished : 3
+[12/12/2018 10:01:18]Kitchen commands server started
+[12/12/2018 10:01:23]Salle commands client started
+[12/12/2018 10:01:26]Command send from salle : 3
+[12/12/2018 10:01:27]Command received : 3
+[12/12/2018 10:01:27]Command finished : 3
+[12/12/2018 10:13:36]Kitchen commands server started
+[12/12/2018 10:13:41]Salle commands client started
+[12/12/2018 10:13:45]Command send from salle : 3
+[12/12/2018 10:13:45]Command received : 3
+[12/12/2018 10:13:46]Command finished : 3
+[12/12/2018 11:16:13]Kitchen commands server started
+[12/12/2018 11:16:18]Salle commands client started
+[12/12/2018 11:16:22]Command send from salle : 3
+[12/12/2018 11:16:22]Command received : 3
+[12/12/2018 11:16:23]Command finished : 3
+[12/12/2018 11:20:34]Kitchen commands server started
+[12/12/2018 11:20:39]Salle commands client started
+[12/12/2018 11:20:43]Command send from salle : 3
+[12/12/2018 11:20:44]Command received : 3
+[12/12/2018 11:20:44]Command finished : 3
+[12/12/2018 11:31:42]Kitchen commands server started
+[12/12/2018 11:31:47]Salle commands client started
+[12/12/2018 11:31:49]Command send from salle : 3
+[12/12/2018 11:31:50]Command received : 3
+[12/12/2018 11:31:50]Command finished : 3
+[12/12/2018 14:05:21]Kitchen commands server started
+[12/12/2018 14:05:26]Salle commands client started
+[12/12/2018 14:05:30]Command send from salle : 3
+[12/12/2018 14:05:31]Command received : 3
+[12/12/2018 14:05:31]Command finished : 3
+[12/12/2018 14:05:57]Kitchen commands server started
+[12/12/2018 14:06:02]Salle commands client started
+[12/12/2018 14:06:05]Command send from salle : 3
+[12/12/2018 14:06:06]Command received : 3
+[12/12/2018 14:06:06]Command finished : 3
+[12/12/2018 14:06:46]Kitchen commands server started
+[12/12/2018 14:06:51]Salle commands client started
+[12/12/2018 14:06:53]Command send from salle : 3
+[12/12/2018 14:06:54]Command received : 3
+[12/12/2018 14:06:54]Command finished : 3
+[12/12/2018 14:11:02]Kitchen commands server started
+[12/12/2018 14:11:07]Salle commands client started
+[12/12/2018 14:11:08]Command send from salle : 3
+[12/12/2018 14:11:09]Command received : 3
+[12/12/2018 14:11:09]Command finished : 3
+[12/12/2018 14:11:16]Kitchen commands server started
+[12/12/2018 14:11:21]Salle commands client started
+[12/12/2018 14:11:23]Command send from salle : 3
+[12/12/2018 14:11:24]Command received : 3
+[12/12/2018 14:11:24]Command finished : 3
+[12/12/2018 14:14:10]Kitchen commands server started
+[12/12/2018 14:14:15]Salle commands client started
+[12/12/2018 14:14:19]Command send from salle : 3
+[12/12/2018 14:14:20]Command received : 3
+[12/12/2018 14:14:20]Command finished : 3
+[12/12/2018 14:15:29]Kitchen commands server started
+[12/12/2018 14:15:34]Salle commands client started
+[12/12/2018 14:15:37]Command send from salle : 3
+[12/12/2018 14:15:38]Command received : 3
+[12/12/2018 14:15:38]Command finished : 3
+[12/12/2018 14:17:21]Kitchen commands server started
+[12/12/2018 14:17:26]Salle commands client started
+[12/12/2018 14:17:29]Command send from salle : 3
+[12/12/2018 14:17:30]Command received : 3
+[12/12/2018 14:17:30]Command finished : 3
+[12/12/2018 14:18:20]Kitchen commands server started
+[12/12/2018 14:18:25]Salle commands client started
+[12/12/2018 14:18:28]Command send from salle : 3
+[12/12/2018 14:18:29]Command received : 3
+[12/12/2018 14:18:29]Command finished : 3
+[12/12/2018 14:23:10]Kitchen commands server started
+[12/12/2018 14:23:15]Salle commands client started
+[12/12/2018 14:23:17]Command send from salle : 3
+[12/12/2018 14:23:17]Command received : 3
+[12/12/2018 14:23:17]Command finished : 3
+[12/12/2018 14:23:29]Kitchen commands server started
+[12/12/2018 14:23:34]Salle commands client started
+[12/12/2018 14:23:37]Command send from salle : 3
+[12/12/2018 14:23:38]Command received : 3
+[12/12/2018 14:23:39]Command finished : 3
+[12/12/2018 14:26:11]Kitchen commands server started
+[12/12/2018 14:26:16]Salle commands client started
+[12/12/2018 14:26:20]Command send from salle : 3
+[12/12/2018 14:26:21]Command received : 3
+[12/12/2018 14:26:21]Command finished : 3
+[12/12/2018 14:29:20]Kitchen commands server started
+[12/12/2018 14:29:25]Salle commands client started
+[12/12/2018 14:29:29]Command send from salle : 3
+[12/12/2018 14:29:29]Command received : 3
+[12/12/2018 14:29:30]Command finished : 3
+[12/12/2018 14:32:15]Kitchen commands server started
+[12/12/2018 14:32:20]Salle commands client started
+[12/12/2018 14:32:23]Command send from salle : 3
+[12/12/2018 14:32:24]Command received : 3
+[12/12/2018 14:32:24]Command finished : 3
+[12/12/2018 14:32:59]Kitchen commands server started
+[12/12/2018 14:33:05]Salle commands client started
+[12/12/2018 14:33:08]Command send from salle : 3
+[12/12/2018 14:33:09]Command received : 3
+[12/12/2018 14:33:09]Command finished : 3
+[12/12/2018 14:34:58]Kitchen commands server started
+[12/12/2018 14:35:03]Salle commands client started
+[12/12/2018 14:35:07]Command send from salle : 3
+[12/12/2018 14:35:08]Command received : 3
+[12/12/2018 14:35:08]Command finished : 3
+[12/12/2018 14:38:54]Kitchen commands server started
+[12/12/2018 14:38:59]Salle commands client started
+[12/12/2018 14:39:03]Command send from salle : 3
+[12/12/2018 14:39:04]Command received : 3
+[12/12/2018 14:39:04]Command finished : 3
+[12/12/2018 14:44:50]Kitchen commands server started
+[12/12/2018 14:44:55]Salle commands client started
+[12/12/2018 14:44:57]Command send from salle : 3
+[12/12/2018 14:44:58]Command received : 3
+[12/12/2018 14:44:58]Command finished : 3
+[12/12/2018 14:50:44]Kitchen commands server started
+[12/12/2018 14:50:49]Salle commands client started
+[12/12/2018 14:50:52]Command send from salle : 3
+[12/12/2018 14:50:53]Command received : 3
+[12/12/2018 14:50:53]Command finished : 3
+[12/12/2018 14:51:49]Kitchen commands server started
+[12/12/2018 14:51:54]Salle commands client started
+[12/12/2018 14:51:58]Command send from salle : 3
+[12/12/2018 14:51:59]Command received : 3
+[12/12/2018 14:51:59]Command finished : 3
+[12/12/2018 14:52:55]Kitchen commands server started
+[12/12/2018 14:53:00]Salle commands client started
+[12/12/2018 14:53:04]Command send from salle : 3
+[12/12/2018 14:53:04]Command received : 3
+[12/12/2018 14:53:05]Command finished : 3
+[12/12/2018 14:58:00]Kitchen commands server started
+[12/12/2018 14:58:09]Kitchen commands server started
+[12/12/2018 14:58:14]Salle commands client started
+[12/12/2018 14:58:18]Command send from salle : 3
+[12/12/2018 14:58:18]Command received : 3
+[12/12/2018 14:58:18]Command finished : 3
+[12/12/2018 15:16:15]Command finished : 3

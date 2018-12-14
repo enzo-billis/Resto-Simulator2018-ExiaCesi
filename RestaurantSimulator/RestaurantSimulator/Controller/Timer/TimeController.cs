@@ -12,6 +12,7 @@ namespace RestaurantSimulator.Controller
     {
         private static GameTime time;
         public TimeController() {}
+        private static int temps, lastSec, currentSec = 0;
 
         public static void SetTime(GameTime timeParam)
         {
@@ -25,8 +26,15 @@ namespace RestaurantSimulator.Controller
 
         public static int GetTimer()
         {
-            int multiplier = 10;
-            return Convert.ToInt32(Timer.Time.TotalGameTime.TotalSeconds) * multiplier;
+            
+
+            lastSec = currentSec;
+            currentSec = Timer.Time.TotalGameTime.Seconds;
+                if (lastSec != currentSec)
+            {
+                temps += 1 * Parameters.SPEED;
+            }
+            return temps;
         }
 
         public static GameTime Time { get => time; set => time = value; }
