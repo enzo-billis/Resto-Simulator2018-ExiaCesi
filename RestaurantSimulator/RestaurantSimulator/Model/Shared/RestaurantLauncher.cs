@@ -35,6 +35,7 @@ namespace RestaurantSimulator.Model.Shared
             salleCommands.Start();
             game = new Game1();
             game.SalleModel = salles[0];
+            MapController.UpdateMap();
         }
 
         private void LaunchKitchenCommands()
